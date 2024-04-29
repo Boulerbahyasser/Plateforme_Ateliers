@@ -17,6 +17,8 @@
       <div>
         <button type="submit">S'inscrire</button>
       </div>
+      <p class="already-registered"> Déjà inscrit ? <router-link to="/signin">Connectez-vous</router-link>
+      </p>
     </form>
   </div>
 </template>
@@ -59,7 +61,9 @@ input[type="email"],
 input[type="password"] {
   width: 95%;
   padding: 7px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 button {
   width: 100%;
@@ -72,4 +76,16 @@ button {
 button:hover {
   background-color: #2980b9;
 }
+
+.already-registered {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.already-registered a {
+  color: #3498db; /* Couleur de votre choix */
+  text-decoration: none;
+}
+
+
 </style>

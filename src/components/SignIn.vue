@@ -50,7 +50,7 @@ label {
 }
 input[type="email"],
 input[type="password"] {
-  width: 100%;
+  width: 95%;
   padding: 7px;
   margin-bottom: 15px;
   border: 1px solid #ccc;

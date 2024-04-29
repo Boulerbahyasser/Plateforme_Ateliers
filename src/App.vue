@@ -1,15 +1,21 @@
 
 <template>
+  <NavBar />
+  <router-view/>
   <SignUp />
+
+
 </template>
 
 <script>
-import SignUp from "@/components/SignUp.vue";
 
+import NavBar from "@/components/NavBar.vue";
+import SignUp from "@/components/SignUp.vue";
 export default {
   name: 'App',
   components:{
-    SignUp
+    SignUp ,
+    NavBar
   }
 }
 </script>
