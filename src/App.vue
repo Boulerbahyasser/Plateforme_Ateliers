@@ -1,17 +1,21 @@
 
 <template>
-  <SignIn />
+  <NavBar />
+  <OffersPage />
+  <router-view />
+
 
 </template>
-
 <script>
 
-import SignIn from "@/components/SignIn.vue";
+import NavBar from "@/components/NavBar.vue";
+import OffersPage from "@/components/OffersPage.vue";
+
 export default {
   name: 'App',
   components:{
-
-   SignIn
+    NavBar,
+    OffersPage
   }
 }
 </script>

@@ -5,23 +5,37 @@
         <img src="@/assets/logo.png" alt="Logo" class="navbar-logo">
       </router-link>
     </div>
-    <ul class="navbar-center">
-      <li><router-link to="/">Home</router-link></li>
+    <ul class="navbar-center" :class="{ 'show': isMenuOpen }">
+      <li><router-link to="/">Welcome</router-link></li>
       <li><router-link to="/about">About Us</router-link></li>
       <li><router-link to="/how-to-use">How to use</router-link></li>
-      <li><router-link to="/cont">Contact</router-link></li>
+      <li><router-link to="/contact">Contact</router-link></li>
     </ul>
     <div class="navbar-right">
       <router-link to="/cart"><i class="fas fa-shopping-cart"></i></router-link>
       <router-link to="/profile"><i class="fas fa-user"></i></router-link>
     </div>
+    <button class="nav-toggle" @click="toggleMenu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
   </nav>
 </template>
 
 <script>
 export default {
-  name: 'NavbarElement'
-  // Vous pouvez ajouter du script ici si nécessaire
+  name: 'NavbarElement',
+  data() {
+    return {
+      isMenuOpen: false,
+    };
+  },
+  methods: {
+    toggleMenu() {
+      this.isMenuOpen = !this.isMenuOpen;
+    }
+  }
 };
 </script>
 
@@ -30,13 +44,13 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #ffffff;
-  padding: 0 1rem;
-  border-bottom: 1px solid #ccc; /* Changez la couleur #ccc en fonction de votre design */
+  background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   position: sticky;
-  top: 0; /* Cela garantit que la navbar reste en haut de la page */
-  z-index: 1000; /* Assurez-vous qu'elle se trouve au-dessus des autres contenus */
-  /* Votre autre CSS */
+  top: 0;
+  z-index: 1000;
 }
 
 .navbar-left, .navbar-right {
@@ -50,25 +64,71 @@ export default {
   justify-content: space-around;
   margin: 0;
   padding: 0;
-
 }
 
 .navbar-logo {
-  height: 50px; /* ou la taille que vous voulez */
+  height: 50px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.navbar-logo:hover {
+  transform: scale(1.1);
 }
 
 .navbar a {
   text-decoration: none;
-  color: #333;
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s ease-in-out;
 }
 
-.navbar-right a {
-  text-align: right;
+.navbar a:hover {
+  color: #bdc3c7;
 }
 
 .fas {
-  margin-left: 15px;
+  margin-left: 20px;
+  font-size: 20px;
+  transition: transform 0.3s ease-in-out;
 }
 
-/* Ajoutez vos propres styles ici pour correspondre à l'image que vous avez fournie */
+.fas:hover {
+  transform: rotate(360deg);
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.nav-toggle .bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 3px auto;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .navbar-center {
+    position: absolute;
+    top: 60px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    flex-direction: column;
+    display: none;
+  }
+
+  .navbar-center.show {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+}
 </style>

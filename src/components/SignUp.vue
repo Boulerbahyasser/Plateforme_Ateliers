@@ -65,17 +65,31 @@ input[type="password"] {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+input[type="email"]:focus, input[type="password"]:focus  , input[type="text"]:focus{
+  outline: none; /* Supprime l'encadrement par défaut au focus */
+  border-color: #3498db; /* Change la couleur de la bordure au focus si désiré */
+}
+
+
 button {
-  width: 100%;
-  padding: 10px;
-  background-color: #3498db;
+  padding: 10px 20px;
   border: none;
+  background-color: #007BFF;
   color: white;
+  border-radius: 5px;
   cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s;
 }
+
 button:hover {
-  background-color: #2980b9;
+  background-color: #0056b3;
+  box-shadow:5px 5px 10px rgba(0,0,0,0.25) ;
 }
+button:active {
+  background-color: #012a56;
+}
+
 
 .already-registered {
   text-align: center;

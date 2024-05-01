@@ -64,12 +64,18 @@ textarea {
 }
 button {
   padding: 10px 20px;
-  background-color: #3498db;
-  color: white;
   border: none;
+  background-color: #007BFF;
+  color: white;
+  border-radius: 5px;
   cursor: pointer;
 }
+
 button:hover {
-  background-color: #2980b9;
+  background-color: #0056b3;
+  box-shadow:5px 5px 10px rgba(0,0,0,0.25) ;
+}
+button:active{
+  background-color: #012a56;
 }
 </style>

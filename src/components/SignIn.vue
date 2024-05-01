@@ -4,7 +4,7 @@
     <form @submit.prevent="submitLogin">
       <div>
         <label for="email">Email:</label>
-        <input type="email" id="email" v-model="login.email" required>
+        <input type="text" id="email" v-model="login.email" required>
       </div>
       <div>
         <label for="password">Mot de passe:</label>
@@ -48,23 +48,37 @@ label {
   display: block;
   margin-bottom: 5px;
 }
-input[type="email"],
-input[type="password"] {
+input[type="text"], input[type="password"] {
   width: 95%;
   padding: 7px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
+input[type="text"]:focus, input[type="password"]:focus {
+  outline: none; /* Supprime l'encadrement par défaut au focus */
+  border-color: #3498db; /* Change la couleur de la bordure au focus si désiré */
+}
+
+
 button {
-  width: 100%;
-  padding: 10px;
-  background-color: #3498db;
+  padding: 10px 20px;
   border: none;
+  background-color: #007BFF;
   color: white;
+  border-radius: 5px;
   cursor: pointer;
+  width: 100%;
 }
+
 button:hover {
-  background-color: #2980b9;
+  background-color: #0056b3;
+  box-shadow:5px 5px 10px rgba(0,0,0,0.25) ;
 }
+
+button:active {
+background-color: #012a56}
+
+
 </style>

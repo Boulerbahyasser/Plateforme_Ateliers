@@ -20,26 +20,27 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
-  background-color: #F8F9FA; /* Fond clair */
+  background-color: rgba(187,35,38); /* Fond clair */
   height: 40vh;
+  padding-bottom: 20px;
 }
 
 .text-section {
   flex: 1;
   max-width: 40%; /* Ajustez selon vos besoins */
   padding-right: 50px; /* Espace entre le texte et l'image */
+  margin-left: 70px;
 }
 
 h1 {
-  font-size: 2.5rem;
-  color: #2C3E50;
+  font-size: 50px ;
+  color: #305e8c;
   margin-bottom: 20px;
 }
 
 p {
   font-size: 1.2rem;
-  color: #34495E;
+  color: #eff1f3;
   margin-bottom: 30px;
 }
 
@@ -78,8 +79,16 @@ p {
 }
 
 .welcome-image {
-  max-width: 95%;
+  max-width: 350px;
   height: auto; /* Maintient le ratio d'aspect de l'image */
+  margin-right: 70px;
+  margin-bottom: 1px;
+  margin-top: 15px;
+}
+ .welcome-container:hover {
+  transform: scale(1.05); /* Agrandissement léger */
+  transition: transform 0.3s ease-in-out;
+
 }
 </style>
 
