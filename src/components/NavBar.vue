@@ -1,18 +1,19 @@
 <template>
+
   <nav class="navbar">
     <div class="navbar-left">
       <router-link to="/" class="navbar-brand">
         <img src="@/assets/logo.png" alt="Logo" class="navbar-logo">
       </router-link>
     </div>
-    <ul class="navbar-center" :class="{ 'show': isMenuOpen }">
+    <ul class="navbar-center" :class="{ 'show': isMenuOpen }"> <!-- Si isMenuOpen est vrai (true), alors la classe show sera ajoutée à l'élément ul. Si isMenuOpen est faux (false), alors la classe show ne sera pas appliquée. -->
       <li><router-link to="/">Welcome</router-link></li>
       <li><router-link to="/about">About Us</router-link></li>
       <li><router-link to="/how-to-use">How to use</router-link></li>
       <li><router-link to="/contact">Contact</router-link></li>
     </ul>
     <div class="navbar-right">
-      <router-link to="/cart"><i class="fas fa-shopping-cart"></i></router-link>
+      <router-link to="/notification"><i class="fas fa-bell"></i></router-link>
       <router-link to="/profile"><i class="fas fa-user"></i></router-link>
     </div>
     <button class="nav-toggle" @click="toggleMenu">
@@ -21,6 +22,7 @@
       <span class="bar"></span>
     </button>
   </nav>
+
 </template>
 
 <script>
@@ -57,8 +59,26 @@ export default {
   flex: 1;
 }
 
+.navbar-left {
+  flex: 1;
+  position: relative; /* Ajout de position relative */
+}
+
+
+.navbar-left::after {
+  content: "";
+  display: block;
+  width: 2px;  /* Épaisseur de la ligne */
+  height: 100%; /* Hauteur pour couvrir entièrement la hauteur de la barre de navigation */
+  background-color: white; /* Couleur de la ligne */
+  position: absolute;
+  right: 0; /* Positionner à la droite du `navbar-left` */
+  top: 0;
+}
+
+
 .navbar-center {
-  flex: 2;
+  flex: 3; /* élément prendra deux 3 plus d'espace disponible que les autres éléments flexibles avec une valeur flex de 1.*/
   list-style: none;
   display: flex;
   justify-content: space-around;
@@ -83,7 +103,7 @@ export default {
 }
 
 .navbar a:hover {
-  color: #bdc3c7;
+  font-weight: bold;
 }
 
 .fas {
@@ -114,11 +134,15 @@ export default {
 }
 
 @media (max-width: 768px) {
+   .navbar-left::after {
+    display: none; /* Cache la ligne verticale sur les petits écrans */
+  }
+
   .navbar-center {
     position: absolute;
     top: 60px;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(1, 17, 52, 0.85);
     flex-direction: column;
     display: none;
   }

@@ -4,6 +4,7 @@ import AboutUs from "@/components/AboutUs.vue";
 import SignIn from '@/components/SignIn.vue';
 import SignUp from "@/components/SignUp.vue";
 import WelcomePage from "@/components/WelcomePage.vue";
+import OffersPage from "@/components/OffersPage.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -12,7 +13,8 @@ const router = createRouter({
     { path: '/about', component: AboutUs, name: "AboutUs" },
     { path: '/signin', component: SignIn, name: "SignIn" },
     { path: '/signup', component: SignUp, name: "SignUp" },
-    { path: '/', component: WelcomePage, name: "WelcomePage" }
+    { path: '/', component: WelcomePage, name: "WelcomePage" },
+    { path: '/offerspage' , component:OffersPage , name:"OffersPage"}
   ]
 });
 

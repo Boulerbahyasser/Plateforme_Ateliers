@@ -1,21 +1,23 @@
 
 <template>
   <NavBar />
-  <OffersPage />
-  <router-view />
+  <router-view/>
+
+<NotificationsPage/>
 
 
 </template>
 <script>
 
 import NavBar from "@/components/NavBar.vue";
-import OffersPage from "@/components/OffersPage.vue";
 
+import NotificationsPage from "@/components/NotificationsPage.vue";
 export default {
   name: 'App',
   components:{
     NavBar,
-    OffersPage
+    NotificationsPage
+
   }
 }
 </script>
