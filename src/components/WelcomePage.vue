@@ -41,73 +41,91 @@ export default {
 
 
 <style scoped>
+
 .welcome-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  background-color: #F8F9FA; /* Fond clair */
+  background-color: #E2F0D9; /* Fond clair et amusant */
   height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
+
 
 .text-section {
   flex: 1;
-  max-width: 60%; /* Ajustez selon vos besoins */
+  max-width: 50%; /* Plus d'espace pour l'image */
   padding-right: 50px; /* Espace entre le texte et l'image */
 }
 
 h1 {
-  font-size: 2.5rem;
-  color: #2C3E50;
+  font-size: 3rem; /* Plus grand pour captiver l'attention */
+  color: #4A90E2; /* Couleur amusante */
+  font-family: 'Comic Sans MS', 'Comic Neue', cursive; /* Police plus adaptée aux enfants */
   margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1); /* Ajout d'une petite ombre pour le relief */
 }
 
 p {
-  font-size: 1.2rem;
-  color: #34495E;
+  font-size: 1.5rem; /* Plus lisible */
+  color: #333;
+  font-family: 'Comic Sans MS', 'Comic Neue', cursive;
   margin-bottom: 30px;
+  line-height: 1.5; /* Espacement entre les lignes pour une meilleure lisibilité */
 }
 
 .signup-btn, .signin-btn {
-  padding: 10px 20px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  text-decoration: none;
-  font-size: 1rem;
+  padding: 15px 30px; /* Plus grand pour faciliter le clic */
+  margin-top: 20px;
+  border-radius: 10px; /* Coins plus arrondis */
+  font-size: 1.2rem; /* Texte plus grand */
+  font-weight: bold; /* Texte en gras */
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .signup-btn {
-  background-color: #007BFF;
-  margin-right: 40px;
+  background-color: #FF6384; /* Rose vif */
 }
 
 .signin-btn {
-  background-color: #18d561;
+  background-color: #36A2EB; /* Bleu vif */
 }
 
-.signup-btn:hover  {
-  background-color: #0056b3;
-  box-shadow:5px 5px 10px rgba(0,0,0,0.25) ;
-}
-.signin-btn:hover{
-  background-color: #2cc469;
-  box-shadow:5px 5px 10px rgba(0,0,0,0.25) ;
+.signup-btn:hover, .signin-btn:hover {
+  transform: scale(1.05); /* Grossit légèrement au survol */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 .image-section {
   flex: 1;
-  max-width: 60%; /* Ajustez selon vos besoins */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .welcome-image {
-  max-width: 100%;
-  height: auto; /* Maintient le ratio d'aspect de l'image */
+  max-width: 80%;
+  border-radius: 15px; /* Ajout de bordures arrondies pour adoucir les angles */
 }
+@media (max-width: 768px) {
+    .welcome-container {
+        flex-direction: column;
+    }
+
+    .text-section, .image-section {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+
+    .welcome-image {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+
+
 </style>

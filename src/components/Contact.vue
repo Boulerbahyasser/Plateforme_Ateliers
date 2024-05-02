@@ -44,38 +44,65 @@ export default {
 <style scoped>
 .contact-container {
   max-width: 600px;
-  margin: auto;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin: 40px auto;
+  padding: 40px; /* Augmenté pour plus de respiration */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Ombre plus forte pour plus de profondeur */
+  border-radius: 10px; /* Coins plus arrondis */
+  background-color: #ffffff; /* Fond clair pour un contraste élevé */
+  border: 1px solid #ccc; /* Bordure subtile pour définir le conteneur */
 }
+
+h1 {
+  text-align: center;
+  color: #2C3E50; /* Couleur foncée pour plus de contraste */
+  font-size: 2.8rem; /* Taille de police légèrement augmentée */
+  margin-bottom: 30px; /* Espace accru sous le titre */
+}
+
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 25px; /* Espacement accru pour une meilleure organisation */
 }
+
 label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 10px; /* Espacement accru sous le label */
+  color: #333;
+  font-weight: 600; /* Police en gras pour une meilleure lisibilité */
 }
+
 input[type="text"],
 input[type="email"],
 textarea {
   width: 100%;
-  padding: 8px;
-  box-sizing: border-box; /* Assurez-vous que le padding ne change pas la largeur */
-}
-button {
-  padding: 10px 20px;
-  border: none;
-  background-color: #007BFF;
-  color: white;
+  padding: 15px; /* Padding accru pour un confort d'écriture */
+  margin-bottom: 20px; /* Espacement accru */
+  border: 2px solid #e3e3e3; /* Bordure plus visible */
   border-radius: 5px;
-  cursor: pointer;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06); /* Ombre interne pour un effet subtil */
+  transition: all 0.3s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  border-color: #3498db; /* Couleur de bordure au focus */
+  box-shadow: 0 0 8px rgba(52, 152, 219, 0.5); /* Ombre externe au focus pour un effet "glow" */
+}
+
+button {
+  padding: 15px 30px; /* Padding accru pour un bouton plus grand */
+  border-radius: 6px; /* Coins légèrement plus arrondis */
+  font-size: 1.1rem; /* Taille de police augmentée */
+  letter-spacing: 1px; /* Espacement des lettres pour un effet stylisé */
 }
 
 button:hover {
-  background-color: #0056b3;
-  box-shadow:5px 5px 10px rgba(0,0,0,0.25) ;
+  background-color: #2980b9; /* Couleur de survol */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); /* Ombre plus marquée au survol */
 }
-button:active{
-  background-color: #012a56;
+
+button:active {
+  background-color: #2575b5; /* Couleur active plus sombre */
 }
 </style>
+

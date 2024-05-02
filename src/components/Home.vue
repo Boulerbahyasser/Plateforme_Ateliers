@@ -1,85 +1,127 @@
 <template>
-  <div class="welcome-container">
-    <div class="text-section">
-      <h1>Atelier Algorithme</h1>
-      <p>Découvrez le monde de l'algorithme avec votre enfant.</p>
-      <router-link to="/signup" class="signup-btn">Inscrivez-vous à l'offre</router-link>
-
-    </div>
-    <div class="image-section">
-      <img src="@/assets/child.png" alt="Learning" class="welcome-image">
-    </div>
+  <div class="sign-up">
+    <h1>Inscription</h1>
+    <form @submit.prevent="submitForm">
+      <div>
+        <label for="name">Nom d'utilisateur</label>
+        <input type="text" id="name" v-model="user.name" required>
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" v-model="user.email" required>
+      </div>
+      <div>
+        <label for="password">Mot de passe:</label>
+        <input type="password" id="password" v-model="user.password" required>
+      </div>
+      <div>
+        <button type="submit">S'inscrire</button>
+      </div>
+      <p class="already-registered"> Déjà inscrit ? <router-link to="/signin">Connectez-vous</router-link>
+      </p>
+    </form>
   </div>
 </template>
 
 <script>
-
+export default {
+  name: 'SignUp',
+  data() {
+    return {
+      user: {
+        name: '',
+        email: '',
+        password: ''
+      }
+    };
+  },
+  methods: {
+    submitForm() {
+      // Ici, vous ajouterez la logique pour traiter l'inscription
+      console.log("Données d'inscription:", this.user);
+      // Vous pourriez vouloir envoyer ces données à un serveur
+    }
+  }
+};
 </script>
-<style scoped>
-.welcome-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px;
-  background-color: #F8F9FA; /* Fond clair */
-  height: 40vh;
-}
 
-.text-section {
-  flex: 1;
-  max-width: 40%; /* Ajustez selon vos besoins */
-  padding-right: 50px; /* Espace entre le texte et l'image */
+
+
+<style scoped>
+.sign-up {
+  max-width: 350px;
+  margin: 40px auto;
+  padding: 25px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  background-color: #f8f9fa;
 }
 
 h1 {
-  font-size: 2.5rem;
-  color: #2C3E50;
+  text-align: center;
+  color: #333;
   margin-bottom: 20px;
 }
 
-p {
-  font-size: 1.2rem;
-  color: #34495E;
-  margin-bottom: 30px;
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+  font-weight: 600;
 }
 
-.signup-btn {
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #3498db;
+  box-shadow: 0 2px 4px rgba(50, 150, 250, 0.5);
+}
+
+button {
   padding: 10px 20px;
-  margin-top: 10px;
   border: none;
-  border-radius: 5px;
+  background-color: #3498db;
   color: white;
-  text-decoration: none;
-  font-size: 1rem;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-.signup-btn {
-  background-color: #007BFF;
-  margin-right: 40px;
+button:hover {
+  background-color: #2980b9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-.signup-btn:hover {
-  background-color: #0056b3;
-  box-shadow:5px 5px 10px rgba(0,0,0,0.25) ;
-}
-.signup-btn:active {
-  background-color: #012a56;
+button:active {
+  background-color: #2575b5;
 }
 
-.image-section {
-  flex: 1;
-  max-width: 30%; /* Ajustez selon vos besoins */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
+.already-registered {
+  text-align: center;
+  margin-top: 15px;
+  color: #666;
 }
 
-.welcome-image {
-  max-width: 95%;
-  height: auto; /* Maintient le ratio d'aspect de l'image */
+.already-registered a {
+  color: #2980b9;
+  text-decoration: none;
+}
+
+.already-registered a:hover {
+  text-decoration: underline;
 }
 </style>
-
