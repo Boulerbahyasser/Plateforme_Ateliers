@@ -1,21 +1,16 @@
-
 <template>
-  <NavBar />
-  <OffersPage />
-  <router-view />
+<UtiliasateurParent/>
 
 
 </template>
 <script>
-
-import NavBar from "@/components/NavBar.vue";
-import OffersPage from "@/components/OffersPage.vue";
+import UtiliasateurParent from"@/components/UtilisateurParent.vue"
 
 export default {
   name: 'App',
   components:{
-    NavBar,
-    OffersPage
+    UtiliasateurParent
+   
   }
 }
 </script>
