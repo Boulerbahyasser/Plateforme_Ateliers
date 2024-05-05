@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_User')->nullable(false);
 
             // Clé étrangère vers la table 'users'
-            $table->foreign('id_User')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_User')->references('id_User')->on('utilisateurs')->onDelete('cascade');
 
             // Ajout d'index pour l'optimisation des requêtes
             $table->index('id_User');
