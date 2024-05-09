@@ -15,13 +15,14 @@ return new class extends Migration
             $table->id('id_offre');
             $table->unsignedBigInteger('id_Admin');
             $table->string('Titre');
-            $table->date('Date_Creation');
+            $table->date('Date_Debut');
             $table->date('Date_Fin');
             $table->text('Description');
             $table->decimal('Remise', 10, 2);
-
+            $table->timestamps();
             // Clé étrangère vers la table 'administrateurs'
             $table->foreign('id_Admin')->references('id_Admin')->on('administrateurs')->onDelete('cascade');
+
         });
     }
 

@@ -15,7 +15,7 @@ return new class extends Migration
             // Clés étrangères
             $table->unsignedBigInteger('id_Anim');
             $table->unsignedBigInteger('id_Horaire');
-
+            $table->timestamps();
             // Clé primaire composite
             $table->primary(['id_Anim', 'id_Horaire']);
 

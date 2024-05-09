@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('Lien_Youtube')->nullable();
             $table->text('Objectifs');
             $table->string('Domaine');
-            
+            $table->timestamps();
+
             // Ajouter l'index sur le domaine pour optimisation des requêtes
             $table->index('Domaine');
         });

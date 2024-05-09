@@ -20,7 +20,7 @@ return new class extends Migration
             $table->decimal('Totale_TTC', 10, 2);
             $table->string('Statut');
             $table->text('Motif')->nullable();
-
+            $table->timestamps();
             // Clés étrangères vers les tables parentes
             $table->foreign('id_Demande')->references('id_Demande')->on('demandes')->onDelete('cascade');
             $table->foreign('id_Fact')->references('id_Fact')->on('factures')->onDelete('cascade');

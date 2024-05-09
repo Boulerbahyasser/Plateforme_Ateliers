@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('Contenu');
             $table->string('Object');
             $table->string('Type');
+            $table->timestamps();
         });
     }
 

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('jour');
             $table->time('Heure_Debut');
             $table->time('Heure_Fin');
+            $table->timestamps();
         });
     }
 

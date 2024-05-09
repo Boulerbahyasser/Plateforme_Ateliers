@@ -19,6 +19,7 @@ return new class extends Migration
 
             // Clé étrangère vers la table 'administrateurs'
             $table->foreign('id_Admin')->references('id_Admin')->on('administrateurs')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('factures', function (Blueprint $table) {
             $table->id('id_Fact'); // Clé primaire de la table Facture
+            $table->timestamps();
         });
     }
 

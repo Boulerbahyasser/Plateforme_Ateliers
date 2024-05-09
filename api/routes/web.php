@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\adminActiviteeOffreController;
+use App\Http\Controllers\showController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,4 +15,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::get('/show/activities/',[showController::class,'showActivities']);

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('Nbr_Seance');
             $table->integer('Volume_Horaire');
             $table->string('Option_Paiement');
-
+            $table->timestamps();
             // Clés étrangères vers les tables parentes
             $table->foreign('id_Offre')->references('id_offre')->on('offres')->onDelete('cascade');
             $table->foreign('id_Activite')->references('id_Activite')->on('activites')->onDelete('cascade');

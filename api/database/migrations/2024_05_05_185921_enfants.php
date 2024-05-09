@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('Date_Naissance')->nullable();
             $table->string('Niveau')->nullable();
             $table->string('Photo')->nullable();
+            $table->timestamps();
         });
     }
 

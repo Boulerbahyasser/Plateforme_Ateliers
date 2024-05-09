@@ -19,7 +19,7 @@ return new class extends Migration
             $table->dateTime('Horaire2');
             $table->string('Etat');
             $table->text('Motif');
-
+            $table->timestamps();
             // Clé primaire composite
             $table->primary(['id_Enfant', 'id_Activite_Offre', 'id_Demande']);
 

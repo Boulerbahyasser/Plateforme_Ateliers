@@ -17,6 +17,7 @@ return new class extends Migration
 
             // Clé étrangère vers la table 'utilisateurs'
             $table->foreign('id_User')->references('id_User')->on('utilisateurs')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

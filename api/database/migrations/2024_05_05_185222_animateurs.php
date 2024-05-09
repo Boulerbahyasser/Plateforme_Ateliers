@@ -21,6 +21,7 @@ return new class extends Migration
 
             // Ajout d'index pour l'optimisation des requêtes
             $table->index('id_User');
+            $table->timestamps();
         });
     }
 

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('Eff_Min');
             $table->integer('Eff_Max');
             $table->integer('Nbr_Place_Restant');
-
+            $table->timestamps();
             // Clé primaire composite
             $table->primary(['id_Activite_Offre', 'id_Horaire']);
 
