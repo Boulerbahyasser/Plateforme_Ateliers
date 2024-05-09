@@ -23,6 +23,7 @@ Route::post('/add/activity/{offre}/{activite}',[adminActiviteeOffreController::c
 Route::get('/show/offers/',[showController::class,'showOffer']);
 Route::get('/show/offers/parent/',[showController::class,'showOfferParent']);
 Route::get('/show/activities/',[showController::class,'showActivities']);
-Route::get('/show/demandes/{idDemande}',[showController::class,'showDemande']);
-Route::get('/show/offer/activity/enfant/{id_Activite}',[showController::class,'showEnfantOfActivitieIncludedInAnOffer']);
-Route::get('/show/Offer/activities/{offer}',[showController::class,'showActivitiesOfOffer']);
+Route::get('/show/demandes/',[showController::class,'showDemande']);
+Route::get('/show/offer/activity/enfants/{id_Activite}',[showController::class,'showEnfantInActivity']);
+Route::get('/show/offer/activity/horaires/{id_Activite}',[showController::class,'showHoraireInActivity']);
+Route::get('/show/Offer/activities/{offer}',[showController::class,'showActivitiesInOffer']);
