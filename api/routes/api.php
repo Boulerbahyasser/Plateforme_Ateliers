@@ -21,7 +21,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('/add/activity/{offre}/{activite}',[adminActiviteeOffreController::class,'addActivityToOffer']);
 Route::get('/show/offers/',[showController::class,'showOffer']);
 Route::get('/show/offers/parent/',[showController::class,'showOfferParent']);
 Route::get('/show/activities/',[showController::class,'showActivities']);
@@ -34,4 +33,6 @@ Route::delete('/delete/offer/activity/{activityOffer}',[adminActiviteeOffreContr
 Route::delete('/delete/offer/{offer}',[adminOffreController::class,'destroyOffer']);
 Route::post('/create/offer/',[adminOffreController::class,'createOffer']);
 Route::put('/update/offer/{offer}',[adminOffreController::class,'updateOffer']);
+Route::post('/add/offer/activity/{offer}/{activity}',[adminActiviteeOffreController::class,'addActivityToOffer']);
+Route::put('/update/offer/activity/{activityOffer}',[adminActiviteeOffreController::class,'updateActivityInOffer']);
 

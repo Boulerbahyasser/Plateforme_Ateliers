@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 
 class adminActiviteeOffreController extends Controller
 {
-    public function addActivityToOffer(Request $request,Offre $offre,Activite $activitee){
+    //tested
+    public function addActivityToOffer(Request $request,Offre $offer,Activite $activity){
         $formFields = $request->validate([
             'Tarif' => 'required|numeric',
             'Age_Min' => 'required|integer|min:3',
@@ -18,12 +19,13 @@ class adminActiviteeOffreController extends Controller
             'Option_Paiement' => 'required',
             'Age_Max' => 'required|integer|min:3'
         ]);
-        $formFields['ID_Offre'] = $offre->ID_Offre;
-        $formFields['ID_Activitee'] = $activitee->ID_Activitee;
+        $formFields['id_Offre'] = $offer->id_offre;
+        $formFields['id_Activite'] = $activity->id_Activite;
         ActiviteOffre::create($formFields);
         return response()->json(['message'=>'the insertion was successful'],201);
     }
-    public function updateActivityInOffer(Request $request,ActiviteOffre $ativiteOffre){
+    //tested
+    public function updateActivityInOffer(Request $request,ActiviteOffre $activityOffer){
         $formFields = $request->validate([
             'Tarif' => 'required|numeric',
             'Age_Min' => 'required|integer|min:3',
@@ -33,7 +35,7 @@ class adminActiviteeOffreController extends Controller
             'Age_Max' => 'required|integer|min:3'
         ]);
 
-        $ativiteOffre->update($formFields);
+        $activityOffer->update($formFields);
         return response()->json(['message'=>'the update was successful'],201);
     }
     //tested
