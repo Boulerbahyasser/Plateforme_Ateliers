@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class adminOffreController extends Controller
 {
+    //tested
     public function createOffer(Request $request){
         $formFields = $request->validate([
             'Titre' => 'required',
@@ -17,23 +18,24 @@ class adminOffreController extends Controller
         ]);
         $formFields['id_Admin'] = auth()->id();
         // $formFields['Date_Creation'] = NOW(); I can use created_at
-        if($request->has('remise')) $formFields['remise'] = $request->remise;
+        if($request->has('Remise')) $formFields['Remise'] = $request->Remise;
+        else $formFields['Remise'] = 0;
         Offre::create($formFields);
         return response()->json(['message'=>'the insertion was successful'],201);
     }
-    public function updateOffer(Request $request,Offre $offre){
+    //tested
+    public function updateOffer(Request $request,Offre $offer){
         $formFields = $request->validate([
             'Titre' => 'required',
             'Date_Debut' => 'required|date',
             'Date_Fin' => 'required|date|after:Date_Debut',
             'Description' => 'required',
-
         ]);
-        $formFields['ID_Admin'] = auth()->id();
+        $formFields['id_Admin'] = auth()->id();
         // $formFields['Date_Creation'] = NOW(); I can use created_at
-        if($request->has('remise')) $formFields['remise'] = $request->remise;
-        $offre->update($formFields);
-        return response()->json(['message'=>'the update was successful'],201);
+        if($request->has('Remise')) $formFields['Remise'] = $request->Remise;
+        $offer->update($formFields);
+        return response()->json(['message'=>'the update was successful'],200);
     }
     //tested
     public function destroyOffer(Offre $offer)

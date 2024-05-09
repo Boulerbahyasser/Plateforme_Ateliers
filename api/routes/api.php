@@ -32,3 +32,6 @@ Route::get('/show/Offer/activities/{offer}',[showController::class,'showActiviti
 Route::delete('/delete/activity/{activity}',[adminActiviteeController::class,'destroyActivity']);
 Route::delete('/delete/offer/activity/{activityOffer}',[adminActiviteeOffreController::class,'destroyActivity']);
 Route::delete('/delete/offer/{offer}',[adminOffreController::class,'destroyOffer']);
+Route::post('/create/offer/',[adminOffreController::class,'createOffer']);
+Route::put('/update/offer/{offer}',[adminOffreController::class,'updateOffer']);
+
