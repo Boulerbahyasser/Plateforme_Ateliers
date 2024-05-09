@@ -41,7 +41,7 @@ class showController extends Controller
         $activities = ActiviteOffre::where('id_Offre', $offer->id_offre)->latest()->get();
         return response()->json($activities,200);
     }
-    //showHorairesOfactivitiesIncludedInAnOffer
+
     public function showHoraireInActivity($id_Activite){
         $results = HDA::join('horaires', 'hdas.id_Horaire', '=', 'horaires.id_Horaire')
             ->select('jour', 'Heure_Debut', 'Heure_Fin')

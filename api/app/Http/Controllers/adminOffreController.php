@@ -35,10 +35,10 @@ class adminOffreController extends Controller
         $offre->update($formFields);
         return response()->json(['message'=>'the update was successful'],201);
     }
-    public function destroyOffer(Offre $offre)
+    //tested
+    public function destroyOffer(Offre $offer)
     {
-        ActiviteOffre::where('id_Offre', $offre->id)->delete();
-        $offre->delete();
+        $offer->delete();
         return response()->json(['message'=>'the delete was successful'],200);
     }
 

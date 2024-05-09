@@ -19,13 +19,13 @@ class adminActiviteeController extends Controller
         if($request->hasFile('IMAGE_PUB')){
             $formFields['IMAGE_PUB'] = $request->file('IMAGE_PUB')->store('IMAGE_PUBs','public');
         }
-        Activites::create($formFields);
+        Activite::create($formFields);
         return response()->json(['message'=>'the insertion was successful'],201);
     }
 
     public function updateActivitee(Request $request,Activite $activite){
         $formFields = $request->validate([
-            'titre' => ['required',Rule::unique('Activite','titre')],
+            'titre' => ['required',Rule::unique('Activites','titre')],
 
             'Description'=>'required',
             'Lien_Youtube' => 'url',
@@ -38,9 +38,10 @@ class adminActiviteeController extends Controller
         $activite->update($formFields);
         return response()->json(['message'=>'the update was successful'],200);
     }
-    public function destroyActivitee(Activite $activite)
+    //tested
+    public function destroyActivity(Activite $activity)
     {
-        $activite->delete();
+        $activity->delete();
         return response()->json(['message'=>'the delete was successful'],200);
     }
 }
