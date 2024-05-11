@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\adminActiviteeController;
-use App\Http\Controllers\adminActiviteeOffreController;
-use App\Http\Controllers\adminOffreController;
+use App\Http\Controllers\AdminActiviteeController;
+use App\Http\Controllers\AdminActiviteeOffreController;
+use App\Http\Controllers\AdminOffreController;
 use App\Http\Controllers\showController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -33,19 +33,27 @@ Route::get('/show/offer/activity/horaires/{activite_id}',[showController::class,
 
 Route::get('/show/offer/activity/enfants/{activite_id}',[showController::class,'showEnfantInActivity']);
 
-Route::delete('/delete/activity/{activity}',[adminActiviteeController::class,'destroyActivity']);
-Route::delete('/delete/offer/activity/{activityOffer}',[adminActiviteeOffreController::class,'destroyActivity']);
-Route::post('/create/offer/',[adminOffreController::class,'createOffer']);
-Route::put('/update/offer/{offer}',[adminOffreController::class,'updateOffer']);
+
 //Route::get('/show/offers/parent/',[showController::class,'showOfferParent']);
 
-Route::post('/add/offer/activity/{offer}/{activity}',[adminActiviteeOffreController::class,'addActivityToOffer']);
+Route::post('/add/offer/activity/{offer}/{activity}',[AdminActiviteeOffreController::class,'addActivityToOffer']);
 
-Route::put('/update/offer/activity/{activityOffer}',[adminActiviteeOffreController::class,'updateActivityInOffer']);
+Route::put('/update/offer/activity/{activityOffer}',[AdminActiviteeOffreController::class,'updateActivityInOffer']);
 
-Route::delete('/delete/offer/{offer}',[adminOffreController::class,'destroyOffer']);
+Route::delete('/delete/offer/activity/{activityOffer}',[AdminActiviteeOffreController::class,'destroyActivity']);
+
+
+
+Route::post('/create/offer/',[AdminOffreController::class,'createOffer']);
+
+Route::put('/update/offer/{offer}/',[AdminOffreController::class,'updateOffer']);
+
+Route::delete('/delete/offer/{offer}',[AdminOffreController::class,'destroyOffer']);
+
+
 
 
 Route::post('/create/activity/',[adminActiviteeController::class,'createActivity']);
 
 
+Route::delete('/delete/activity/{activity}',[adminActiviteeController::class,'destroyActivity']);

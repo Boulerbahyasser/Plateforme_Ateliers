@@ -7,7 +7,7 @@ use App\Models\Activite;
 use App\Models\Offre;
 use Illuminate\Http\Request;
 
-class adminActiviteeOffreController extends Controller
+class AdminActiviteeOffreController extends Controller
 {
     //tested
     public function addActivityToOffer(Request $request,Offre $offer,Activite $activity){

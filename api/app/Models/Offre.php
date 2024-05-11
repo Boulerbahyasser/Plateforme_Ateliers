@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Offre extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'admin_id',
+        'titre',
+        'date_debut',
+        'date_fin',
+        'description',
+        'remise',
+    ];
+
 }
