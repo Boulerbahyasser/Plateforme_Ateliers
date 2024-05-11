@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('factures', function (Blueprint $table) {
-            $table->id('id_Fact'); // Clé primaire de la table Facture
+        Schema::create('administrateurs', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+
+            // Clé étrangère vers la table 'users'
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('factures');
+        Schema::dropIfExists('administrateurs');
     }
 };

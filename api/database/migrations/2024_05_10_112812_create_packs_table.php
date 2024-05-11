@@ -12,13 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('packs', function (Blueprint $table) {
-            $table->id('id_Pack');
-            $table->unsignedBigInteger('id_Demande');
-            $table->string('Nom');
-            $table->decimal('Remise', 10, 2);
-            $table->timestamps();
+            $table->id();
+            $table->unsignedBigInteger('demande_id');
+            $table->string('nom');
+            $table->decimal('remise', 10, 2);
+
             // Clé étrangère vers la table 'demandes'
-            $table->foreign('id_Demande')->references('id_Demande')->on('demandes')->onDelete('cascade');
+            $table->foreign('demande_id')->references('id')->on('demandes')->onDelete('cascade');
+
+            $table->timestamps();
         });
     }
 

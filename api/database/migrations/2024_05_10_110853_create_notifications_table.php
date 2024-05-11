@@ -12,16 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('notifications', function (Blueprint $table) {
-            $table->id('id_Notif');
-            $table->unsignedBigInteger('id_User');
+            $table->id();
+            $table->unsignedBigInteger('user_id');
 
             // Clé étrangère vers la table 'utilisateurs'
-            $table->foreign('id_User')->references('id_User')->on('utilisateurs')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->date('Date');
-            $table->text('Contenu');
-            $table->string('Object');
-            $table->string('Type');
+            $table->date('date');
+            $table->text('contenu');
+            $table->string('object');
+            $table->string('type');
             $table->timestamps();
         });
     }

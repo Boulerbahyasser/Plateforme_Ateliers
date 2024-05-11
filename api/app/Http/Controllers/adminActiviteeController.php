@@ -8,9 +8,9 @@ use Illuminate\Validation\Rule;
 
 class adminActiviteeController extends Controller
 {
-    public function createActivitee(Request $request){
+    public function createActivity(Request $request){
         $formFields = $request->validate([
-            'titre' => ['required',Rule::unique('Activite','titre')],
+            'Titre' => ['required',Rule::unique('activites','Titre')],
             'Description'=>'required',
             'Lien_Youtube' => 'url',
             'Objectifs' => 'required',
@@ -23,9 +23,9 @@ class adminActiviteeController extends Controller
         return response()->json(['message'=>'the insertion was successful'],201);
     }
 
-    public function updateActivitee(Request $request,Activite $activite){
+    public function updateActivity(Request $request,Activite $activite){
         $formFields = $request->validate([
-            'titre' => ['required',Rule::unique('Activites','titre')],
+            'Titre' => ['required',Rule::unique('activites','Titre')],
 
             'Description'=>'required',
             'Lien_Youtube' => 'url',

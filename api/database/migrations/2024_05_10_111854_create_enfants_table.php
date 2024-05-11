@@ -12,16 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('enfants', function (Blueprint $table) {
-            $table->id('id_Enfant');
-            $table->unsignedBigInteger('id_Parent');
+            $table->id();
+            $table->unsignedBigInteger('father_id');
 
             // Clé étrangère vers la table 'parents'
-            $table->foreign('id_Parent')->references('id_Parent')->on('parents')->onDelete('cascade');
-            $table->string('Nom')->nullable();
-            $table->string('Prenom')->nullable();
-            $table->date('Date_Naissance')->nullable();
-            $table->string('Niveau')->nullable();
-            $table->string('Photo')->nullable();
+            $table->foreign('father_id')->references('id')->on('fathers')->onDelete('cascade');
+            $table->string('nom')->nullable();
+            $table->string('prenom')->nullable();
+            $table->date('date_naissance')->nullable();
+            $table->string('niveau')->nullable();
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

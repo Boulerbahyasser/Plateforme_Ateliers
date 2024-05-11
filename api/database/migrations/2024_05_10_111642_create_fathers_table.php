@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('horaires', function (Blueprint $table) {
-            $table->id('id_Horaire');
-            $table->string('jour');
-            $table->time('Heure_Debut');
-            $table->time('Heure_Fin');
+        Schema::create('fathers', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+
+            // Clé étrangère vers la table 'users'
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->string('fonction')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('horaires');
+        Schema::dropIfExists('fathers');
     }
 };

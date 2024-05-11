@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('administrateurs', function (Blueprint $table) {
-            $table->id('id_Admin');
-            $table->unsignedBigInteger('id_User');
-
-            // Clé étrangère vers la table 'utilisateurs'
-            $table->foreign('id_User')->references('id_User')->on('utilisateurs')->onDelete('cascade');
+        Schema::create('horaires', function (Blueprint $table) {
+            $table->id();
+            $table->string('jour');
+            $table->time('heure_debut');
+            $table->time('heure_fin');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('administrateurs');
+        Schema::dropIfExists('horaires');
     }
 };

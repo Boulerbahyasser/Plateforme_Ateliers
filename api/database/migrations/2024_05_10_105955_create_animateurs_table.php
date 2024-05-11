@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('animateurs', function (Blueprint $table) {
-            $table->id('id_Anim');
-            $table->string('Domaine');
-            $table->unsignedBigInteger('id_User')->nullable(false);
+            $table->id();
+            $table->string('domaine');
+            $table->unsignedBigInteger('user_id')->nullable(false);
 
             // Clé étrangère vers la table 'users'
-            $table->foreign('id_User')->references('id_User')->on('utilisateurs')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             // Ajout d'index pour l'optimisation des requêtes
-            $table->index('id_User');
+            $table->index('user_id');
             $table->timestamps();
         });
     }

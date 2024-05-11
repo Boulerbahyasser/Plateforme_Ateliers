@@ -1,27 +1,28 @@
-INSERT INTO utilisateurs ("Nom", "Prenom", "Email", "Password", "Role", created_at, updated_at)
+-- Insert into users table
+INSERT INTO users (name, email, password, role, created_at, updated_at)
 VALUES
-    ('Smith', 'John', 'john.smith01@example.com', 'hashed_password1', 'administrateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Doe', 'Jane', 'jane.doe01@example.com', 'hashed_password2', 'utilisateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Roe', 'Richard', 'richard.roe01@example.com', 'hashed_password3', 'utilisateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Dane', 'Diana', 'diana.dane01@example.com', 'hashed_password4', 'animateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Brown', 'Charlie', 'charlie.brown01@example.com', 'hashed_password5', 'administrateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Wilson', 'Will', 'will.wilson01@example.com', 'hashed_password6', 'utilisateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Taylor', 'Thomas', 'thomas.taylor01@example.com', 'hashed_password7', 'utilisateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Davis', 'Danny', 'danny.davis01@example.com', 'hashed_password8', 'animateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('White', 'Walter', 'walter.white01@example.com', 'hashed_password9', 'administrateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Green', 'Grace', 'grace.green01@example.com', 'hashed_password10', 'utilisateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Black', 'Blake', 'blake.black01@example.com', 'hashed_password11', 'utilisateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('King', 'Karen', 'karen.king01@example.com', 'hashed_password12', 'animateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Lee', 'Lucas', 'lucas.lee01@example.com', 'hashed_password13', 'administrateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Young', 'Yara', 'yara.young01@example.com', 'hashed_password14', 'utilisateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Allen', 'Amy', 'amy.allen01@example.com', 'hashed_password15', 'utilisateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Wright', 'Wendy', 'wendy.wright01@example.com', 'hashed_password16', 'animateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Walker', 'Warren', 'warren.walker01@example.com', 'hashed_password17', 'administrateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Scott', 'Sara', 'sara.scott01@example.com', 'hashed_password18', 'utilisateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Adams', 'Andrew', 'andrew.adams01@example.com', 'hashed_password19', 'utilisateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Baker', 'Betty', 'betty.baker01@example.com', 'hashed_password20', 'animateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+    ('Smith John', 'john.smith01@example.com', 'hashed_password1', 'administrateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Doe Jane', 'jane.doe01@example.com', 'hashed_password2', 'utilisateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Roe Richard', 'richard.roe01@example.com', 'hashed_password3', 'utilisateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Dane Diana', 'diana.dane01@example.com', 'hashed_password4', 'animateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Brown Charlie', 'charlie.brown01@example.com', 'hashed_password5', 'administrateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Wilson Will', 'will.wilson01@example.com', 'hashed_password6', 'utilisateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Taylor Thomas', 'thomas.taylor01@example.com', 'hashed_password7', 'utilisateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Davis Danny', 'danny.davis01@example.com', 'hashed_password8', 'animateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('White Walter', 'walter.white01@example.com', 'hashed_password9', 'administrateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Green Grace', 'grace.green01@example.com', 'hashed_password10', 'utilisateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Black Blake', 'blake.black01@example.com', 'hashed_password11', 'utilisateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('King Karen', 'karen.king01@example.com', 'hashed_password12', 'animateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Lee Lucas', 'lucas.lee01@example.com', 'hashed_password13', 'administrateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Young Yara', 'yara.young01@example.com', 'hashed_password14', 'utilisateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Allen Amy', 'amy.allen01@example.com', 'hashed_password15', 'utilisateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Wright Wendy', 'wendy.wright01@example.com', 'hashed_password16', 'animateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Walker Warren', 'warren.walker01@example.com', 'hashed_password17', 'administrateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Scott Sara', 'sara.scott01@example.com', 'hashed_password18', 'utilisateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Adams Andrew', 'andrew.adams01@example.com', 'hashed_password19', 'utilisateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Baker Betty', 'betty.baker01@example.com', 'hashed_password20', 'animateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-
+-- Insert into factures table
 INSERT INTO factures (created_at, updated_at)
 VALUES
     (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
@@ -45,7 +46,8 @@ VALUES
     (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
     (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO activites ("Titre", "IMAGE_PUB", "Description", "Lien_Youtube", "Objectifs", "Domaine", created_at, updated_at)
+-- Insert into activites table
+INSERT INTO activites (titre, IMAGE_PUB, description, lien_youtube, objectifs, domaine, created_at, updated_at)
 VALUES
     ('Activity 1', NULL, 'Description for activity 1', 'youtube_link_1', 'Objectives for activity 1', 'Domain 1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
     ('Activity 2', NULL, 'Description for activity 2', 'youtube_link_2', 'Objectives for activity 2', 'Domain 2', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
@@ -68,8 +70,8 @@ VALUES
     ('Activity 19', NULL, 'Description for activity 19', 'youtube_link_19', 'Objectives for activity 19', 'Domain 19', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
     ('Activity 20', NULL, 'Description for activity 20', 'youtube_link_20', 'Objectives for activity 20', 'Domain 20', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-
-INSERT INTO horaires ("jour", "Heure_Debut", "Heure_Fin", created_at, updated_at)
+-- Insert into horaires table
+INSERT INTO horaires (jour, heure_debut, heure_fin, created_at, updated_at)
 VALUES
     ('Monday', '08:00:00', '17:00:00', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
     ('Tuesday', '09:00:00', '18:00:00', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
@@ -92,124 +94,104 @@ VALUES
     ('Friday', '08:00:00', '16:00:00', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
     ('Saturday', '10:00:00', '14:00:00', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-
-INSERT INTO animateurs ("Domaine", "id_User", created_at, updated_at)
+-- Insert into animateurs table
+INSERT INTO animateurs (domaine, user_id, created_at, updated_at)
 VALUES
-    ('Domaine 1', 21, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Domaine 2', 22, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Domaine 3', 23, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Domaine 4', 24, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Domaine 5', 25, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Domaine 6', 26, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Domaine 7', 27, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Domaine 8', 28, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Domaine 9', 29, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Domaine 10', 30, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Domaine 11', 31, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Domaine 12', 32, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Domaine 13', 33, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Domaine 14', 34, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Domaine 15', 35, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Domaine 16', 36, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Domaine 17', 37, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Domaine 18', 38, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Domaine 19', 39, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    ('Domaine 20', 40, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+    ('Domaine 1', 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Domaine 2', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Domaine 3', 12, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Domaine 4', 16, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Domaine 5', 20, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Domaine 6', 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Domaine 7', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Domaine 8', 12, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Domaine 9', 16, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Domaine 10', 20, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Domaine 11', 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Domaine 12', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Domaine 13', 12, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Domaine 14', 16, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Domaine 15', 20, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Domaine 16', 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Domaine 17', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Domaine 18', 12, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Domaine 19', 16, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    ('Domaine 20', 20, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO administrateurs ("id_User", created_at, updated_at)
+-- Insert into administrateurs table
+INSERT INTO administrateurs (user_id, created_at, updated_at)
 VALUES
-    (21, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (22, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (23, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (24, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (25, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (26, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (27, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (28, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (29, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (30, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (31, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (32, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (33, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (34, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (35, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (36, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (37, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (38, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (39, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (40, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (21, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (22, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (23, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (24, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (25, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (26, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (27, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (28, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (29, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (30, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (31, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (32, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (33, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (34, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (35, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (36, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (37, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (38, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (39, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (40, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+    (1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (9, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (13, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (17, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (9, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (13, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (17, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (9, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (13, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (17, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (9, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (13, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (17, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-
-INSERT INTO notifications ("id_User", "Date", "Contenu", "Object", "Type", created_at, updated_at)
+-- Insert into notifications table
+INSERT INTO notifications (user_id, date, contenu, object, type, created_at, updated_at)
 VALUES
-    (21, '2024-05-08', 'Notification content for user 21', 'Notification Object 1', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (22, '2024-05-08', 'Notification content for user 22', 'Notification Object 2', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (23, '2024-05-08', 'Notification content for user 23', 'Notification Object 3', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (24, '2024-05-08', 'Notification content for user 24', 'Notification Object 4', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (25, '2024-05-08', 'Notification content for user 25', 'Notification Object 5', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (26, '2024-05-08', 'Notification content for user 26', 'Notification Object 6', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (27, '2024-05-08', 'Notification content for user 27', 'Notification Object 7', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (28, '2024-05-08', 'Notification content for user 28', 'Notification Object 8', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (29, '2024-05-08', 'Notification content for user 29', 'Notification Object 9', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (30, '2024-05-08', 'Notification content for user 30', 'Notification Object 10', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (31, '2024-05-08', 'Notification content for user 31', 'Notification Object 11', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (32, '2024-05-08', 'Notification content for user 32', 'Notification Object 12', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (33, '2024-05-08', 'Notification content for user 33', 'Notification Object 13', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (34, '2024-05-08', 'Notification content for user 34', 'Notification Object 14', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (35, '2024-05-08', 'Notification content for user 35', 'Notification Object 15', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (36, '2024-05-08', 'Notification content for user 36', 'Notification Object 16', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (37, '2024-05-08', 'Notification content for user 37', 'Notification Object 17', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (38, '2024-05-08', 'Notification content for user 38', 'Notification Object 18', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (39, '2024-05-08', 'Notification content for user 39', 'Notification Object 19', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (40, '2024-05-08', 'Notification content for user 40', 'Notification Object 20', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+    (1, '2024-05-08', 'Notification content for user 1', 'Notification Object 1', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (2, '2024-05-08', 'Notification content for user 2', 'Notification Object 2', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (3, '2024-05-08', 'Notification content for user 3', 'Notification Object 3', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (4, '2024-05-08', 'Notification content for user 4', 'Notification Object 4', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (5, '2024-05-08', 'Notification content for user 5', 'Notification Object 5', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (6, '2024-05-08', 'Notification content for user 6', 'Notification Object 6', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (7, '2024-05-08', 'Notification content for user 7', 'Notification Object 7', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (8, '2024-05-08', 'Notification content for user 8', 'Notification Object 8', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (9, '2024-05-08', 'Notification content for user 9', 'Notification Object 9', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (10, '2024-05-08', 'Notification content for user 10', 'Notification Object 10', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (11, '2024-05-08', 'Notification content for user 11', 'Notification Object 11', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (12, '2024-05-08', 'Notification content for user 12', 'Notification Object 12', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (13, '2024-05-08', 'Notification content for user 13', 'Notification Object 13', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (14, '2024-05-08', 'Notification content for user 14', 'Notification Object 14', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (15, '2024-05-08', 'Notification content for user 15', 'Notification Object 15', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (16, '2024-05-08', 'Notification content for user 16', 'Notification Object 16', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (17, '2024-05-08', 'Notification content for user 17', 'Notification Object 17', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (18, '2024-05-08', 'Notification content for user 18', 'Notification Object 18', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (19, '2024-05-08', 'Notification content for user 19', 'Notification Object 19', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (20, '2024-05-08', 'Notification content for user 20', 'Notification Object 20', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-
-
-INSERT INTO parents ("id_User", "Fonction", created_at, updated_at)
+-- Insert into fathers table
+INSERT INTO fathers (user_id, fonction, created_at, updated_at)
 VALUES
-    (21, 'Fonction for user 21', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (22, 'Fonction for user 22', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (23, 'Fonction for user 23', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (24, 'Fonction for user 24', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (25, 'Fonction for user 25', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (26, 'Fonction for user 26', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (27, 'Fonction for user 27', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (28, 'Fonction for user 28', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (29, 'Fonction for user 29', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (30, 'Fonction for user 30', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (31, 'Fonction for user 31', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (32, 'Fonction for user 32', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (33, 'Fonction for user 33', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (34, 'Fonction for user 34', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (35, 'Fonction for user 35', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (36, 'Fonction for user 36', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (37, 'Fonction for user 37', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (38, 'Fonction for user 38', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (39, 'Fonction for user 39', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (40, 'Fonction for user 40', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+    (1, 'Fonction for user 1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (2, 'Fonction for user 2', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (3, 'Fonction for user 3', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (4, 'Fonction for user 4', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (5, 'Fonction for user 5', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (6, 'Fonction for user 6', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (7, 'Fonction for user 7', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (8, 'Fonction for user 8', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (9, 'Fonction for user 9', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (10, 'Fonction for user 10', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (11, 'Fonction for user 11', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (12, 'Fonction for user 12', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (13, 'Fonction for user 13', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (14, 'Fonction for user 14', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (15, 'Fonction for user 15', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (16, 'Fonction for user 16', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (17, 'Fonction for user 17', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (18, 'Fonction for user 18', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (19, 'Fonction for user 19', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (20, 'Fonction for user 20', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
-INSERT INTO enfants ("id_Parent", "Nom", "Prenom", "Date_Naissance", "Niveau", "Photo", created_at, updated_at)
+INSERT INTO enfants (father_id, nom, prenom, date_naissance, niveau, photo, created_at, updated_at)
 VALUES
     (1, 'Nom for parent 1', 'Prenom for parent 1', '2000-01-01', 'Niveau for parent 1', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
     (2, 'Nom for parent 2', 'Prenom for parent 2', '2000-01-02', 'Niveau for parent 2', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
@@ -233,7 +215,7 @@ VALUES
     (20, 'Nom for parent 20', 'Prenom for parent 20', '2000-01-20', 'Niveau for parent 20', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
-INSERT INTO demandes ("id_Admin", "Date", "Statut", created_at, updated_at)
+INSERT INTO demandes (admin_id, date, statut, created_at, updated_at)
 VALUES
     (1, '2024-05-08 08:00:00', 'En cours', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
     (1, '2024-05-08 08:00:00', 'En cours', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
@@ -258,7 +240,7 @@ VALUES
 
 
 
-INSERT INTO offres ("id_Admin", "Titre", "Date_Debut", "Date_Fin", "Description", "Remise", created_at, updated_at)
+INSERT INTO offres (admin_id, titre, date_debut, date_fin, description, remise, created_at, updated_at)
 VALUES
     (1, 'Titre 1', '2024-05-09', '2024-05-15', 'Description for offre 1', 10.50, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
     (2, 'Titre 2', '2024-05-10', '2024-05-16', 'Description for offre 2', 20.75, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
@@ -282,7 +264,7 @@ VALUES
     (20, 'Titre 20', '2024-05-28', '2024-06-03', 'Description for offre 20', 26.50, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
-INSERT INTO activite_offres ("id_Offre", "id_Activite", "Tarif", "Age_Min", "Age_Max", "Nbr_Seance", "Volume_Horaire", "Option_Paiement", created_at, updated_at)
+INSERT INTO activite_offres (offre_id, activite_id, tarif, age_min, age_max, nbr_seance, volume_horaire, option_paiement, created_at, updated_at)
 VALUES
     (1, 1, 50.00, 5, 10, 8, 16, 'Option A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
     (2, 2, 60.00, 6, 11, 7, 14, 'Option B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
@@ -306,7 +288,7 @@ VALUES
     (20, 20, 240.00, 24, 29, 5, 10, 'Option T', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
-INSERT INTO packs ("id_Demande", "Nom", "Remise", created_at, updated_at)
+INSERT INTO packs (demande_id, nom, remise, created_at, updated_at)
 VALUES
     (1, 'Pack 1', 10.00, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
     (2, 'Pack 2', 15.00, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
@@ -330,7 +312,7 @@ VALUES
     (20, 'Pack 20', 105.00, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
-INSERT INTO devis ("id_Demande", "id_Fact", "Date", "Totale_HT", "Totale_TTC", "Statut", "Motif", created_at, updated_at)
+INSERT INTO devis (demande_id, facture_id, date, totale_ht, totale_ttc, statut, motif, created_at, updated_at)
 VALUES
     (1, 1, '2024-05-08 08:00:00', 100.00, 120.00, 'En attente', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
     (2, 2, '2024-05-08 08:00:00', 150.00, 180.00, 'En cours', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
@@ -354,7 +336,7 @@ VALUES
     (20, 20, '2024-05-08 08:00:00', 1050.00, 1260.00, 'Rejeté', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
-INSERT INTO demande_inscriptions ("id_Enfant", "id_Activite_Offre", "id_Demande", "Horaire1", "Horaire2", "Etat", "Motif", created_at, updated_at)
+INSERT INTO demande_inscriptions (enfant_id, activite_offre_id, demande_id,horaire1, horaire2, etat, motif, created_at, updated_at)
 VALUES
     (1, 1, 1, '2024-05-08 08:00:00', '2024-05-08 10:00:00', 'Confirmé', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
     (2, 2, 2, '2024-05-08 09:00:00', '2024-05-08 11:00:00', 'En attente', 'Paiement en cours', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
@@ -378,7 +360,7 @@ VALUES
     (20, 20, 20, '2024-05-09 03:00:00', '2024-05-09 05:00:00', 'En attente', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
-INSERT INTO hdas ("id_Activite_Offre", "id_Horaire", "Eff_Min", "Eff_Max", "Nbr_Place_Restant", created_at, updated_at)
+INSERT INTO hdas (activite_offre_id, horaire_id, eff_min, eff_max, nbr_place_restant, created_at, updated_at)
 VALUES
     (1, 1, 5, 10, 20, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
     (2, 2, 8, 15, 10, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
@@ -402,53 +384,53 @@ VALUES
     (20, 20, 9, 18, 17, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
-INSERT INTO hd_anims ("id_Anim", "id_Horaire", created_at, updated_at)
+INSERT INTO hd_anims (anim_id, horaire_id, created_at, updated_at)
 VALUES
-    (41, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (42, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (43, 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (44, 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (45, 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (46, 6, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (47, 7, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (48, 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (49, 9, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (50, 10, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (51, 11, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (52, 12, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (53, 13, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (54, 14, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (55, 15, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (56, 16, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (57, 17, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (58, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (59, 19, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (60, 20, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+    (1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (2, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (3, 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (4, 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (5, 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (6, 6, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (7, 7, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (8, 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (9, 9, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (10, 10, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (11, 11, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (12, 12, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (13, 13, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (14, 14, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (15, 15, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (16, 16, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (17, 17, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (18, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (19, 19, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (20, 20, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO planning_anims ("id_Anim", "id_Activite", "id_Horaire", created_at, updated_at)
+INSERT INTO planning_anims (anim_id, activite_id, horaire_id, created_at, updated_at)
 VALUES
-    (41, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (42, 2, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (43, 3, 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (44, 4, 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (45, 5, 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (46, 6, 6, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (47, 7, 7, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (48, 8, 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (49, 9, 9, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (50, 10, 10, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (51, 11, 11, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (52, 12, 12, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (53, 13, 13, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (54, 14, 14, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (55, 15, 15, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (56, 16, 16, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (57, 17, 17, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (58, 18, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (59, 19, 19, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (60, 20, 20, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+    (1, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (2, 2, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (3, 3, 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (4, 4, 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (5, 5, 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (6, 6, 6, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (7, 7, 7, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (8, 8, 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (9, 9, 9, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (10, 10, 10, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (11, 11, 11, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (12, 12, 12, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (13, 13, 13, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (14, 14, 14, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (15, 15, 15, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (16, 16, 16, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (17, 17, 17, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (18, 18, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (19, 19, 19, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (20, 20, 20, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO planning_enfs ("id_Enfant", "id_Activite", "id_Horaire") VALUES
+INSERT INTO planning_enfs (enfant_id,activite_id, horaire_id) VALUES
                                                                          (1, 1, 1),
                                                                          (1, 1, 2),
                                                                          (1, 2, 3),

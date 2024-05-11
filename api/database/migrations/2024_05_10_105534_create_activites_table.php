@@ -12,17 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('activites', function (Blueprint $table) {
-            $table->id('id_Activite');
-            $table->string('Titre');
-            $table->string('IMAGE_PUB')->nullable();
-            $table->text('Description');
-            $table->string('Lien_Youtube')->nullable();
-            $table->text('Objectifs');
-            $table->string('Domaine');
-            $table->timestamps();
+            $table->id();
+            $table->string('titre');
+            $table->string('image_pub')->nullable();
+            $table->text('description');
+            $table->string('lien_youtube')->nullable();
+            $table->text('objectifs');
+            $table->string('domaine');
 
             // Ajouter l'index sur le domaine pour optimisation des requêtes
-            $table->index('Domaine');
+            $table->index('domaine');
+            $table->timestamps();
         });
     }
 

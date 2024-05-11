@@ -35,4 +35,6 @@ Route::post('/create/offer/',[adminOffreController::class,'createOffer']);
 Route::put('/update/offer/{offer}',[adminOffreController::class,'updateOffer']);
 Route::post('/add/offer/activity/{offer}/{activity}',[adminActiviteeOffreController::class,'addActivityToOffer']);
 Route::put('/update/offer/activity/{activityOffer}',[adminActiviteeOffreController::class,'updateActivityInOffer']);
+Route::post('/create/activity/',[adminActiviteeController::class,'createActivity']);
+
 
