@@ -36,7 +36,7 @@ class adminActiviteeOffreController extends Controller
         ]);
 
         $activityOffer->update($formFields);
-        return response()->json(['message'=>'the update was successful'],201);
+        return response()->json(['message'=>'the update was successful'],200);
     }
     //tested
     public function destroyActivity(ActiviteOffre $activityOffer)
