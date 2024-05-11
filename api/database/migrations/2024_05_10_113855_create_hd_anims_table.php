@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('hd_anims', function (Blueprint $table) {
             $table->unsignedBigInteger('anim_id');
-            $table->unsignedBigInteger('horaire');
+            $table->unsignedBigInteger('horaire_id');
 
             // Clé primaire composite
-            $table->primary(['anim_id', 'horaire']);
+            $table->primary(['anim_id', 'horaire_id']);
 
             // Clés étrangères vers les tables parentes
             $table->foreign('anim_id')->references('id')->on('animateurs')->onDelete('cascade');
-            $table->foreign('horaire')->references('id')->on('horaires')->onDelete('cascade');
+            $table->foreign('horaire_id')->references('id')->on('horaires')->onDelete('cascade');
 
             $table->timestamps();
         });

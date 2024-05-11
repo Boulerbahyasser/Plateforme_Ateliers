@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('admin_id');
             $table->string('titre');
+            $table->date('date_debut'); //add this
             $table->date('date_fin');
             $table->text('description');
             $table->decimal('remise', 10, 2);
