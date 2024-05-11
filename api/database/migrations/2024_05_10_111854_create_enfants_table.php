@@ -14,16 +14,16 @@ return new class extends Migration
         Schema::create('enfants', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('father_id');
-
             // Clé étrangère vers la table 'parents'
             $table->foreign('father_id')->references('id')->on('fathers')->onDelete('cascade');
-            $table->string('nom')->nullable();
-            $table->string('prenom')->nullable();
-            $table->date('date_naissance')->nullable();
+            $table->string('nom');
+            $table->string('prenom');
+            $table->date('date_naissance');
             $table->string('niveau')->nullable();
             $table->string('photo')->nullable();
             $table->timestamps();
         });
+
     }
 
     /**

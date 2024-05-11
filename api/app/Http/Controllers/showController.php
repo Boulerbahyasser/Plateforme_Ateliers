@@ -24,12 +24,12 @@ class showController extends Controller
         return response()->json(Offre::latest()->get(),200);
     }
 // 1/2 tested
-    public function showDemande() {
+    public function showDemandes() {
 
         return response()->json(
-            Demande::where('id_Admin', auth()->id())
-                ->where('Statut','En cours')
-                ->select('id_Demande', 'Date','Statut')
+            Demande::where('admin_id', auth()->id())
+                ->where('statut','En cours')
+                ->select('id', 'date','statut')
                 ->latest()
                 ->get(),
             200
@@ -38,22 +38,23 @@ class showController extends Controller
 //tested
     public function showActivitiesInOffer(Offre $offer){
 
-        $activities = ActiviteOffre::where('id_Offre', $offer->id_offre)->latest()->get();
+        $activities = ActiviteOffre::where('offre_id', $offer->id)->latest()->get();
         return response()->json($activities,200);
     }
 
-    public function showHoraireInActivity($id_Activite){
-        $results = HDA::join('horaires', 'hdas.id_Horaire', '=', 'horaires.id_Horaire')
-            ->select('jour', 'Heure_Debut', 'Heure_Fin')
-            ->where('id_Activite_Offre', $id_Activite)
+    public function showHoraireInActivity($activite_id){
+        $results = HDA::join('horaires', 'hdas.horaire_id', '=', 'horaires.id')
+            ->select('jour', 'heure_debut', 'heure_fin')
+            ->where('activite_offre_id', $activite_id)
             ->get();
         return response()->json($results,200);
     }
     //tested
-    public function showEnfantInActivity($id_Activite){
-        $results = Enfant::join('planning_enfs', 'enfants.id_Enfant', '=', 'planning_enfs.id_Enfant')
-            ->select('enfants.id_Enfant', 'enfants.id_Parent', 'enfants.Nom', 'enfants.Prenom', 'enfants.Date_Naissance', 'enfants.Niveau', 'enfants.Photo')
-            ->where('planning_enfs.id_Activite', '=', $id_Activite)
+    public function showEnfantInActivity($activite_id){
+        $results = Enfant::join('planning_enfs', 'enfants.id', '=', 'planning_enfs.enfant_id')
+            ->select('enfants.id', 'enfants.father_id', 'enfants.nom', 'enfants.prenom',
+                'enfants.date_naissance', 'enfants.niveau', 'enfants.photo')
+            ->where('planning_enfs.activite_id', '=', $activite_id)
             ->get();
         return response()->json($results,200);
     }
