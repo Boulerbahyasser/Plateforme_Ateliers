@@ -12,27 +12,27 @@ class adminActiviteeOffreController extends Controller
     //tested
     public function addActivityToOffer(Request $request,Offre $offer,Activite $activity){
         $formFields = $request->validate([
-            'Tarif' => 'required|numeric',
-            'Age_Min' => 'required|integer|min:3',
-            'Nbr_Seance' => 'required|integer|min:1',
-            'Volume_Horaire' => 'required|integer|min:1',
-            'Option_Paiement' => 'required',
-            'Age_Max' => 'required|integer|min:3'
+            'tarif' => 'required|numeric',
+            'age_min' => 'required|integer|min:3',
+            'nbr_seance' => 'required|integer|min:1',
+            'volume_horaire' => 'required|integer|min:1',
+            'option_paiement' => 'required',
+            'age_max' => 'required|integer|min:3'
         ]);
-        $formFields['id_Offre'] = $offer->id_offre;
-        $formFields['id_Activite'] = $activity->id_Activite;
+        $formFields['offre_id'] = $offer->id;
+        $formFields['activite_id'] = $activity->id;
         ActiviteOffre::create($formFields);
         return response()->json(['message'=>'the insertion was successful'],201);
     }
     //tested
     public function updateActivityInOffer(Request $request,ActiviteOffre $activityOffer){
         $formFields = $request->validate([
-            'Tarif' => 'required|numeric',
-            'Age_Min' => 'required|integer|min:3',
-            'Nbr_Seance' => 'required|integer|min:1',
-            'Volume_Horaire' => 'required|integer|min:1',
-            'Option_Paiement' => 'required',
-            'Age_Max' => 'required|integer|min:3'
+            'tarif' => 'required|numeric',
+            'age_min' => 'required|integer|min:3',
+            'nbr_seance' => 'required|integer|min:1',
+            'volume_horaire' => 'required|integer|min:1',
+            'option_paiement' => 'required',
+            'age_max' => 'required|integer|min:3'
         ]);
 
         $activityOffer->update($formFields);

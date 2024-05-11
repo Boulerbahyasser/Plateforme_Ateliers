@@ -35,12 +35,17 @@ Route::get('/show/offer/activity/enfants/{activite_id}',[showController::class,'
 
 Route::delete('/delete/activity/{activity}',[adminActiviteeController::class,'destroyActivity']);
 Route::delete('/delete/offer/activity/{activityOffer}',[adminActiviteeOffreController::class,'destroyActivity']);
-Route::delete('/delete/offer/{offer}',[adminOffreController::class,'destroyOffer']);
 Route::post('/create/offer/',[adminOffreController::class,'createOffer']);
 Route::put('/update/offer/{offer}',[adminOffreController::class,'updateOffer']);
 //Route::get('/show/offers/parent/',[showController::class,'showOfferParent']);
+
 Route::post('/add/offer/activity/{offer}/{activity}',[adminActiviteeOffreController::class,'addActivityToOffer']);
+
 Route::put('/update/offer/activity/{activityOffer}',[adminActiviteeOffreController::class,'updateActivityInOffer']);
+
+Route::delete('/delete/offer/{offer}',[adminOffreController::class,'destroyOffer']);
+
+
 Route::post('/create/activity/',[adminActiviteeController::class,'createActivity']);
 
 
