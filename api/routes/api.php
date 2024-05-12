@@ -21,5 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::put('/parent/update',[FatherController::class, 'UpdateParent']);
 Route::delete('/parent/delete',[FatherController::class, 'DestroyParent']);
+Route::post('/enfant/add/',[EnfantController::class, 'AddEnfant']);
 Route::put('/enfant/update/{id}',[EnfantController::class, 'UpdateEnfant']);
 Route::delete('/enfant/delete/{id}',[EnfantController::class, 'DestroyEnfant']);
