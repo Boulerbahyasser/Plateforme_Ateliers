@@ -53,7 +53,8 @@ Route::delete('/delete/offer/{offer}',[AdminOffreController::class,'destroyOffer
 
 
 
-Route::post('/create/activity/',[adminActiviteeController::class,'createActivity']);
+Route::post('/create/activity/',[AdminActiviteeController::class,'createActivity']);
 
+Route::put('/update/activity/{activity}',[AdminActiviteeController::class,'updateActivity']);
 
-Route::delete('/delete/activity/{activity}',[adminActiviteeController::class,'destroyActivity']);
+Route::delete('/delete/activity/{activity}',[AdminActiviteeController::class,'destroyActivity']);
