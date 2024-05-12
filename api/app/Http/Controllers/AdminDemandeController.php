@@ -7,10 +7,14 @@ use Illuminate\Http\Request;
 
 class adminDemandeController extends Controller{
     public function gererDemande(Request $request){
-        $demandeInsc = DemandeInscription::find($request->id_Enfant,$request->id_Activite_Offre,$request->id_Demande);
-        if($request->statut=='accepte') $demandeInsc->statut = 'accepte';
-        elseif($request->statut=='refuse') $demandeInsc->statut = 'refuse';
+        $demandeInsc = DemandeInscription::where('enfant_id', $request->enfant_id)
+            ->where('activite_offre_id', $request->activite_offre_id)
+            ->where('demande_id', $request->demande_id)
+            ->first();
+        $demandeInsc->statut = $request->statut;
         $demandeInsc->save();
-        return response()->json(['message'=>'the request is well processed'],200);
+        $msg = ($request->statut == 'accepte')?"the request is well accepted"
+                                                    :"the request is well denied";
+        return response()->json(['message'=>$msg],200);
     }
 }

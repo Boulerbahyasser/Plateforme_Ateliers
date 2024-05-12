@@ -25,7 +25,7 @@ Route::get('/show/offers/',[showController::class,'showOffer']);
 
 Route::get('/show/activities/',[showController::class,'showActivities']);
 
-Route::get('/show/demandes/{admin_id}',[showController::class,'showDemandes']);
+Route::get('/show/demandes/',[showController::class,'showDemandes']);
 
 Route::get('/show/offer/activities/{offer}',[showController::class,'showActivitiesInOffer']);
 

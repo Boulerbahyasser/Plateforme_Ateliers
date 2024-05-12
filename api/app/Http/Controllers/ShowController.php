@@ -27,10 +27,11 @@ class showController extends Controller
     public function showDemandes() {
 
         return response()->json(
-            Demande::where('admin_id', auth()->id())
-                ->where('statut','En cours')
-                ->select('id', 'date','statut')
-                ->latest()
+            Demande::join('demande_inscriptions','demande_inscriptions.demande_id', '=', 'demandes.id')
+                ->where('admin_id', auth()->id())
+                ->where('statut','valide')
+                ->where('etat','en cours')
+                ->select('id', 'date')
                 ->get(),
             200
         );
