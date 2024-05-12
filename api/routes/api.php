@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminActiviteeController;
 use App\Http\Controllers\AdminActiviteeOffreController;
+use App\Http\Controllers\AdminDemandeController;
 use App\Http\Controllers\AdminOffreController;
 use App\Http\Controllers\showController;
 use Illuminate\Http\Request;
@@ -21,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//show
 Route::get('/show/offers/',[showController::class,'showOffer']);
 
 Route::get('/show/activities/',[showController::class,'showActivities']);
@@ -34,7 +37,7 @@ Route::get('/show/offer/activity/horaires/{activite_id}',[showController::class,
 Route::get('/show/offer/activity/enfants/{activite_id}',[showController::class,'showEnfantInActivity']);
 
 
-//Route::get('/show/offers/parent/',[showController::class,'showOfferParent']);
+//AdminActiviteeOffreController
 
 Route::post('/add/offer/activity/{offer}/{activity}',[AdminActiviteeOffreController::class,'addActivityToOffer']);
 
@@ -43,12 +46,17 @@ Route::put('/update/offer/activity/{activityOffer}',[AdminActiviteeOffreControll
 Route::delete('/delete/offer/activity/{activityOffer}',[AdminActiviteeOffreController::class,'destroyActivity']);
 
 
-
+//AdminOffreController
 Route::post('/create/offer/',[AdminOffreController::class,'createOffer']);
 
 Route::put('/update/offer/{offer}/',[AdminOffreController::class,'updateOffer']);
 
 Route::delete('/delete/offer/{offer}',[AdminOffreController::class,'destroyOffer']);
+
+
+
+
+Route::put('/update/demande/inscription/{demande_id}/{activite_offre_id}/{enfant_id}',[AdminDemandeController::class,'gererDemande']);
 
 
 
