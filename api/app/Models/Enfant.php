@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Enfant extends Model
 {
     use HasFactory;
+    protected $fillable = ['nom','prenom','date_naissance','niveau','photo',];
+
+
 }

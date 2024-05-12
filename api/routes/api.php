@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\FatherController;
+use App\Http\Controllers\EnfantController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::put('/parent/update',[FatherController::class, 'UpdateParent']);
+Route::delete('/parent/delete',[FatherController::class, 'DestroyParent']);
+Route::put('/enfant/update/{id}',[EnfantController::class, 'UpdateEnfant']);
+Route::delete('/enfant/delete/{id}',[EnfantController::class, 'DestroyEnfant']);
