@@ -99,14 +99,15 @@ class RegistrationController extends Controller
 //            Mail::to($user->email)->send(new SendEmails($user));
             return response()->json([
                 'status' => 200,
-                'message' => 'registering successfully'
+                'message' => 'registerated successfully'
             ],200);
 
         }catch(ValidationException $e){
 
             return response()->json([
                 'status'=>422,
-                'message' => 'soory registrering fieled',
+                'message' => 'sorry your 
+                registeration has failed',
                 'erros'=>$e->getMessage()
             ], 422);
 
