@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Father;
+use App\Models\Offre;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class FatherController extends Controller
 {
-    public function UpdateEnfant(Request $request)
+   public function UpdateEnfant(Request $request)
     {
 
          //Valider les données du formulaire

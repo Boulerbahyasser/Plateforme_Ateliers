@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FatherController;
 use App\Http\Controllers\EnfantController;
+use App\Http\Controllers\ParentDemandeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,5 @@ Route::delete('/parent/delete',[FatherController::class, 'DestroyParent']);
 Route::post('/enfant/add/',[EnfantController::class, 'AddEnfant']);
 Route::put('/enfant/update/{id}',[EnfantController::class, 'UpdateEnfant']);
 Route::delete('/enfant/delete/{id}',[EnfantController::class, 'DestroyEnfant']);
+Route::get('/activiteoffre/{id}',[ParentDemandeController::class, 'ShowHorairetoEnfant']);
+Route::post('/demande',[ParentDemandeController::class,'StoreDemande']);

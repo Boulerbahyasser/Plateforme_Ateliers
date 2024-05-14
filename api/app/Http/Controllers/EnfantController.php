@@ -7,7 +7,9 @@ use App\Models\Father;
 use Illuminate\Http\Request;
 
 class EnfantController extends Controller
-{      public function AddEnfant(Request $request){ 
+{     
+    
+    public function AddEnfant(Request $request){ 
             $id_user=auth()->id;
             $father=Father::where('user_id',$id_user);
             $id_father=$father->id;

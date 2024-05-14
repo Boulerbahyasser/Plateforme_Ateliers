@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class DemandeInscription extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'enfant_id',
+        'activite_offre_id',
+        'demande_id',
+        'horaire1',
+        'horaire2',
+        'etat',
+        'motif',
+    ];
 }
