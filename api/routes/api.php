@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminActiviteeController;
 use App\Http\Controllers\AdminActiviteeOffreController;
 use App\Http\Controllers\AdminDemandeController;
 use App\Http\Controllers\AdminOffreController;
+use App\Http\Controllers\ParentDemandeController;
 use App\Http\Controllers\showController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -66,3 +67,4 @@ Route::post('/create/activity/',[AdminActiviteeController::class,'createActivity
 Route::put('/update/activity/{activity}',[AdminActiviteeController::class,'updateActivity']);
 
 Route::delete('/delete/activity/{activity}',[AdminActiviteeController::class,'destroyActivity']);
+Route::post('create/demande',[ParentDemandeController::class,'storeDemande']);
