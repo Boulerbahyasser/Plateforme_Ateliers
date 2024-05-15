@@ -25,7 +25,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //show
-Route::get('/show/offers/',[showController::class,'showOffer']);
+Route::get('/show/offers/',[showController::class,'showOffers']);
+Route::get('/show/offer/{offre}',[showController::class,'showOffer']);
 
 Route::get('/show/activities/',[showController::class,'showActivities']);
 

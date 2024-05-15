@@ -20,8 +20,11 @@ class showController extends Controller
     }
     // tested
     // we dont need to filter the offers according to the id_admin
-    public function showOffer(){
+    public function showOffers(){
         return response()->json(Offre::latest()->get(),200);
+    }
+    public function showOffer(Offre $offre){
+        return response()->json($offre,200);
     }
 // 1/2 tested
     public function showDemandes() {

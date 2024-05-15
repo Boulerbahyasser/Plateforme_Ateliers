@@ -143,28 +143,29 @@ VALUES
     (17, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 -- Insert into notifications table
-INSERT INTO notifications (user_id, date, contenu, object, type, created_at, updated_at)
+INSERT INTO notifications (user_id, date, contenu, type, created_at, updated_at)
 VALUES
-    (1, '2024-05-08', 'Notification content for user 1', 'Notification Object 1', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (2, '2024-05-08', 'Notification content for user 2', 'Notification Object 2', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (3, '2024-05-08', 'Notification content for user 3', 'Notification Object 3', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (4, '2024-05-08', 'Notification content for user 4', 'Notification Object 4', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (5, '2024-05-08', 'Notification content for user 5', 'Notification Object 5', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (6, '2024-05-08', 'Notification content for user 6', 'Notification Object 6', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (7, '2024-05-08', 'Notification content for user 7', 'Notification Object 7', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (8, '2024-05-08', 'Notification content for user 8', 'Notification Object 8', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (9, '2024-05-08', 'Notification content for user 9', 'Notification Object 9', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (10, '2024-05-08', 'Notification content for user 10', 'Notification Object 10', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (11, '2024-05-08', 'Notification content for user 11', 'Notification Object 11', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (12, '2024-05-08', 'Notification content for user 12', 'Notification Object 12', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (13, '2024-05-08', 'Notification content for user 13', 'Notification Object 13', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (14, '2024-05-08', 'Notification content for user 14', 'Notification Object 14', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (15, '2024-05-08', 'Notification content for user 15', 'Notification Object 15', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (16, '2024-05-08', 'Notification content for user 16', 'Notification Object 16', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (17, '2024-05-08', 'Notification content for user 17', 'Notification Object 17', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (18, '2024-05-08', 'Notification content for user 18', 'Notification Object 18', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (19, '2024-05-08', 'Notification content for user 19', 'Notification Object 19', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (20, '2024-05-08', 'Notification content for user 20', 'Notification Object 20', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+    (1, '2024-05-08', 'Notification content for user 1', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (2, '2024-05-08', 'Notification content for user 2', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (3, '2024-05-08', 'Notification content for user 3', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (4, '2024-05-08', 'Notification content for user 4', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (5, '2024-05-08', 'Notification content for user 5', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (6, '2024-05-08', 'Notification content for user 6', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (7, '2024-05-08', 'Notification content for user 7', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (8, '2024-05-08', 'Notification content for user 8', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (9, '2024-05-08', 'Notification content for user 9', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (10, '2024-05-08', 'Notification content for user 10', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (11, '2024-05-08', 'Notification content for user 11', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (12, '2024-05-08', 'Notification content for user 12', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (13, '2024-05-08', 'Notification content for user 13', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (14, '2024-05-08', 'Notification content for user 14', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (15, '2024-05-08', 'Notification content for user 15', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (16, '2024-05-08', 'Notification content for user 16', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (17, '2024-05-08', 'Notification content for user 17', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (18, '2024-05-08', 'Notification content for user 18', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (19, '2024-05-08', 'Notification content for user 19', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (20, '2024-05-08', 'Notification content for user 20', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
 
 -- Insert into fathers table
 INSERT INTO fathers (user_id, fonction, created_at, updated_at)

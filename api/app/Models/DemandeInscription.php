@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\DB;
 
 class DemandeInscription extends Model
 {
@@ -16,6 +17,16 @@ class DemandeInscription extends Model
      */
     protected $fillable = ['enfant_id', 'activite_offre_id', 'demande_id',
                             'horaire1', 'horaire2', 'etat', 'motif'];
+    static public function sqlUpdate(Request $request,$demande_id,$activite_offre_id,$enfant_id){
+        DB::update('UPDATE demande_inscriptions SET etat = ?, motif = ?, updated_at = ? WHERE enfant_id = ? AND activite_offre_id = ? AND demande_id = ?', [
+            $request->etat,
+            $request->motif,
+            now(),
+            $enfant_id,
+            $activite_offre_id,
+            $demande_id
+        ]);
+    }
 
     /**
      * Get the enfant that owns the demande_inscription.
