@@ -1,18 +1,21 @@
 <template>
+  <UtilisateurParent />
   <div class="offers-page">
-    <featured-offer></featured-offer>
-    <offers-list></offers-list>
+    <FeaturedOffer />
+    <OffersList />
   </div>
 </template>
 
 <script>
 import FeaturedOffer from './FeaturedOffer.vue';
 import OffersList from './OffersList.vue';
+import UtilisateurParent from "@/components/UtilisateurParent.vue";
 
 export default {
   components: {
-    FeaturedOffer,
-    OffersList
+    FeaturedOffer ,
+    OffersList,
+    UtilisateurParent
   }
 }
 </script>

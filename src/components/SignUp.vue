@@ -1,4 +1,5 @@
 <template>
+  <NavBar />
   <div class="sign-up">
     <h1>Inscription</h1>
     <form @submit.prevent="submitForm">
@@ -8,57 +9,76 @@
       </div>
       <div>
         <label for="email">Email:</label>
-        <input type="email" id="email" v-model="user.email" required>
+        <input type="email" id="email" v-model="user.email"  @blur="validateEmail" required>
+        <span v-if="emailError" class="error">{{ emailError }}</span>
       </div>
       <div>
         <label for="password">Mot de passe:</label>
-        <input type="password" id="password" v-model="user.password" required>
+        <input type="password" id="password" v-model="user.password" @blur="validatePassword" required>
+        <span v-if="passwordError" class="error">{{ passwordError }}</span>
       </div>
       <div>
         <button type="submit">S'inscrire</button>
       </div>
-      <p class="already-registered"> Déjà inscrit ? <router-link to="/signin">Connectez-vous</router-link>
-      </p>
+      <p class="already-registered">Déjà inscrit ? <router-link to="/signin">Connectez-vous</router-link></p>
     </form>
   </div>
 </template>
 
 <script>
-
 import axios from 'axios';
-
+import NavBar from "@/components/NavBar.vue";
 
 export default {
   name: 'SignUp',
+  components: { NavBar },
   data() {
     return {
       user: {
         name: '',
         email: '',
         password: ''
-      }
+      },
+      emailError: '',
+      passwordError: ''
     };
   },
   methods: {
+    validateEmail() {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!re.test(this.user.email)) {
+        this.emailError = 'Veuillez entrer un email valide';
+      } else {
+        this.emailError = '';
+      }
+    },
+    validatePassword() {
+      if (this.user.password.length < 8) {
+        this.passwordError = 'Le mot de passe doit contenir au moins 8 caractères';
+      } else {
+        this.passwordError = '';
+      }
+    },
     submitForm() {
-      axios.post('http://localhost:3000/users', this.user)
+      this.validateEmail();
+      this.validatePassword();
+      if (this.emailError || this.passwordError) {
+        return;
+      }
+      axios.post('http://localhost:3000/user', this.user)
         .then(response => {
           alert('Inscription réussie!');
-          // Vous pouvez ici rediriger l'utilisateur ou faire d'autres traitements
           console.log(response.data);
-          this.$router.push('/signin'); // Exemple de redirection vers la page de connexion
+          this.$router.push('/signin');
         })
         .catch(error => {
-          console.error('Erreur lors inscription:', error);
-          alert('Une erreur est survenue lors inscription.');
+          console.error('Erreur lors de l\'inscription:', error);
+          alert('Une erreur est survenue lors de l\'inscription.');
         });
     }
   }
 };
-
 </script>
-
-
 
 <style scoped>
 .sign-up {
@@ -136,5 +156,10 @@ button:active {
 
 .already-registered a:hover {
   text-decoration: underline;
+}
+
+.error {
+  color: red;
+  font-size: 0.9em;
 }
 </style>

@@ -1,4 +1,5 @@
 <template>
+  <NavbarElement/>
   <div class="welcome-container">
     <div class="text-section">
       <h1>Apprenez vos enfants Sans Limites</h1>
@@ -17,28 +18,22 @@
 </template>
 
 <script>
-import { useRouter } from 'vue-router';
+import NavbarElement from "@/components/NavBar.vue";
 
 export default {
-  setup() {
-    const router = useRouter(); // Obtenez l'instance du routeur pour Vue 3
-
-    function goToSignUp() {
-      router.push('/signup'); // Redirige vers le composant SignUp
-    }
-
-    function goToSignIn() {
-      router.push('/signin'); // Redirige vers le composant SignIn
-    }
-
-    return {
-      goToSignUp,
-      goToSignIn
+  components: {
+    NavbarElement
+  },
+  methods: {
+    goToSignUp() {
+      this.$router.push('/signup');
+    },
+    goToSignIn() {
+      this.$router.push('/signin');
     }
   }
 }
 </script>
-
 
 <style scoped>
 

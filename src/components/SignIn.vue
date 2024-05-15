@@ -1,41 +1,88 @@
 <template>
+  <NavBar />
   <div class="sign-in">
     <h1>Connexion</h1>
-    <form @submit.prevent="submitLogin">
+    <form @submit.prevent="submitForm">
       <div>
         <label for="email">Email:</label>
-        <input type="text" id="email" v-model="user.email" required>
+        <input type="email" id="email" v-model="user.email" @blur="validateEmail" required>
+        <span v-if="emailError" class="error">{{ emailError }}</span>
       </div>
       <div>
         <label for="password">Mot de passe:</label>
-        <input type="password" id="password" v-model="user.password" required>
+        <input type="password" id="password" v-model="user.password" @blur="validatePassword" required>
+        <span v-if="passwordError" class="error">{{ passwordError }}</span>
       </div>
       <div>
         <button type="submit">Se connecter</button>
       </div>
     </form>
+    <p class="forgot-password">
+      <router-link to="/forgetpassword">Mot de passe oublié ?</router-link>
+    </p>
   </div>
 </template>
 
 <script>
+import NavBar from "@/components/NavBar.vue";
+import axios from "axios";
+
 export default {
   name: 'SignIn',
+  components: {
+    NavBar
+  },
   data() {
     return {
       user: {
         email: '',
         password: ''
-      }
+      },
+      emailError: '',
+      passwordError: ''
     };
   },
   methods: {
-    submitLogin() {
-      console.log("Données de connexion:", this.user);
-      // Ajoutez ici la logique pour envoyer les données de connexion à un serveur.
+    validateEmail() {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!re.test(this.user.email)) {
+        this.emailError = 'Veuillez entrer un email valide';
+      } else {
+        this.emailError = '';
+      }
+    },
+    validatePassword() {
+      if (this.user.password.length < 8) {
+        this.passwordError = 'Le mot de passe doit contenir au moins 8 caractères';
+      } else {
+        this.passwordError = '';
+      }
+    },
+    submitForm() {
+      this.validateEmail();
+      this.validatePassword();
+      if (this.emailError || this.passwordError) {
+        return;
+      }
+      axios.post('/login', this.user)
+        .then(response => {
+          const token = response.data.token;
+          const role = response.data.role ;
+          localStorage.setItem('user_role', role) ;
+          localStorage.setItem('auth_token', token);
+          axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+          alert('Connexion réussie!');
+          this.$router.push('/offerspage');
+        })
+        .catch(error => {
+          console.error('Erreur de connexion:', error);
+          alert('Erreur lors de la connexion. Veuillez réessayer.');
+        });
     }
   }
 };
 </script>
+
 <style scoped>
 .sign-in {
   max-width: 350px;
@@ -60,6 +107,7 @@ label {
 }
 
 input[type="text"],
+input[type="email"],
 input[type="password"] {
   width: 100%;
   padding: 10px;
@@ -68,9 +116,11 @@ input[type="password"] {
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
 }
 
 input[type="text"]:focus,
+input[type="email"]:focus,
 input[type="password"]:focus {
   border-color: #3498db;
   box-shadow: 0 2px 4px rgba(50, 150, 250, 0.5);
@@ -95,5 +145,25 @@ button:hover {
 
 button:active {
   background-color: #2575b5;
+}
+
+.forgot-password {
+  text-align: center;
+  margin-top: 15px;
+  color: #666;
+}
+
+.forgot-password a {
+  color: #2980b9;
+  text-decoration: none;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+.error {
+  color: red;
+  font-size: 0.9em;
 }
 </style>

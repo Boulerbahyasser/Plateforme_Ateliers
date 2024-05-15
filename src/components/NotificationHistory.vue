@@ -1,15 +1,13 @@
 <template>
-  <div class="notifications-page">
-    <h1>Notifications</h1>
+  <div class="notifications-history-page">
+    <h1>Historique des Notifications</h1>
     <ul>
       <notification-item
-        v-for="notification in notifications"
+        v-for="notification in historyNotifications"
         :key="notification.id"
         :notification="notification"
-        @delete="deleteNotification"
       ></notification-item>
     </ul>
-    <button @click="viewHistory">Voir l'historique des notifications</button>
   </div>
 </template>
 
@@ -22,43 +20,40 @@ export default {
   },
   data() {
     return {
-      notifications: [] // Les données des notifications seront chargées ici
+      historyNotifications: [] // Les données des notifications historiques seront chargées ici
     };
   },
-  methods: {
-    deleteNotification(id) {
-      // Ici, ajouter la logique pour supprimer la notification
-      this.notifications = this.notifications.filter(n => n.id !== id);
-    },
-    viewHistory() {
-      this.$router.push('/notificationhistory');
-    },
+  created() {
+    this.loadHistoryNotifications();
+  },
 
-      async loadNotifications() {
+  methods: {
+    async loadHistoryNotifications() {
         try {
           // Simulation de l'appel à l'API
           // Vous pouvez remplacer cette partie par un appel réel à votre backend.
           await new Promise(resolve => setTimeout(resolve, 1000)); // Simule un délai de chargement
-          this.notifications = [
+          this.historyNotifications = [
             {id: 1, message: "Votre enfant a été inscrit à l'activité de robotique."},
             {id: 2, message: "Paiement reçu pour le cours de programmation."},
-            {id: 3, message: "votre enfant ahmed mohamadi a été inscrit a l'activiter de programmation"}
+            {id: 4, message: "il y'a un nouveau offre qui peux etre interssante a vous"},
+            {id: 5, message: "votre enfant ahmed mohdi a été inscrit a l'activiter d'algo"},
+            {id: 6, message: "votre enfant ahmed aymen a été inscrit a l'activiter de C#"},
+            {id: 7, message: "votre enfant ahmed moadi a été inscrit a l'activiter de programmation"},
+            {id: 4, message: "il y'a un nouveau offre qui peux etre interssante a vous"}
           ];
         } catch (error) {
           console.error("Failed to load notifications:", error);
           // Gérer l'erreur de manière appropriée, peut-être avec une notification d'erreur utilisateur.
         }
       }
-  },
-
-  created() {
-    this.loadNotifications();
   }
 }
 </script>
 
 <style scoped>
-.notifications-page {
+
+.notifications-history-page {
   max-width: 600px;
   margin: 20px auto;
   padding: 20px;
@@ -77,23 +72,4 @@ ul {
   padding: 0;
 }
 
-button {
-  background-color: #4A90E2;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-button:hover {
-  background-color: #3778c2;
-}
-
-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #3778c2;
-}
 </style>
-

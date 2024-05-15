@@ -1,16 +1,24 @@
 <template>
-   <!-- Navigation Supérieure -->
+     <!-- Navigation Supérieure -->
    <nav class="bg-blue-500 p-4 flex items-center justify-between">
      <div>
        <button @click="toggleSidebar" class="text-white text-xl font-semibold">
          <i class="fas fa-bars"></i> BIENVENUE
        </button>
      </div>
-     <div class="flex items-center space-x-4">
-       <i class="fas fa-user-circle text-white text-2xl"></i>
+     <div class="navbar-right">
+       <router-link to="/notificationpage" class="icon-link"><i class="fas fa-bell"></i></router-link>
+       <div class="profile-dropdown">
+         <button @click="toggleProfileMenu" class="icon-link profile-button"><i class="fas fa-user"></i></button>
+         <div v-if="showProfileMenu" class="dropdown-menu">
+           <router-link to="/userprofile">Profil</router-link>
+           <router-link to="/changepassword">Changer mot de passe</router-link>
+           <button @click="logout">Déconnexion</button>
+         </div>
+       </div>
      </div>
    </nav>
- 
+
    <!-- Navigation Latérale -->
    <aside :class="{ 'closed': !isSidebarOpen }" class="bg-gray-600 text-white w-64 min-h-screen p-2">
      <div class="flex justify-end">
@@ -40,7 +48,7 @@
        </ul>
      </nav>
    </aside>
- 
+
    <div class="modal" v-show="showForm">
   <div class="modal-background" @click="closeForm"></div>
   <div class="modal-content">
@@ -56,7 +64,7 @@
       </div>
       <div class="form-group">
         <label for="courses">Les courses:</label>
-        <textarea id="courses" v-model="childDetails.courses" placeholder="Les courses de l'enfant" rows="4" disabled></textarea>
+        <input id="courses" v-model="childDetails.courses" placeholder="Les courses de l'enfant"  disabled type="text">
       </div>
       <!-- Ajouter des champs de formulaire ici -->
       <button type="submit">Enregistrer</button>
@@ -65,7 +73,7 @@
   </div>
 </div>
 
- 
+
    <!-- Formulaire Modal pour Ajouter un Enfant -->
    <div class="modal" v-show="showAddChildForm">
      <div class="modal-background" @click="closeAddChildForm"></div>
@@ -88,12 +96,13 @@ export default {
   data() {
     return {
       isSidebarOpen: false,
+      showProfileMenu: false,
       showForm: false,
       showAddChildForm: false,
       selectedChild: null,
       newChild: { firstName: '', lastName: '', Niveau: '', dateOfBirth: '' },
       childDetails:{firstName:'',lastName: '',courses:''},
-      
+
       opciones: [
         {
           title: 'Mes Enfants',
@@ -118,6 +127,14 @@ export default {
     }
   },
   methods: {
+    toggleProfileMenu() {
+      this.showProfileMenu = !this.showProfileMenu;
+    },
+    logout() {
+      console.log("Utilisateur déconnecté");
+      this.$router.push('/signin');
+    },
+
     toggleSidebar() {
       this.isSidebarOpen = !this.isSidebarOpen;
     },
@@ -170,7 +187,7 @@ export default {
 html, body {
   height: 100%;
   width: 100%;
-  background-color: #5b86c2;
+  background-color: #ffffff;
   color: #334155;
 }
 
@@ -181,7 +198,7 @@ aside {
   position: fixed;
   top: 0;
   left: 0;
-  background: linear-gradient(to bottom, #312a96, #e2e8f0);
+  background: linear-gradient(to bottom, #312a96, #595588);
   box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   transition: transform 0.3s ease;
@@ -273,21 +290,77 @@ button:hover, .button-like:hover {
   padding: 20px;
   margin: auto;
   z-index: 2;
-  width: 300px; /* Vous pouvez ajuster cette largeur selon vos besoins */
+  width: 400px; /* Vous pouvez ajuster cette largeur selon vos besoins */
 }
 
 .modal-content input,
 .modal-content button {
   display: block; /* Assure que chaque élément prend une ligne complète */
   width: 100%; /* Prend toute la largeur du conteneur .modal-content */
-  margin-bottom: 30px; /* Espacement entre les éléments */
   box-sizing: border-box; /* Inclut le padding et border dans la largeur totale */
 }
+.modal-content input{
+  margin-bottom: 30px;
+}
+
+.modal-content button{
+  margin-bottom: 10px;
+}
+
+
 .modal[style*="display: block"] {
   visibility: visible; /* Assure que le modal est visible quand display est 'block' */
 }
-.text-center {
-  text-align: center;
+
+
+.fas {
+  margin-left: 10px;
+  font-size: 20px;
+  transition: transform 0.3s ease-in-out;
+  color: white;
 }
+
+.fas:hover {
+   transform: rotate(180deg);
+
+}
+
+
+.profile-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  display: block;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  right: 0;
+  top: 48px;
+}
+
+.dropdown-menu a, .dropdown-menu button {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: none;
+}
+
+.dropdown-menu a:hover, .dropdown-menu button:hover {
+  background-color: #f1f1f1;
+}
+
+.icon-link {
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+}
+
 </style>
- 

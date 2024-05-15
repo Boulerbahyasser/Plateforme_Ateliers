@@ -1,4 +1,4 @@
-<template>
+ <template>
 
   <nav class="navbar">
     <div class="navbar-left">
@@ -113,7 +113,7 @@ export default {
 }
 
 .fas:hover {
-  transform: rotate(360deg);
+  transform: rotate(180deg);
 }
 
 .nav-toggle {

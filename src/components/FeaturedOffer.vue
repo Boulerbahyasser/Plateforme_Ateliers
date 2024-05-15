@@ -1,23 +1,64 @@
 <template>
   <div class="offer-container">
+    <button @click="prevOffer" class="nav-btn left-btn">⬅️</button>
     <div class="text-section">
-      <h1>Atelier Algorithme</h1>
-      <p>Découvrez le monde de l'algorithme avec votre enfant.</p>
-      <router-link to="/signup" class="signup-btn">Inscrivez-vous à l'offre</router-link>
+      <h1>{{ currentOffer.title }}</h1>
+      <p>{{ currentOffer.description }}</p>
+      <router-link to="/offerdetails" class="signup-btn">Inscrivez-vous à l'offre</router-link>
     </div>
     <div class="image-section">
-      <img src="@/assets/child.png" alt="Learning" class="offer-image">
+      <img :src="currentOffer.imageUrl" alt="Learning" class="offer-image">
     </div>
+    <button @click="nextOffer" class="nav-btn right-btn">➡️</button>
   </div>
 </template>
 
-
 <script>
-
+export default {
+  data() {
+    return {
+      offers: [
+        {
+          title: "Atelier Algorithme",
+          description: "Découvrez le monde de l'algorithme avec votre enfant.",
+          imageUrl: require("@/assets/child.png")
+        },
+        {
+          title: "Atelier Robotique",
+          description: "Plongez dans le monde fascinant de la robotique.",
+          imageUrl: require("@/assets/child.png")
+        },
+        {
+          title: "Atelier Programmation",
+          description: "Apprenez à coder avec Python.",
+          imageUrl: require("@/assets/child1.png")
+        }
+      ],
+      currentIndex: 0
+    };
+  },
+  computed: {
+    currentOffer() {
+      return this.offers[this.currentIndex];
+    }
+  },
+  methods: {
+    nextOffer() {
+      this.currentIndex = (this.currentIndex + 1) % this.offers.length;
+    },
+    prevOffer() {
+      this.currentIndex = (this.currentIndex + this.offers.length - 1) % this.offers.length;
+    }
+  }
+}
 </script>
 
 
+
 <style scoped>
+
+
+
 .offer-container {
   display: flex;
   align-items: center;
@@ -74,7 +115,32 @@ p {
   max-width: 100%;
   border-radius: 10px; /* Image avec coins arrondis */
 }
+
+.nav-btn {
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 10px;
+  transition: color 0.3s ease;
+}
+
+.left-btn {
+  position: absolute;
+  left: 20px;
+}
+
+.right-btn {
+  position: absolute;
+  right: 20px;
+}
+
+.nav-btn:hover {
+  color: #efb902;
+}
 </style>
+
 
 
 

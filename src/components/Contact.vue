@@ -1,4 +1,5 @@
 <template>
+    <NavBar />
   <div class="contact-container">
     <h1>Contactez-nous</h1>
     <form @submit.prevent="submitContactForm">
@@ -20,8 +21,11 @@
 </template>
 
 <script>
+import NavBar from "@/components/NavBar.vue";
+
 export default {
   name: 'ContactElement',
+  components: {NavBar},
   data() {
     return {
       contact: {

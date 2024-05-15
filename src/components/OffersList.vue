@@ -1,11 +1,19 @@
 <template>
   <div class="offers-list">
     <h3>Toutes les Offres</h3>
-    <div class="offer" v-for="offer in offers" :key="offer.id">
+    <div v-if="loading">
+      Chargement des offres...
+    </div>
+    <div v-else class="offer" v-for="offer in offers" :key="offer.id">
       <img :src="offer.imageUrl" alt="Offer Image" class="offer-image">
       <div class="offer-details">
-        <h4>{{ offer.title }}</h4>
-        <p>{{ offer.description }}</p>
+        <div>
+          <h4>{{ offer.title }}</h4>
+          <p>{{ offer.description }}</p>
+        </div>
+        <router-link :to="{ name: 'offerdetails', params: { id: offer.id }}" class="details-btn">
+          Voir Détails
+        </router-link>
       </div>
     </div>
   </div>
@@ -13,21 +21,38 @@
 
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'OffersList',
   data() {
     return {
-      offers: [
-        { id: 1, title: 'Atelier Robotique', description: 'Découvrez le monde de la robotique avec votre enfant.',  imageUrl: require('@/assets/child.png') },
-        { id: 2, title: 'Atelier php', description: 'Découvrez le monde de la php avec votre enfant.', imageUrl:require( '@/assets/child.png' )},
-
-
-        // Plus d'offres...
-      ]
+      offers: [],
+      loading: true  // Ajout de la propriété loading
+    }
+  },
+  created() {
+    this.fetchOffers();
+  },
+  methods: {
+    fetchOffers() {
+      this.loading = true;  // Début du chargement
+      axios.get('http://localhost:3000/offers')
+        .then(response => {
+          this.offers = response.data;
+          this.loading = false;  // Fin du chargement
+        })
+        .catch(error => {
+          console.error('There was an error fetching the offers:', error);
+          this.loading = false;  // Gérer le chargement même en cas d'erreur
+        });
     }
   }
 }
 </script>
+
+
+
 <style scoped>
 
 
@@ -89,6 +114,28 @@ h3 {
   -webkit-background-clip: text;
   color: transparent;
 
+}
+
+.offer-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Cette propriété répartit les espaces uniformément */
+  width: 100%; /* Assurez-vous que le div prend toute la largeur disponible */
+}
+
+.details-btn {
+  margin-left: auto; /* Pousse le bouton à l'extrême droite */
+  padding: 10px 15px;
+  background-color: #026968;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.details-btn:hover {
+  background-color: #024949;
 }
 
 
