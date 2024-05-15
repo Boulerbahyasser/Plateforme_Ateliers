@@ -27,3 +27,4 @@ Route::put('/enfant/update/{id}',[EnfantController::class, 'UpdateEnfant']);
 Route::delete('/enfant/delete/{id}',[EnfantController::class, 'DestroyEnfant']);
 Route::get('/activiteoffre/{id}',[ParentDemandeController::class, 'ShowHorairetoEnfant']);
 Route::post('/demande',[ParentDemandeController::class,'StoreDemande']);
+Route::put('/devis/{id}',[ ParentDemandeController::class,'UpdateDevis']);
