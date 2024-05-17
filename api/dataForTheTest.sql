@@ -143,28 +143,29 @@ VALUES
     (17, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 -- Insert into notifications table
-INSERT INTO notifications (user_id, date, contenu, object, type, created_at, updated_at)
+INSERT INTO notifications (user_id, date, contenu, type, created_at, updated_at)
 VALUES
-    (1, '2024-05-08', 'Notification content for user 1', 'Notification Object 1', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (2, '2024-05-08', 'Notification content for user 2', 'Notification Object 2', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (3, '2024-05-08', 'Notification content for user 3', 'Notification Object 3', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (4, '2024-05-08', 'Notification content for user 4', 'Notification Object 4', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (5, '2024-05-08', 'Notification content for user 5', 'Notification Object 5', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (6, '2024-05-08', 'Notification content for user 6', 'Notification Object 6', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (7, '2024-05-08', 'Notification content for user 7', 'Notification Object 7', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (8, '2024-05-08', 'Notification content for user 8', 'Notification Object 8', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (9, '2024-05-08', 'Notification content for user 9', 'Notification Object 9', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (10, '2024-05-08', 'Notification content for user 10', 'Notification Object 10', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (11, '2024-05-08', 'Notification content for user 11', 'Notification Object 11', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (12, '2024-05-08', 'Notification content for user 12', 'Notification Object 12', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (13, '2024-05-08', 'Notification content for user 13', 'Notification Object 13', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (14, '2024-05-08', 'Notification content for user 14', 'Notification Object 14', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (15, '2024-05-08', 'Notification content for user 15', 'Notification Object 15', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (16, '2024-05-08', 'Notification content for user 16', 'Notification Object 16', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (17, '2024-05-08', 'Notification content for user 17', 'Notification Object 17', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (18, '2024-05-08', 'Notification content for user 18', 'Notification Object 18', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (19, '2024-05-08', 'Notification content for user 19', 'Notification Object 19', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (20, '2024-05-08', 'Notification content for user 20', 'Notification Object 20', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+    (1, '2024-05-08', 'Notification content for user 1', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (2, '2024-05-08', 'Notification content for user 2', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (3, '2024-05-08', 'Notification content for user 3', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (4, '2024-05-08', 'Notification content for user 4', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (5, '2024-05-08', 'Notification content for user 5', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (6, '2024-05-08', 'Notification content for user 6', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (7, '2024-05-08', 'Notification content for user 7', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (8, '2024-05-08', 'Notification content for user 8', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (9, '2024-05-08', 'Notification content for user 9', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (10, '2024-05-08', 'Notification content for user 10', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (11, '2024-05-08', 'Notification content for user 11', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (12, '2024-05-08', 'Notification content for user 12', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (13, '2024-05-08', 'Notification content for user 13', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (14, '2024-05-08', 'Notification content for user 14', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (15, '2024-05-08', 'Notification content for user 15', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (16, '2024-05-08', 'Notification content for user 16', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (17, '2024-05-08', 'Notification content for user 17', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (18, '2024-05-08', 'Notification content for user 18', 'Type C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (19, '2024-05-08', 'Notification content for user 19', 'Type A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (20, '2024-05-08', 'Notification content for user 20', 'Type B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
 
 -- Insert into fathers table
 INSERT INTO fathers (user_id, fonction, created_at, updated_at)
@@ -217,26 +218,26 @@ VALUES
 
 INSERT INTO demandes (admin_id, date, statut, created_at, updated_at)
 VALUES
-    (1, '2024-05-08 08:00:00', 'En cours', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (1, '2024-05-08 08:00:00', 'En cours', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (1, '2024-05-08 08:00:00', 'En cours', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (1, '2024-05-08 08:00:00', 'En cours', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (5, '2024-05-08 08:00:00', 'En cours', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (6, '2024-05-08 08:00:00', 'En cours', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (7, '2024-05-08 08:00:00', 'En cours', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (8, '2024-05-08 08:00:00', 'En cours', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (9, '2024-05-08 08:00:00', 'En cours', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (10, '2024-05-08 08:00:00', 'En cours', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (11, '2024-05-08 08:00:00', 'En cours', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (12, '2024-05-08 08:00:00', 'En cours', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (13, '2024-05-08 08:00:00', 'En cours', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (14, '2024-05-08 08:00:00', 'En cours', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (15, '2024-05-08 08:00:00', 'En cours', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (16, '2024-05-08 08:00:00', 'En cours', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (17, '2024-05-08 08:00:00', 'En cours', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (18, '2024-05-08 08:00:00', 'En cours', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (19, '2024-05-08 08:00:00', 'En cours', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (20, '2024-05-08 08:00:00', 'En cours', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+    (1, '2024-05-08 08:00:00', 'brouillon', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (1, '2024-05-08 08:00:00', 'valide', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (1, '2024-05-08 08:00:00', 'valide', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (1, '2024-05-08 08:00:00', 'brouillon', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (5, '2024-05-08 08:00:00', 'valide', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (6, '2024-05-08 08:00:00', 'valide', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (7, '2024-05-08 08:00:00', 'brouillon', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (8, '2024-05-08 08:00:00', 'valide', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (9, '2024-05-08 08:00:00', 'valide', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (10, '2024-05-08 08:00:00', 'valide', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (11, '2024-05-08 08:00:00', 'valide', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (12, '2024-05-08 08:00:00', 'valide', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (13, '2024-05-08 08:00:00', 'valide', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (14, '2024-05-08 08:00:00', 'brouillon', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (15, '2024-05-08 08:00:00', 'valide', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (16, '2024-05-08 08:00:00', 'valide', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (17, '2024-05-08 08:00:00', 'valide', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (18, '2024-05-08 08:00:00', 'valide', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (19, '2024-05-08 08:00:00', 'valide', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (20, '2024-05-08 08:00:00', 'valide', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
 
@@ -264,28 +265,28 @@ VALUES
     (20, 'Titre 20', '2024-05-28', '2024-06-03', 'Description for offre 20', 26.50, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
-INSERT INTO activite_offres (offre_id, activite_id, tarif, age_min, age_max, nbr_seance, volume_horaire, option_paiement, created_at, updated_at)
+INSERT INTO activite_offres (offre_id, activite_id, tarif, tarif_remise, age_min, age_max, nbr_seance, volume_horaire, option_paiement, created_at, updated_at)
 VALUES
-    (1, 1, 50.00, 5, 10, 8, 16, 'Option A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (2, 2, 60.00, 6, 11, 7, 14, 'Option B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (3, 3, 70.00, 7, 12, 6, 12, 'Option C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (4, 4, 80.00, 8, 13, 5, 10, 'Option D', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (5, 5, 90.00, 9, 14, 4, 8, 'Option E', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (6, 6, 100.00, 10, 15, 3, 6, 'Option F', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (7, 7, 110.00, 11, 16, 2, 4, 'Option G', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (8, 8, 120.00, 12, 17, 1, 2, 'Option H', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (9, 9, 130.00, 13, 18, 8, 16, 'Option I', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (10, 10, 140.00, 14, 19, 7, 14, 'Option J', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (11, 11, 150.00, 15, 20, 6, 12, 'Option K', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (12, 12, 160.00, 16, 21, 5, 10, 'Option L', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (13, 13, 170.00, 17, 22, 4, 8, 'Option M', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (14, 14, 180.00, 18, 23, 3, 6, 'Option N', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (15, 15, 190.00, 19, 24, 2, 4, 'Option O', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (16, 16, 200.00, 20, 25, 1, 2, 'Option P', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (17, 17, 210.00, 21, 26, 8, 16, 'Option Q', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (18, 18, 220.00, 22, 27, 7, 14, 'Option R', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (19, 19, 230.00, 23, 28, 6, 12, 'Option S', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (20, 20, 240.00, 24, 29, 5, 10, 'Option T', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+    (1, 1, 50.00, 50.00, 5, 10, 8, 16, 'Option A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (2, 2, 60.00, 60.00, 6, 11, 7, 14, 'Option B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (3, 3, 70.00, 70.00, 7, 12, 6, 12, 'Option C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (4, 4, 80.00, 80.00, 8, 13, 5, 10, 'Option D', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (5, 5, 90.00, 90.00, 9, 14, 4, 8, 'Option E', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (6, 6, 100.00, 100.00, 10, 15, 3, 6, 'Option F', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (7, 7, 110.00, 110.00, 11, 16, 2, 4, 'Option G', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (8, 8, 120.00, 120.00, 12, 17, 1, 2, 'Option H', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (9, 9, 130.00, 130.00, 13, 18, 8, 16, 'Option I', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (10, 10, 140.00, 140.00, 14, 19, 7, 14, 'Option J', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (11, 11, 150.00, 150.00, 15, 20, 6, 12, 'Option K', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (12, 12, 160.00, 160.00, 16, 21, 5, 10, 'Option L', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (13, 13, 170.00, 170.00, 17, 22, 4, 8, 'Option M', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (14, 14, 180.00, 180.00, 18, 23, 3, 6, 'Option N', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (15, 15, 190.00, 190.00, 19, 24, 2, 4, 'Option O', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (16, 16, 200.00, 200.00, 20, 25, 1, 2, 'Option P', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (17, 17, 210.00, 210.00, 21, 26, 8, 16, 'Option Q', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (18, 18, 220.00, 220.00, 22, 27, 7, 14, 'Option R', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (19, 19, 230.00, 230.00, 23, 28, 6, 12, 'Option S', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (20, 20, 240.00, 240.00, 24, 29, 5, 10, 'Option T', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
 INSERT INTO packs (demande_id, nom, remise, created_at, updated_at)
@@ -338,26 +339,26 @@ VALUES
 
 INSERT INTO demande_inscriptions (enfant_id, activite_offre_id, demande_id,horaire1, horaire2, etat, motif, created_at, updated_at)
 VALUES
-    (1, 1, 1, '2024-05-08 08:00:00', '2024-05-08 10:00:00', 'Confirmé', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (2, 2, 2, '2024-05-08 09:00:00', '2024-05-08 11:00:00', 'En attente', 'Paiement en cours', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (3, 3, 3, '2024-05-08 10:00:00', '2024-05-08 12:00:00', 'Refusé', 'Activité complète', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (4, 4, 4, '2024-05-08 11:00:00', '2024-05-08 13:00:00', 'Confirmé', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (5, 5, 5, '2024-05-08 12:00:00', '2024-05-08 14:00:00', 'En attente', 'En attente de confirmation', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (6, 6, 6, '2024-05-08 13:00:00', '2024-05-08 15:00:00', 'Confirmé', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (7, 7, 7, '2024-05-08 14:00:00', '2024-05-08 16:00:00', 'En attente', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (8, 8, 8, '2024-05-08 15:00:00', '2024-05-08 17:00:00', 'Refusé', 'Horaires incompatibles', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (9, 9, 9, '2024-05-08 16:00:00', '2024-05-08 18:00:00', 'Confirmé', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (10, 10, 10, '2024-05-08 17:00:00', '2024-05-08 19:00:00', 'En attente', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (11, 11, 11, '2024-05-08 18:00:00', '2024-05-08 20:00:00', 'Confirmé', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (12, 12, 12, '2024-05-08 19:00:00', '2024-05-08 21:00:00', 'En attente', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (13, 13, 13, '2024-05-08 20:00:00', '2024-05-08 22:00:00', 'Confirmé', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (14, 14, 14, '2024-05-08 21:00:00', '2024-05-08 23:00:00', 'En attente', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (15, 15, 15, '2024-05-08 22:00:00', '2024-05-09 00:00:00', 'Confirmé', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (16, 16, 16, '2024-05-08 23:00:00', '2024-05-09 01:00:00', 'En attente', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (17, 17, 17, '2024-05-09 00:00:00', '2024-05-09 02:00:00', 'Confirmé', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (18, 18, 18, '2024-05-09 01:00:00', '2024-05-09 03:00:00', 'En attente', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (19, 19, 19, '2024-05-09 02:00:00', '2024-05-09 04:00:00', 'Confirmé', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (20, 20, 20, '2024-05-09 03:00:00', '2024-05-09 05:00:00', 'En attente', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+    (1, 1, 1, '2024-05-08 08:00:00', '2024-05-08 10:00:00', 'en cours', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (2, 2, 2, '2024-05-08 09:00:00', '2024-05-08 11:00:00', 'en cours', 'Paiement en cours', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (3, 3, 3, '2024-05-08 10:00:00', '2024-05-08 12:00:00', 'en cours', 'Activité complète', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (4, 4, 4, '2024-05-08 11:00:00', '2024-05-08 13:00:00', 'en cours', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (5, 5, 5, '2024-05-08 12:00:00', '2024-05-08 14:00:00', 'en cours', 'En attente de confirmation', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (6, 6, 6, '2024-05-08 13:00:00', '2024-05-08 15:00:00', 'en cours', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (7, 7, 7, '2024-05-08 14:00:00', '2024-05-08 16:00:00', 'en cours', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (8, 8, 8, '2024-05-08 15:00:00', '2024-05-08 17:00:00', 'en cours', 'Horaires incompatibles', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (9, 9, 9, '2024-05-08 16:00:00', '2024-05-08 18:00:00', 'en cours', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (10, 10, 10, '2024-05-08 17:00:00', '2024-05-08 19:00:00', 'en cours', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (11, 11, 11, '2024-05-08 18:00:00', '2024-05-08 20:00:00', 'en cours', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (12, 12, 12, '2024-05-08 19:00:00', '2024-05-08 21:00:00', 'en cours', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (13, 13, 13, '2024-05-08 20:00:00', '2024-05-08 22:00:00', 'en cours', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (14, 14, 14, '2024-05-08 21:00:00', '2024-05-08 23:00:00', 'en cours', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (15, 15, 15, '2024-05-08 22:00:00', '2024-05-09 00:00:00', 'en cours', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (16, 16, 16, '2024-05-08 23:00:00', '2024-05-09 01:00:00', 'en cours', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (17, 17, 17, '2024-05-09 00:00:00', '2024-05-09 02:00:00', 'en cours', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (18, 18, 18, '2024-05-09 01:00:00', '2024-05-09 03:00:00', 'en cours', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (19, 19, 19, '2024-05-09 02:00:00', '2024-05-09 04:00:00', 'en cours', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (20, 20, 20, '2024-05-09 03:00:00', '2024-05-09 05:00:00', 'en cours', 'Aucun', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
 INSERT INTO hdas (activite_offre_id, horaire_id, eff_min, eff_max, nbr_place_restant, created_at, updated_at)
