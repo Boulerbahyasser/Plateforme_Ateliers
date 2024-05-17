@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('demande_inscriptions', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('enfant_id');
             $table->unsignedBigInteger('activite_offre_id');
             $table->unsignedBigInteger('demande_id');
@@ -20,8 +21,6 @@ return new class extends Migration
             $table->string('etat');
             $table->text('motif');
 
-            // Clé primaire composite
-            $table->primary(['enfant_id', 'activite_offre_id', 'demande_id']);
 
             // Clés étrangères vers les tables parentes
             $table->foreign('enfant_id')->references('id')->on('enfants')->onDelete('cascade');

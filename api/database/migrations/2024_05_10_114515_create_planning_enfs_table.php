@@ -12,13 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('planning_enfs', function (Blueprint $table) {
+            $table->id();
             // Clés étrangères
             $table->unsignedBigInteger('enfant_id');
             $table->unsignedBigInteger('activite_id');
             $table->unsignedBigInteger('horaire_id');
 
-            // Clé primaire composite
-            $table->primary(['enfant_id', 'activite_id', 'horaire_id']);
 
             // Clés étrangères vers les tables parentes
             $table->foreign('enfant_id')->references('id')->on('enfants')->onDelete('cascade');
