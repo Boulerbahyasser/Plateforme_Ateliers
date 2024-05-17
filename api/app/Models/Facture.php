@@ -9,12 +9,18 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Facture extends Model
 {
     use HasFactory;
+    protected $table = 'factures';
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'ID_Fact',
+        'date',
+        'total_ht',
+        'total_ttc',
+    ];
 
     /**
      * Get the devis associated with the facture.
