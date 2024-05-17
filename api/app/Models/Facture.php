@@ -16,7 +16,7 @@ class Facture extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'ID_Fact',
+
         'date',
         'total_ht',
         'total_ttc',
