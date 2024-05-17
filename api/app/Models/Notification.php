@@ -22,7 +22,7 @@ class Notification extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['user_id', 'date', 'contenu', 'object', 'type'];
+    protected $fillable = ['user_id', 'date', 'contenu', 'type'];
 
     /**
      * Get the user that owns the notification.

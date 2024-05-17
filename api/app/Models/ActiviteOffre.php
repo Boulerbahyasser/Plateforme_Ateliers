@@ -14,7 +14,7 @@ class ActiviteOffre extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['offre_id', 'activite_id', 'tarif', 'age_min',
+    protected $fillable = ['offre_id', 'activite_id', 'tarif','tarif_remise', 'age_min',
                             'age_max', 'nbr_seance', 'volume_horaire', 'option_paiement'];
 
     /**
