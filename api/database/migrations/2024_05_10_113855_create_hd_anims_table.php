@@ -12,11 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('hd_anims', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('anim_id');
             $table->unsignedBigInteger('horaire_id');
 
-            // Clé primaire composite
-            $table->primary(['anim_id', 'horaire_id']);
 
             // Clés étrangères vers les tables parentes
             $table->foreign('anim_id')->references('id')->on('animateurs')->onDelete('cascade');
