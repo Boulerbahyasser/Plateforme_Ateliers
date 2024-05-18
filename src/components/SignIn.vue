@@ -5,13 +5,11 @@
     <form @submit.prevent="submitForm">
       <div>
         <label for="email">Email:</label>
-        <input type="email" id="email" v-model="user.email" @blur="validateEmail" required>
-        <span v-if="emailError" class="error">{{ emailError }}</span>
+        <input type="email" id="email" v-model="user.email" required>
       </div>
       <div>
         <label for="password">Mot de passe:</label>
-        <input type="password" id="password" v-model="user.password" @blur="validatePassword" required>
-        <span v-if="passwordError" class="error">{{ passwordError }}</span>
+        <input type="password" id="password" v-model="user.password" required>
       </div>
       <div>
         <button type="submit">Se connecter</button>
@@ -25,7 +23,6 @@
 
 <script>
 import NavBar from "@/components/NavBar.vue";
-import axios from "axios";
 
 export default {
   name: 'SignIn',
@@ -37,50 +34,15 @@ export default {
       user: {
         email: '',
         password: ''
-      },
-      emailError: '',
-      passwordError: ''
+      }
     };
   },
   methods: {
-    validateEmail() {
-      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!re.test(this.user.email)) {
-        this.emailError = 'Veuillez entrer un email valide';
-      } else {
-        this.emailError = '';
-      }
-    },
-    validatePassword() {
-      if (this.user.password.length < 8) {
-        this.passwordError = 'Le mot de passe doit contenir au moins 8 caractères';
-      } else {
-        this.passwordError = '';
-      }
-    },
     submitForm() {
-      this.validateEmail();
-      this.validatePassword();
-      if (this.emailError || this.passwordError) {
-        return;
-      }
-      axios.post('/login', this.user)
-        .then(response => {
-          const token = response.data.token;
-          const role = response.data.role ;
-          localStorage.setItem('user_role', role) ;
-          localStorage.setItem('auth_token', token);
-          axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-          alert('Connexion réussie!');
-          this.$router.push('/offerspage');
-        })
-        .catch(error => {
-          console.error('Erreur de connexion:', error);
-          alert('Erreur lors de la connexion. Veuillez réessayer.');
-        });
+      this.$router.push('/offerspage');
     }
   }
-};
+}
 </script>
 
 <style scoped>
@@ -116,7 +78,6 @@ input[type="password"] {
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: border-color 0.2s, box-shadow 0.2s;
-  box-sizing: border-box;
 }
 
 input[type="text"]:focus,
@@ -160,10 +121,5 @@ button:active {
 
 .forgot-password a:hover {
   text-decoration: underline;
-}
-
-.error {
-  color: red;
-  font-size: 0.9em;
 }
 </style>

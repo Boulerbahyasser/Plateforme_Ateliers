@@ -1,53 +1,62 @@
 <template>
   <div class="choose-children-container">
     <h1>Choisissez les enfants pour l'activité: {{ activityName }}</h1>
-    <div v-for="child in children" :key="child.id" class="child-card" @click="selectChild(child.id)">
-      <label :for="`child-${child.id}`" class="child-label">
-        <span class="child-name">{{ child.name }}</span>
-        <span class="child-level">Niveau: {{ child.level }}</span>
-      </label>
+    <div v-if="loading">Chargement des enfants...</div>
+    <div v-else-if="error" class="error-message">Erreur lors de la récupération des enfants. Veuillez réessayer plus tard.</div>
+    <div v-else>
+      <div v-for="child in children" :key="child.id" class="child-card" @click="selectChild()">
+        <label :for="`child-${child.id}`" class="child-label">
+          <span class="child-name">{{ child.name }}</span>
+          <span class="child-level">Niveau: {{ child.level }}</span>
+        </label>
+      </div>
     </div>
     <button @click="submitChildren">Terminer</button>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
   name: 'ChooseChildren',
   data() {
     return {
-      activityName: this.$route.query.activityName || 'Activité',
-      children: [
-        {
-          id: 1,
-          name: "Mohammed",
-          level: "Débutant"
-        },
-        {
-          id: 2,
-          name: "Sara",
-          level: "Intermédiaire"
-        }
-      ]
+      activityId: this.$route.query.activityId || 'Activiter',
+      activityName: this.$route.query.activityName || 'Activiter',
+      children: [],
+      loading: true,
+      error: false
     };
   },
+  created() {
+    this.fetchChildren();
+  },
   methods: {
-    selectChild(childId) {
-      this.$router.push({ path: '/selectschedule', query: { childId, activityName: this.activityName } });
+    async fetchChildren() {
+      try {
+        const response = await axios.get(`http://localhost:8000/api/parent/children`);
+        this.children = response.data;
+        this.loading = false;
+      } catch (error) {
+        console.error('Erreur lors de la récupération des enfants:', error);
+        this.loading = false;
+        this.error = true;
+      }
+    },
+    selectChild() {
+      this.$router.push({ path: '/selectschedule',  query: { activityid :this.activityId , chilrendname :this.children.name} });
     },
     submitChildren() {
       console.log('Enfants sélectionnés:', this.children);
-      this.$router.push('/activitylist'); // Rediriger vers la liste des activités après soumission
+      this.$router.push(`/activitylist/${this.activityId}` );
     }
   }
 };
 </script>
 
 <style scoped>
-/* Styles identiques à ceux fournis précédemment */
-@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
-
+/* Votre CSS ici */
 .choose-children-container {
   display: flex;
   flex-direction: column;
@@ -115,5 +124,11 @@ button:hover {
 
 button:active {
   background-color: #012a56;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
 }
 </style>

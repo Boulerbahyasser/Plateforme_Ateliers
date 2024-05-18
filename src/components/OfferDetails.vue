@@ -1,21 +1,22 @@
 <template>
   <UtilisateurParent />
   <div class="offer-details-container">
-    <div class="offer-card">
+    <div class="offer-card" v-if="offer">
       <div class="offer-image">
         <img :src="offer.imageUrl" alt="Offer Image">
       </div>
       <div class="offer-info">
         <div class="text-content">
-          <h1>{{ offer.title }}</h1>
+          <h1>{{ offer.titre }}</h1>
           <p class="offer-description">{{ offer.description }}</p>
           <div class="date-info">
-            <p><strong>Start:</strong> {{ offer.startDate }}</p>
-            <p><strong>End:</strong> {{ offer.endDate }}</p>
+            <p><strong>Début:</strong> {{ offer.date_debut }}</p>
+            <p><strong>Fin:</strong> {{ offer.date_fin }}</p>
           </div>
           <div class="remise-container">
-            <p class="remise-label">La Tarif est :</p>
-            <span class="offer-price">${{ offer.tarif }}</span>
+            <p class="remise-label">La remise est :</p>
+            <span v-if="offer.remise > 0" class="offer-price">{{ offer.remise }}%</span>
+            <span v-else class="no-remise">Pas de remise pour cette offre</span>
           </div>
         </div>
         <div class="button-container">
@@ -23,43 +24,47 @@
         </div>
       </div>
     </div>
-    <ActivityList v-if="showActivities" :offer="offer" />
+    <div v-else-if="loading">Chargement des détails de l'offre...</div>
+    <div v-else class="error-message">Erreur lors de la récupération des détails de l'offre. Veuillez réessayer plus tard.</div>
   </div>
 </template>
 
+
 <script>
+import axios from 'axios';
 import UtilisateurParent from "@/components/UtilisateurParent.vue";
-import ActivityList from "@/components/ActivityList.vue";
 
 export default {
   components: {
     UtilisateurParent,
-    ActivityList
   },
   data() {
     return {
-      offer: {
-        title: "Advanced Programming",
-        description: "Enhance your skills with our comprehensive programming courses.",
-        tarif: 149.99,
-        imageUrl: require("@/assets/child.png"),
-        startDate: "2024-01-01",
-        endDate: "2024-06-01",
-        id: 1
-      },
-      showActivities: false
+      offer: null,
+      loading: true,
+      error: false
     };
   },
+  created() {
+    this.fetchOfferDetails();
+  },
   methods: {
-    Demander() {
-      console.log('Demande added!');
-    },
-    chooseChildren() {
-      this.$router.push({ path: '/childrenselection', query: { offerId: this.offer.id } });
+    async fetchOfferDetails() {
+      const offerId = this.$route.params.id; // Récupérer l'ID de l'offre depuis les paramètres de route
+      try {
+        const response = await axios.get(`http://localhost:8000/api/show/offer/${offerId}`);
+        this.offer = response.data;
+        this.loading = false;
+      } catch (error) {
+        console.error('Erreur lors de la récupération des détails de l\'offre:', error);
+        this.loading = false;
+        this.error = true;
+      }
     },
     GoToActivities() {
-      this.$router.push({ path: '/activitylist', query: { offerId: this.offer.id } });
-    }
+  this.$router.push({ name: 'activitylist', params: { offerId: this.offer.id } });
+}
+
   }
 };
 </script>
@@ -148,6 +153,12 @@ h1 {
   margin-top: 20px;
 }
 
+.no-remise {
+  font-size: 1.2rem;
+  color: #333;
+  font-style: italic;
+}
+
 .button-container {
   align-self: flex-end;
   display: flex;
@@ -175,4 +186,11 @@ button:hover {
 button:active {
   background-color: #012a56;
 }
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
+}
 </style>
+

@@ -13,6 +13,7 @@
          <div v-if="showProfileMenu" class="dropdown-menu">
            <router-link to="/userprofile">Profil</router-link>
            <router-link to="/changepassword">Changer mot de passe</router-link>
+           <router-link to="/parentrequests">Mes demande</router-link>
            <button @click="logout">Déconnexion</button>
          </div>
        </div>

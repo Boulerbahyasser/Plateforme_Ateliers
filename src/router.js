@@ -15,6 +15,9 @@ import NotificationHistory from "@/components/NotificationHistory.vue";
 import ChooseChildren from "@/components/ChooseChildren.vue";
 import SelectSchedule from "@/components/SelectSchedule.vue";
 import ForgetPassword from "@/components/ForgetPassword.vue";
+import UnaUthorized from "@/components/UnaUthorized.vue";
+import ParentRequests from "@/components/ParentRequests.vue";
+import DemandeActivity from "@/components/DemandeActivity.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -24,21 +27,22 @@ const router = createRouter({
     { path: '/signin', component: SignIn, name: "SignIn" },
     { path: '/signup', component: SignUp, name: "SignUp" },
     { path: '/', component: WelcomePage, name: "WelcomePage" },
-    { path: '/offerspage' , component:OffersPage , name:"OffersPage" , meta:{ requiresAuth:true , roles:['user' , 'admin']}},
-    { path: '/offerdetails' , component:OfferDetails , name:"offerdetails"},
+    { path: '/offerspage' , component:OffersPage , name:"OffersPage" },
+    { path: '/offerdetails/:id' , component:OfferDetails , name:"offerdetails"},
+    { path:'/activitylist/:offerId' , component:ActivityList , name:"activitylist"},
     { path:'/notificationpage' , component:NotificationsPage , name:"notificationpage"},
-    { path:'/activitylist' , component:ActivityList , name:"activitylist"},
     { path:'/childrenselection' , component:ChildrenSelection , name:"childrenselection"},
     { path:'/userprofile' , component:UserProfile , name:"userprofile"} ,
     { path:'/changepassword' , component:ChangePassword , name:"changepassword"},
     { path:'/notificationhistory' , component:NotificationHistory , name:"notificationhistory"},
     { path:'/choosechildren' , component:ChooseChildren , name:"choosechildren"},
     { path:'/selectshedule' , component:SelectSchedule , name:"selectshedule"},
-    { path:'/forgetpassword' , component:ForgetPassword , name:"forgetpassword"}
+    { path:'/forgetpassword' , component:ForgetPassword , name:"forgetpassword"},
+    { path:'/unauthorized' , component:UnaUthorized ,name:"unauthorized"},
+    { path: '/parentrequests', component: ParentRequests , name: "parentrequests"},
+    { path: '/demandeactivity/:id', component: DemandeActivity, name: "demandeactivity"}
 
   ]
 });
-
-
 
 export default router;

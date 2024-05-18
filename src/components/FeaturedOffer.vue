@@ -1,39 +1,28 @@
 <template>
-  <div class="offer-container">
+  <div class="offer-container" v-if="offers.length">
     <button @click="prevOffer" class="nav-btn left-btn">⬅️</button>
     <div class="text-section">
-      <h1>{{ currentOffer.title }}</h1>
+      <h1>{{ currentOffer.titre }}</h1>
       <p>{{ currentOffer.description }}</p>
-      <router-link to="/offerdetails" class="signup-btn">Inscrivez-vous à l'offre</router-link>
+      <router-link :to="{ name: 'offerdetails', params: { id: currentOffer.id }}" class="signup-btn">
+        Inscrivez-vous à l'offre
+      </router-link>
     </div>
     <div class="image-section">
-      <img :src="currentOffer.imageUrl" alt="Learning" class="offer-image">
+      <img :src="currentOffer.imageUrl" alt="Offer Image" class="offer-image">
     </div>
     <button @click="nextOffer" class="nav-btn right-btn">➡️</button>
   </div>
+  <div v-else class="loading-message">Chargement des offres...</div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
-      offers: [
-        {
-          title: "Atelier Algorithme",
-          description: "Découvrez le monde de l'algorithme avec votre enfant.",
-          imageUrl: require("@/assets/child.png")
-        },
-        {
-          title: "Atelier Robotique",
-          description: "Plongez dans le monde fascinant de la robotique.",
-          imageUrl: require("@/assets/child.png")
-        },
-        {
-          title: "Atelier Programmation",
-          description: "Apprenez à coder avec Python.",
-          imageUrl: require("@/assets/child1.png")
-        }
-      ],
+      offers: [],
       currentIndex: 0
     };
   },
@@ -42,7 +31,19 @@ export default {
       return this.offers[this.currentIndex];
     }
   },
+  created() {
+    this.fetchOffers();
+  },
   methods: {
+    fetchOffers() {
+      axios.get('http://localhost:8000/api/show/offers')
+        .then(response => {
+          this.offers = response.data;
+        })
+        .catch(error => {
+          console.error('Erreur lors de la récupération des offres populaires:', error);
+        });
+    },
     nextOffer() {
       this.currentIndex = (this.currentIndex + 1) % this.offers.length;
     },
@@ -54,36 +55,32 @@ export default {
 </script>
 
 
-
 <style scoped>
-
-
-
 .offer-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  background: linear-gradient(135deg, #081865 0%, #7c87bd 100%); /* Gradient subtil basé sur la couleur originale */
+  background: linear-gradient(135deg, #081865 0%, #7c87bd 100%);
   height: 40vh;
   padding: 20px;
-  border-radius: 15px; /* Coins arrondis pour un look doux */
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Ombre pour ajouter de la profondeur */
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease-in-out;
+  position: relative;
 }
 
 .offer-container:hover {
-  transform: scale(1.05); /* Effet de zoom léger pour interactivité */
+  transform: scale(1.05);
 }
 
 .text-section {
   flex: 1;
   max-width: 40%;
-  color: #eff1f3; /* Couleur du texte ajustée pour le contraste */
+  color: #eff1f3;
 }
 
 h1 {
-  font-size: 2.5rem; /* Taille ajustée pour mieux s'adapter */
+  font-size: 2.5rem;
   margin-bottom: 15px;
 }
 
@@ -94,10 +91,10 @@ p {
 
 .signup-btn {
   padding: 12px 25px;
-  background-color: #efb902; /* Couleur vive pour attirer l'attention */
+  background-color: #efb902;
   border-radius: 10px;
-  font-size: 1.1rem; /* Taille du texte ajustée */
-  font-weight: bold; /* Texte en gras */
+  font-size: 1.1rem;
+  font-weight: bold;
 }
 
 .signup-btn:hover {
@@ -107,13 +104,13 @@ p {
 
 .image-section {
   flex: 1;
-  max-width: 30%; /* Espace augmenté pour l'image */
+  max-width: 30%;
   margin-right: 30px;
 }
 
 .offer-image {
   max-width: 100%;
-  border-radius: 10px; /* Image avec coins arrondis */
+  border-radius: 10px;
 }
 
 .nav-btn {
@@ -124,22 +121,28 @@ p {
   cursor: pointer;
   padding: 10px;
   transition: color 0.3s ease;
+  position: absolute;
 }
 
 .left-btn {
-  position: absolute;
   left: 20px;
 }
 
 .right-btn {
-  position: absolute;
   right: 20px;
 }
 
 .nav-btn:hover {
   color: #efb902;
 }
+
+.loading-message {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #333;
+}
 </style>
+
 
 
 

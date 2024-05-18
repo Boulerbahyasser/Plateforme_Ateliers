@@ -13,15 +13,15 @@
 
 <script>
 
+import axios from "axios";
+
 export default {
   name: 'SelectSchedule',
   data() {
     return {
-      childName: this.$route.query.childName || 'Enfant',
+      childName: this.$route.query.chilrendname || 'Enfant',
+      activityId :this.$route.query.activityid || 'activity',
       schedules: [
-        { id: 1, time: 'Lundi 10:00 - 12:00' },
-        { id: 2, time: 'Mercredi 14:00 - 16:00' },
-        { id: 3, time: 'Vendredi 16:00 - 18:00' }
       ],
       selectedSchedules: []
     };
@@ -32,7 +32,15 @@ export default {
         alert('Veuillez sélectionner exactement deux horaires.');
         return;
       }
-      console.log('Horaires sélectionnés pour', this.childName, ':', this.selectedSchedules);
+       try {
+        const response = axios.get(`http://localhost:8000/api/show/offer/activity/horaires/${this.activityId}`);
+        this.children = response.data;
+        this.loading = false;
+      } catch (error) {
+        console.error('Erreur lors de la récupération des enfants:', error);
+        this.loading = false;
+        this.error = true;
+      }
       this.$router.push('/choosechildren');
     }
   }
