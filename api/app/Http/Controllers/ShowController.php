@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\ActiviteOffre;
 use App\Models\Activite;
+use App\Models\Administrateur;
 use App\Models\Demande;
 use App\Models\Enfant;
+use App\Models\Father;
 use App\Models\Hda;
 use App\Models\Offre;
 use App\Models\PlanningEnf;
 use Illuminate\Http\Request;
 
-class showController extends Controller
+class ShowController extends Controller
 {
     //tested
     public function showActivities(){
@@ -28,10 +30,11 @@ class showController extends Controller
     }
 // 1/2 tested
     public function showDemandes() {
-
+        $user_id = auth()->id();
+        $admin = Administrateur::where('user_id',$user_id)->get();
         return response()->json(
             Demande::join('demande_inscriptions','demande_inscriptions.demande_id', '=', 'demandes.id')
-                ->where('admin_id', auth()->id())
+                ->where('admin_id', $admin->id)
                 ->where('statut','valide')
                 ->where('etat','en cours')
                 ->select('id', 'date')
@@ -40,9 +43,25 @@ class showController extends Controller
         );
     }
 //tested
-    public function showActivitiesInOffer(Offre $offer){
+    public function showActivitiesOfferInOffer(Offre $offer){
 
         $activities = ActiviteOffre::where('offre_id', $offer->id)->latest()->get();
+        return response()->json($activities,200);
+    }
+    public function showActivitiesInOfferAllInfos(Offre $offer){
+        $activities = ActiviteOffre::join('activites','activites.id','activite_offres.activite_id')
+                                    ->select('activite_offres.id','titre','image_pub','description',
+                                        'lien_youtube','objectifs','domaine',
+                                        'tarif','tarif_remise','age_min','age_max','nbr_seance',
+                                        'volume_horaire','option_paiement')
+                                    ->where('offre_id', $offer->id)->get();
+        return response()->json($activities,200);
+    }
+    public function showActivitiesInOffer(Offre $offer){
+        $activities = ActiviteOffre::join('activites','activites.id','activite_offres.activite_id')
+            ->select('activite_offres.id','titre','image_pub','description',
+                'lien_youtube','objectifs','domaine')
+            ->where('offre_id', $offer->id)->get();
         return response()->json($activities,200);
     }
 
@@ -62,4 +81,11 @@ class showController extends Controller
             ->get();
         return response()->json($results,200);
     }
+    public function showEnfantOfParent(){
+        $user_id = auth()->id();
+        $parent = Father::where('user_id',$user_id)->get();
+        $enfants = Enfant::where('father_id',$parent->id)->get();
+        return response()->json($enfants,200);
+    }
+
 }

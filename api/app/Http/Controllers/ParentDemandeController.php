@@ -45,7 +45,7 @@ class ParentDemandeController extends Controller
     public function createNotification($admin_id,$demande_id){
         $user =(Administrateur::find($admin_id));
         $user_id = $user->id;
-        $notofication =Notification::create([
+        Notification::create([
           'user_id'=>  $user_id,
          'date' =>now(),
          'contenu' => 'Demande '.$demande_id.' est bien cree',

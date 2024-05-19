@@ -23,28 +23,28 @@ VALUES
     ('Baker Betty', 'betty.baker01@example.com', 'hashed_password20', 'animateur', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 -- Insert into factures table
-INSERT INTO factures (created_at, updated_at)
-VALUES
-    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO factures (date, total_ht, total_ttc, created_at, updated_at) VALUES
+                                 ('2024-05-01', 100.00, 120.00, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                 ('2024-05-02', 200.00, 240.00, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                 ('2024-05-03', 150.00, 180.00, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                 ('2024-05-04', 300.00, 360.00, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                 ('2024-05-05', 250.00, 300.00, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                 ('2024-05-06', 350.00, 420.00, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                 ('2024-05-07', 400.00, 480.00, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                 ('2024-05-08', 450.00, 540.00, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                 ('2024-05-09', 500.00, 600.00, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                 ('2024-05-10', 550.00, 660.00, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                 ('2024-05-11', 600.00, 720.00, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                 ('2024-05-12', 650.00, 780.00, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                 ('2024-05-13', 700.00, 840.00, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                 ('2024-05-14', 750.00, 900.00, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                 ('2024-05-15', 800.00, 960.00, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                 ('2024-05-16', 850.00, 1020.00, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                 ('2024-05-17', 900.00, 1080.00, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                 ('2024-05-18', 950.00, 1140.00, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                 ('2024-05-19', 1000.00, 1200.00, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                                 ('2024-05-20', 1050.00, 1260.00, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
 
 -- Insert into activites table
 INSERT INTO activites (titre, IMAGE_PUB, description, lien_youtube, objectifs, domaine, created_at, updated_at)
@@ -265,28 +265,28 @@ VALUES
     (20, 'Titre 20', '2024-05-28', '2024-06-03', 'Description for offre 20', 26.50, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
-INSERT INTO activite_offres (offre_id, activite_id, tarif, age_min, age_max, nbr_seance, volume_horaire, option_paiement, created_at, updated_at)
+INSERT INTO activite_offres (offre_id, activite_id, tarif, tarif_remise, age_min, age_max, nbr_seance, volume_horaire, option_paiement, created_at, updated_at)
 VALUES
-    (1, 1, 50.00, 5, 10, 8, 16, 'Option A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (2, 2, 60.00, 6, 11, 7, 14, 'Option B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (3, 3, 70.00, 7, 12, 6, 12, 'Option C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (4, 4, 80.00, 8, 13, 5, 10, 'Option D', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (5, 5, 90.00, 9, 14, 4, 8, 'Option E', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (6, 6, 100.00, 10, 15, 3, 6, 'Option F', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (7, 7, 110.00, 11, 16, 2, 4, 'Option G', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (8, 8, 120.00, 12, 17, 1, 2, 'Option H', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (9, 9, 130.00, 13, 18, 8, 16, 'Option I', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (10, 10, 140.00, 14, 19, 7, 14, 'Option J', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (11, 11, 150.00, 15, 20, 6, 12, 'Option K', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (12, 12, 160.00, 16, 21, 5, 10, 'Option L', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (13, 13, 170.00, 17, 22, 4, 8, 'Option M', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (14, 14, 180.00, 18, 23, 3, 6, 'Option N', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (15, 15, 190.00, 19, 24, 2, 4, 'Option O', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (16, 16, 200.00, 20, 25, 1, 2, 'Option P', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (17, 17, 210.00, 21, 26, 8, 16, 'Option Q', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (18, 18, 220.00, 22, 27, 7, 14, 'Option R', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (19, 19, 230.00, 23, 28, 6, 12, 'Option S', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (20, 20, 240.00, 24, 29, 5, 10, 'Option T', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+    (1, 1, 50.00, 50.00, 5, 10, 8, 16, 'Option A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (2, 2, 60.00, 60.00, 6, 11, 7, 14, 'Option B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (3, 3, 70.00, 70.00, 7, 12, 6, 12, 'Option C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (4, 4, 80.00, 80.00, 8, 13, 5, 10, 'Option D', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (5, 5, 90.00, 90.00, 9, 14, 4, 8, 'Option E', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (6, 6, 100.00, 100.00, 10, 15, 3, 6, 'Option F', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (7, 7, 110.00, 110.00, 11, 16, 2, 4, 'Option G', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (8, 8, 120.00, 120.00, 12, 17, 1, 2, 'Option H', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (9, 9, 130.00, 130.00, 13, 18, 8, 16, 'Option I', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (10, 10, 140.00, 140.00, 14, 19, 7, 14, 'Option J', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (11, 11, 150.00, 150.00, 15, 20, 6, 12, 'Option K', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (12, 12, 160.00, 160.00, 16, 21, 5, 10, 'Option L', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (13, 13, 170.00, 170.00, 17, 22, 4, 8, 'Option M', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (14, 14, 180.00, 180.00, 18, 23, 3, 6, 'Option N', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (15, 15, 190.00, 190.00, 19, 24, 2, 4, 'Option O', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (16, 16, 200.00, 200.00, 20, 25, 1, 2, 'Option P', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (17, 17, 210.00, 210.00, 21, 26, 8, 16, 'Option Q', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (18, 18, 220.00, 220.00, 22, 27, 7, 14, 'Option R', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (19, 19, 230.00, 230.00, 23, 28, 6, 12, 'Option S', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (20, 20, 240.00, 240.00, 24, 29, 5, 10, 'Option T', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
 INSERT INTO packs (demande_id, nom, remise, created_at, updated_at)
@@ -313,28 +313,30 @@ VALUES
     (20, 'Pack 20', 105.00, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
-INSERT INTO devis (demande_id, facture_id, date, totale_ht, totale_ttc, statut, motif, created_at, updated_at)
+INSERT INTO devis (demande_id, facture_id, date, totale_ht, totale_ttc, statut, etat, motif, pdf, created_at, updated_at)
 VALUES
-    (1, 1, '2024-05-08 08:00:00', 100.00, 120.00, 'En attente', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (2, 2, '2024-05-08 08:00:00', 150.00, 180.00, 'En cours', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (3, 3, '2024-05-08 08:00:00', 200.00, 240.00, 'Approuvé', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (4, 4, '2024-05-08 08:00:00', 250.00, 300.00, 'Rejeté', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (5, 5, '2024-05-08 08:00:00', 300.00, 360.00, 'En attente', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (6, 6, '2024-05-08 08:00:00', 350.00, 420.00, 'En cours', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (7, 7, '2024-05-08 08:00:00', 400.00, 480.00, 'Approuvé', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (8, 8, '2024-05-08 08:00:00', 450.00, 540.00, 'Rejeté', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (9, 9, '2024-05-08 08:00:00', 500.00, 600.00, 'En attente', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (10, 10, '2024-05-08 08:00:00', 550.00, 660.00, 'En cours', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (11, 11, '2024-05-08 08:00:00', 600.00, 720.00, 'Approuvé', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (12, 12, '2024-05-08 08:00:00', 650.00, 780.00, 'Rejeté', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (13, 13, '2024-05-08 08:00:00', 700.00, 840.00, 'En attente', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (14, 14, '2024-05-08 08:00:00', 750.00, 900.00, 'En cours', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (15, 15, '2024-05-08 08:00:00', 800.00, 960.00, 'Approuvé', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (16, 16, '2024-05-08 08:00:00', 850.00, 1020.00, 'Rejeté', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (17, 17, '2024-05-08 08:00:00', 900.00, 1080.00, 'En attente', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (18, 18, '2024-05-08 08:00:00', 950.00, 1140.00, 'En cours', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (19, 19, '2024-05-08 08:00:00', 1000.00, 1200.00, 'Approuvé', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (20, 20, '2024-05-08 08:00:00', 1050.00, 1260.00, 'Rejeté', NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+    (1, 1, '2024-05-08 08:00:00', 100.00, 120.00, 'en cours', 'non paye', NULL, 'public/pdfs/devis1.pdf', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (2, 2, '2024-05-08 08:00:00', 150.00, 180.00, 'en cours', 'non paye', NULL, 'public/pdfs/devis2.pdf', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (3, 3, '2024-05-08 08:00:00', 200.00, 240.00, 'en cours', 'non paye', NULL, 'public/pdfs/devis3.pdf', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (4, 4, '2024-05-08 08:00:00', 250.00, 300.00, 'en cours', 'non paye', NULL, 'public/pdfs/devis4.pdf', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (5, 5, '2024-05-08 08:00:00', 300.00, 360.00, 'en cours', 'non paye', NULL, 'public/pdfs/devis5.pdf', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (6, 6, '2024-05-08 08:00:00', 350.00, 420.00, 'en cours', 'non paye', NULL, 'public/pdfs/devis6.pdf', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (7, 7, '2024-05-08 08:00:00', 400.00, 480.00, 'en cours', 'non paye', NULL, 'public/pdfs/devis7.pdf', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (8, 8, '2024-05-08 08:00:00', 450.00, 540.00, 'en cours', 'non paye', NULL, 'public/pdfs/devis8.pdf', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (9, 9, '2024-05-08 08:00:00', 500.00, 600.00, 'en cours', 'non paye', NULL, 'public/pdfs/devis9.pdf', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (10, 10, '2024-05-08 08:00:00', 550.00, 660.00, 'en cours', 'non paye', NULL, 'public/pdfs/devis10.pdf', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (11, 11, '2024-05-08 08:00:00', 600.00, 720.00, 'en cours', 'non paye', NULL, 'public/pdfs/devis11.pdf', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (12, 12, '2024-05-08 08:00:00', 650.00, 780.00, 'en cours', 'non paye', NULL, 'public/pdfs/devis12.pdf', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (13, 13, '2024-05-08 08:00:00', 700.00, 840.00, 'en cours', 'non paye', NULL, 'public/pdfs/devis13.pdf', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (14, 14, '2024-05-08 08:00:00', 750.00, 900.00, 'en cours', 'non paye', NULL, 'public/pdfs/devis14.pdf', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (15, 15, '2024-05-08 08:00:00', 800.00, 960.00, 'en cours', 'non paye', NULL, 'public/pdfs/devis15.pdf', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (16, 16, '2024-05-08 08:00:00', 850.00, 1020.00, 'en cours', 'non paye', NULL, 'public/pdfs/devis16.pdf', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (17, 17, '2024-05-08 08:00:00', 900.00, 1080.00, 'en cours', 'non paye', NULL, 'public/pdfs/devis17.pdf', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (18, 18, '2024-05-08 08:00:00', 950.00, 1140.00, 'en cours', 'non paye', NULL, 'public/pdfs/devis18.pdf', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (19, 19, '2024-05-08 08:00:00', 1000.00, 1200.00, 'en cours', 'non paye', NULL, 'public/pdfs/devis19.pdf', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (20, 20, '2024-05-08 08:00:00', 1050.00, 1260.00, 'en cours', 'non paye', NULL, 'public/pdfs/devis20.pdf', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+
 
 
 INSERT INTO demande_inscriptions (enfant_id, activite_offre_id, demande_id,horaire1, horaire2, etat, motif, created_at, updated_at)

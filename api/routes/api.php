@@ -32,7 +32,13 @@ Route::get('/show/activities/',[showController::class,'showActivities']);
 
 Route::get('/show/demandes/',[showController::class,'showDemandes']);
 
-Route::get('/show/offer/activities/{offer}',[showController::class,'showActivitiesInOffer']);
+Route::get('/show/offer/activities/{offer}',[showController::class, 'showActivitiesInOffer']);
+Route::get('/show/offer/activities/more/{offer}',[showController::class, 'showActivitiesOfferInOffer']);
+Route::get('/show/offer/activities/all/{offer}',[showController::class,'showActivitiesInOfferAllInfos']);
+
+
+Route::get('/show/parent/enfant/',[showController::class,'showEnfantOfParent']);
+
 
 Route::get('/show/offer/activity/horaires/{activite_id}',[showController::class,'showHoraireInActivity']);
 

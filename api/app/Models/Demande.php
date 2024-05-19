@@ -30,9 +30,9 @@ class Demande extends Model
     /**
      * Get the packs for the demande.
      */
-    public function packs(): HasMany
+    public function packs(): BelongsTo
     {
-        return $this->hasMany(Pack::class);
+        return $this->belongsTo(Pack::class);
     }
 
     /**

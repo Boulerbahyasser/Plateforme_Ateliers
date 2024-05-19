@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Pack extends Model
 {
@@ -19,8 +19,8 @@ class Pack extends Model
     /**
      * Get the demande that owns the pack.
      */
-    public function demande(): BelongsTo
+    public function demande(): HasMany
     {
-        return $this->belongsTo(Demande::class);
+        return $this->hasMany(Demande::class);
     }
 }

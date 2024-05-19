@@ -2,40 +2,68 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 use Illuminate\Database\Seeder;
+use App\Models\Administrateur;
+use App\Models\Animateur;
+use App\Models\Horaire;
+use App\Models\Activite;
+use App\Models\Offre;
+use App\Models\Demande;
+use App\Models\Enfant;
+use App\Models\Father;
+use App\Models\User;
+use App\Models\Notification;
+use App\Models\Facture;
+use App\Models\Pack;
+use App\Models\Devis;
+use App\Models\ActiviteOffre;
+use App\Models\DemandeInscription;
+use App\Models\PlanningAnim;
+use App\Models\PlanningEnf;
+use App\Models\Hda;
+use App\Models\HdAnim;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-         \App\Models\Facture::factory(40)->create();
-         \App\Models\Activite::factory(40)->create();
-         \App\Models\Horaire::factory(40)->create();
-         \App\Models\Animateur::factory(40)->create();
-         \App\Models\Administrateur::factory(40)->create();
-         \App\Models\Notification::factory(40)->create();
-         \App\Models\Father::factory(40)->create();
-         \App\Models\Enfant::factory(40)->create();
-         \App\Models\Demande::factory(40)->create();
-         \App\Models\Offre::factory(40)->create();
-         \App\Models\Activite::factory(40)->create();
-         \App\Models\Pack::factory(40)->create();
-         \App\Models\Devis::factory(40)->create();
-         \App\Models\DemandeInscription::factory(40)->create();
-         \App\Models\Hda::factory(40)->create();
-         \App\Models\HdAnim::factory(40)->create();
-         \App\Models\PlanningAnim::factory(40)->create();
-         \App\Models\PlanningEnf::factory(40)->create();
+        Administrateur::factory()->count(5)->create();
 
+        Animateur::factory()->count(10)->create();
 
+        Horaire::factory()->count(20)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        Activite::factory()->count(15)->create();
+
+        Offre::factory()->count(10)->create();
+
+        Demande::factory()->count(8)->create();
+
+        Enfant::factory()->count(30)->create();
+
+        Father::factory()->count(15)->create();
+
+        User::factory()->count(50)->create();
+
+        Notification::factory()->count(15)->create();
+
+        Facture::factory()->count(20)->create();
+
+        Pack::factory()->count(10)->create();
+
+        Devis::factory()->count(20)->create();
+
+        ActiviteOffre::factory()->count(15)->create();
+
+        DemandeInscription::factory()->count(30)->create();
+
+        PlanningAnim::factory()->count(25)->create();
+
+        PlanningEnf::factory()->count(35)->create();
+
+        Hda::factory()->count(40)->create();
+
+        HdAnim::factory()->count(40)->create();
     }
 }

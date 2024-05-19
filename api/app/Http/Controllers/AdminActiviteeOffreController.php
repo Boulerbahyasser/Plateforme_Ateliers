@@ -19,6 +19,7 @@ class AdminActiviteeOffreController extends Controller
             'option_paiement' => 'required',
             'age_max' => 'required|integer|min:3'
         ]);
+        if($offer->remise) $formFields['tarif_remise'] = $formFields['tarif'] - $formFields['tarif']*$offer->remise;
         $formFields['offre_id'] = $offer->id;
         $formFields['activite_id'] = $activity->id;
         ActiviteOffre::create($formFields);

@@ -34,8 +34,10 @@ class Offre extends Model
     /**
      * Get the activities that belong to the offer.
      */
-    public function activites(): HasMany
+    public function activiteOffres(): HasMany
     {
         return $this->hasMany(ActiviteOffre::class);
     }
 }
+
+

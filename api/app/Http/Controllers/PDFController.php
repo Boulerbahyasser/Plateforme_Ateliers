@@ -2,27 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Devis;
 use Dompdf\Dompdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PDFController extends Controller
 {
-    public function generatePDF()
-    {
-        // Instantiate Dompdf
+    static public function generatePDF($demande_id,$date,$totale_ht,$totale_ttc){
         $dompdf = new Dompdf();
-
-        // Load HTML content
-        $html = '<h1>Hello, world!</h1>';
+        $html = '<h1>Demande ID:'.$demande_id.'</h1><br>
+                 <h1>Date:'.$date.'</h1><br>
+                 <h1>Total HT:'.$totale_ht.'</h1><br>
+                 <h1>Total TTC:'.$totale_ttc.'</h1>';
         $dompdf->loadHtml($html);
-
-        // (Optional) Set paper size and orientation
-        $dompdf->setPaper('A4', 'portrait');
-
-        // Render PDF (optional: you can also choose to save the PDF to a file)
-        $dompdf->render();
-
-        // Output the generated PDF to the browser
-        return $dompdf->stream('document.pdf');
+        $pdfContent = $dompdf->output();
+        $filePath = 'devis/' . $demande_id . '.pdf';
+        Storage::put($filePath, $pdfContent);
+        return $filePath;
     }
 }

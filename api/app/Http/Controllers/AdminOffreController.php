@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ActiviteOffre;
+use App\Models\Administrateur;
 use App\Models\Offre;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,9 @@ class AdminOffreController extends Controller
             'date_fin' => 'required|date|after:Date_Debut',
             'description' => 'required',
         ]);
-        $formFields['admin_id'] = auth()->id();
+        $user_id = auth()->id();
+        $admin = Administrateur::where('user_id',$user_id)->get();
+        $formFields['admin_id'] = $admin->id;
 
         if($request->has('remise')) $formFields['remise'] = $request->remise;
         else $formFields['remise'] = 0;
@@ -31,14 +34,13 @@ class AdminOffreController extends Controller
             'date_fin' => 'required|date|after:Date_Debut',
             'description' => 'required',
         ]);
-        $formFields['admin_id'] = auth()->id();
+
         if($request->has('remise')) $formFields['remise'] = $request->remise;
         $offer->update($formFields);
         return response()->json(['message'=>'the update was successful'],200);
     }
     //tested
-    public function destroyOffer(Offre $offer)
-    {
+    public function destroyOffer(Offre $offer){
         $offer->delete();
         return response()->json(['message'=>'the delete was successful'],200);
     }
