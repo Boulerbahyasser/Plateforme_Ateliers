@@ -12,14 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('hdas', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('activite_offre_id');
             $table->unsignedBigInteger('horaire_id');
             $table->integer('eff_min');
             $table->integer('eff_max');
             $table->integer('nbr_place_restant');
 
-            // Clé primaire composite
-            $table->primary(['activite_offre_id', 'horaire_id']);
 
             // Clés étrangères vers les tables parentes
             $table->foreign('activite_offre_id')->references('id')->on('activite_offres')->onDelete('cascade');
