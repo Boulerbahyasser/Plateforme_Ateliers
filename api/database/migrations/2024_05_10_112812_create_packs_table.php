@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('packs', function (Blueprint $table) {
             $table->id();
-
             $table->string('nom');
             $table->decimal('remise', 10, 2);
 
