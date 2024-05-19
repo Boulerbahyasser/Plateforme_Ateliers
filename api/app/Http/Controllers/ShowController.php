@@ -43,6 +43,12 @@ class ShowController extends Controller
         );
     }
 //tested
+    public function showTopOffers(){
+        return response()->json(Offre::orderBy('remise', 'desc')->limit(3)->get(),200);
+    }
+    public function showRemainingOffers(){
+        return response()->json(Offre::orderBy('remise', 'desc')->skip(3)->get(),200);
+    }
     public function showActivitiesOfferInOffer(Offre $offer){
 
         $activities = ActiviteOffre::where('offre_id', $offer->id)->latest()->get();
