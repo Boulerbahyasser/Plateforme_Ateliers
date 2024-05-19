@@ -1,9 +1,9 @@
 <x-mail::message>
     # Introduction
-
-    {{$message}}
-
-
+    Hi,
+    {{$reciever->name}}
+    Your Welcome ,you are became an {{$reciever->role}} an our association.
+    try to login .
     Thanks,<br>
-    {{ config('app.name') }}
+
 </x-mail::message>

@@ -16,7 +16,6 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         try {
-
             $loginUserData = $request->validate([
                 'email' => 'required|string|email',
                 'password' => 'required|string'
@@ -25,38 +24,29 @@ class LoginController extends Controller
             if ($user and Hash::check($loginUserData['password'], $user->password)) {
                 $token = $user->createToken($user->name . '-AuthToken')->plainTextToken;
                 return response()->json([
-
-                    'status'=>200,
                     'message'=>'login successfully ',
-                    'access_token' => $token,
-
-                ]);
+                    'role'=>2,
+                    'token' => $token,
+                ],200);
             }else{
                 return response()->json([
-
-                    'status'=>401,
                     'message' => 'Invalid Credentials'
-
                 ], 401);
             }
         }catch (ValidationException $e){
             return response()->json([
-
-                'status'=>401,
-                'message' => 'som thing wen wrong'
-
-            ], 401);
+                'message' => 'som thing wen wrong',
+                'erorrs'=>$e->getMessage()
+            ], 500);
         }
-
-
     }
 
-    public function user()
+    public function AuthenticatedProflie()
     {
        return response()->json([
            'status'=>200,
-           'user'=>Auth::user()
-       ]);
+           'user'=>Auth::user(),
+       ],200);
 
     }
 

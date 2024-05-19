@@ -31,6 +31,7 @@ class ResetPasswordCntroller extends Controller
                 Mail::to($validemail['email'])->send(new SendResetPassword($data));
                 return response()->json([
                     'status' => 200,
+                    'token'=>$data['token'],
                     'message' => 'check you email inbox,we sent ressset password linck'
                 ]);
 

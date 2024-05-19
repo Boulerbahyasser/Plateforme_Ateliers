@@ -66,6 +66,11 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         // ici mon middleware
         'RefreshToken'=>\App\Http\Middleware\RefreshToken::class,
+        'Check_Admin_User'=>\App\Http\Middleware\Check_Admin_User::class,
+        'Check_Parent_User'=>\App\Http\Middleware\Check_Parent_User::class,
+        'Check_Animateur_User'=>\App\Http\Middleware\Check_Parent_User::class,
+
+
 
     ];
 }

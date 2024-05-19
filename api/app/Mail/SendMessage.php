@@ -12,16 +12,16 @@ use Illuminate\Queue\SerializesModels;
 class SendMessage extends Mailable
 {
     use Queueable, SerializesModels;
-    public $user;
-    public $message;
+    public $sender,$reciever;
     /**
      * Create a new message instance.
      */
-    public function __construct($user,$message)
+    public function __construct($sender,$reciever)
     {
-        $this->user=$user;
-        $this->message=$message;
+        $this->sender=$sender;
+        $this->reciever=$reciever;
     }
+
 
     /**
      * Get the message envelope.
@@ -41,8 +41,9 @@ class SendMessage extends Mailable
         return new Content(
             markdown: 'mail.send-message',
             with: [
-                'user'=>$this->user,
-                'message'=>$this->message
+                'sender'=>$this->sender,
+                'reciever'=>$this->reciever,
+
 
 
             ]

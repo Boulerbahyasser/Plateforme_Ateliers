@@ -22,12 +22,12 @@ class RefreshToken
 
             $token=$request->user()->currentAccessToken();// isi on prendre une records de personal_access_token table correspond at ce user
 
-            $tokenExpirationTime=config('sanctum.Expiration',3);// cette est la default vleur pou expirer la token
+            $tokenExpirationTime=config('sanctum.Expiration',30);// cette est la default vleur pou expirer la token
 
             // calculate l' age de token depius elle creee
             $tokenAge=Carbon::parse($token->created_at)->diffInMinutes();
 
-            if($tokenAge>=($tokenExpirationTime-1)){// test le temp qui va rest avant expiration de token ici on a 5 min
+            if($tokenAge>=($tokenExpirationTime-5)){// test le temp qui va rest avant expiration de token ici on a 5 min
                 // age>=5 min  une nouvelle token va generate et envoyer verse client puisque continue son navigation
                 $token->delete();// suprimer la token actuelle
 

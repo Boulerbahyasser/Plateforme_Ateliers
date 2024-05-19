@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Http\Requests\ValidateTrait;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Request;
 
 class RequestUser extends FormRequest
 {

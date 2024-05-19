@@ -21,20 +21,27 @@ use \App\Http\Controllers\Authentication\RegistrationController;
 */
 
 // registration admins,parents,animateurs,enfants
-Route::post('auth/registerparent', [RegistrationController::class,'RegisterAdminParent']);
-Route::get('auth/verify-email/{token}', [EmailVerificationController::class,'verifyemail'])->name('verify');
+Route::post('auth/register-parent', [RegistrationController::class,'RegisterParent'])
+->name('Enregistrement');
+Route::get('auth/verify-email/{token}', [EmailVerificationController::class,'verifyemail'])
+    ->name('verify');
+
+
 Route::post('auth/login', [LoginController::class,'login'])->name('login');
 Route::post('auth/forget-password', [ResetPasswordCntroller::class,'RessetPasswordEmail'])->name('forgetPassword');
 Route::post('auth/reset-password/{token}', [ResetPasswordCntroller::class,'ResetPassword'])->name('restpassword');
 
 // ici tous les choses isi l'authetification est nececiare
 Route::middleware(['auth:sanctum','RefreshToken'])->prefix('auth')->group(function (){
-    Route::post('registeradmin', [RegistrationController::class,'RegisterAdminParent']);
-    Route::post('user', [LoginController::class,'user']);
-    Route::post('logout', [LogoutController::class,'logout']);
-    Route::post('registerenfant', [RegistrationController::class,'RegisterEnfant']);
-    Route::post('registeranim', [RegistrationController::class,'RegisterAnimateur']);
-
+    Route::post('register-admin', [RegistrationController::class,'RegisterAdmin'])
+        ->name('AjouterAdmin')
+        ->middleware('Check_Admin_User');// administarateur si ill va ajouter un sous admin
+    Route::post('register-animateur', [RegistrationController::class,'RegisterAnimateur'])
+        ->name('AjouterAnimateur')
+        ->middleware('Check_Admin_User');
+    Route::get('my-profile', [LoginController::class,'AuthenticatedProflie'])
+    ->name('Myprofile');
+    Route::post('logout', [LogoutController::class,'logout'])->name('logout');
 
 });
 

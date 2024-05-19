@@ -19,10 +19,10 @@ trait ValidateTrait
     {
 
         return [
-            'role'=>'required|string',
+//            'role'=>'string',
             'name'=>'required|string|max:250',
             'email'=>'required|email|unique:users',
-            'password'=>'required|string|confirmed',
+            'password'=>'required|string',
             'domaine'=>$this->rul,
 
         ];

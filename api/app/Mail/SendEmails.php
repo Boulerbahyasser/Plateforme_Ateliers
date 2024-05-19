@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use http\Message;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -16,9 +17,10 @@ class SendEmails extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct($user)
+    public function __construct($newUser)
     {
-        $this->user=$user;
+        $this->user=$newUser;
+
     }
 
     /**
@@ -38,9 +40,11 @@ class SendEmails extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'mail.send-emails',
+
+            markdown: 'mail.send-User-Activation-emails',
             with: [
-                'user' => $this->user,
+                'sender' => $this->user,
+
             ],
         );
     }

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace app\Http\Requests;
 
+use App\Http\Requests\ValidateTrait;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RequestAnimateur extends FormRequest
