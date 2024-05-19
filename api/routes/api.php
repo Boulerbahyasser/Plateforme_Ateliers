@@ -74,4 +74,4 @@ Route::post('/create/activity/',[AdminActiviteeController::class,'createActivity
 Route::put('/update/activity/{activity}',[AdminActiviteeController::class,'updateActivity']);
 
 Route::delete('/delete/activity/{activity}',[AdminActiviteeController::class,'destroyActivity']);
-Route::post('create/demande',[ParentDemandeController::class,'storeDemande']);
+Route::post('/create/demande/',[ParentDemandeController::class,'storeDemande']);
