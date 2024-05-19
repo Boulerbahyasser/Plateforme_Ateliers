@@ -2,22 +2,22 @@
 
 namespace Database\Factories;
 
+use App\Models\Activite;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Activite>
- */
 class ActiviteFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = Activite::class;
+
     public function definition(): array
     {
         return [
-            //
+            'titre' => $this->faker->sentence,
+            'image_pub' => $this->faker->imageUrl(),
+            'description' => $this->faker->paragraph,
+            'lien_youtube' => $this->faker->url,
+            'objectifs' => $this->faker->text,
+            'domaine' => $this->faker->word,
         ];
     }
 }

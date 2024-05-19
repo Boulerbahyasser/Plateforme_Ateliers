@@ -19,6 +19,8 @@ return new class extends Migration
             $table->decimal('totale_ht', 10, 2);
             $table->decimal('totale_ttc', 10, 2);
             $table->string('statut');
+            $table->text('pdf'); // Chemin du fichier PDF
+            $table->string('etat'); // Etat (payé, non payé)
             $table->text('motif')->nullable();
 
             // Clés étrangères vers les tables parentes

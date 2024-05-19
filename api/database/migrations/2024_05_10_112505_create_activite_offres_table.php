@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('offre_id');
             $table->unsignedBigInteger('activite_id');
             $table->decimal('tarif', 10, 2);
+            $table->decimal('tarif_remise', 10, 2); //le nv tarif en appliquant la remise de l'offre
             $table->integer('age_min');
             $table->integer('age_max');
             $table->integer('nbr_seance');
