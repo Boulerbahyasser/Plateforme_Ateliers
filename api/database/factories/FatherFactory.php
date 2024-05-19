@@ -2,22 +2,18 @@
 
 namespace Database\Factories;
 
+use App\Models\Father;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Father>
- */
 class FatherFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = Father::class;
+
     public function definition(): array
     {
         return [
-            //
+            'user_id' => \App\Models\User::factory(),
+            'fonction' => $this->faker->jobTitle,
         ];
     }
 }
