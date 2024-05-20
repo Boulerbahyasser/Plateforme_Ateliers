@@ -1,15 +1,18 @@
 <template>
   <div class="offers-list">
     <h3>Toutes les Offres</h3>
-    <div v-if="loading">Chargement des offres...</div>
+    <div class="search-bar">
+      <input type="text" v-model="searchQuery" placeholder="Rechercher des offres..." @input="searchOffers" />
+    </div>
+    <div v-if="loading" class="loader">Chargement des offres...</div>
     <div v-else>
       <div v-if="error" class="error-message">
         <p>Une erreur s'est produite lors du chargement des offres : {{ error }}</p>
         <button @click="fetchOffers">Réessayer</button>
       </div>
       <div v-else class="offers-grid">
-        <div class="offer" v-for="offer in offers" :key="offer.id">
-          <img :src="offer.imageUrl" alt="Offer Image" class="offer-image">
+        <div class="offer" v-for="offer in filteredOffers" :key="offer.id">
+          <img src="@/assets/child.png" alt="Offer Image" class="offer-image">
           <div class="offer-details">
             <div>
               <h4>{{ offer.titre }}</h4>
@@ -20,6 +23,11 @@
             </router-link>
           </div>
         </div>
+      </div>
+      <div class="pagination">
+        <button @click="prevPage" :disabled="currentPage === 1">Précédent</button>
+        <span>Page {{ currentPage }} sur {{ totalPages }}</span>
+        <button @click="nextPage" :disabled="currentPage === totalPages">Suivant</button>
       </div>
     </div>
   </div>
@@ -35,7 +43,28 @@ export default {
     return {
       offers: [],
       loading: true,
-      error: null  // Ajout de la propriété error
+      error: null,
+      searchQuery: '',
+      currentPage: 1,
+      itemsPerPage: 6,
+    }
+  },
+  computed: {
+    filteredOffers() {
+      const searchLower = this.searchQuery.toLowerCase();
+      return this.offers.filter(offer =>
+        offer.titre.toLowerCase().includes(searchLower) ||
+        offer.description.toLowerCase().includes(searchLower)
+      ).slice(this.startIndex, this.endIndex);
+    },
+    startIndex() {
+      return (this.currentPage - 1) * this.itemsPerPage;
+    },
+    endIndex() {
+      return this.currentPage * this.itemsPerPage;
+    },
+    totalPages() {
+      return Math.ceil(this.offers.length / this.itemsPerPage);
     }
   },
   created() {
@@ -44,7 +73,7 @@ export default {
   methods: {
     fetchOffers() {
       this.loading = true;
-      this.error = null;  // Réinitialiser l'erreur
+      this.error = null;
       axios.get('http://localhost:8000/api/show/offers')
         .then(response => {
           this.offers = response.data;
@@ -55,33 +84,64 @@ export default {
           this.error = 'Impossible de charger les offres. Veuillez réessayer plus tard.';
           this.loading = false;
         });
+    },
+    searchOffers() {
+      this.currentPage = 1;
+    },
+    nextPage() {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++;
+      }
+    },
+    prevPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+      }
     }
   }
 }
 </script>
 
+
 <style scoped>
 .offers-list {
-  background: #f0f8ff;
+  background: #ffffff;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 h3 {
-  color: #010f1e;
+  color: #333;
   font-family: 'Baloo Bhaijaan 2', cursive;
   font-size: 2rem;
   padding-bottom: 10px;
-  border-bottom: 5px dotted #011934;
+  border-bottom: 3px solid #eee;
   margin-bottom: 30px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-  text-transform: uppercase;
   text-align: center;
-  background-image: linear-gradient(to right, #026968, #00060c 50%, #061533);
-  -webkit-background-clip: text;
-  color: transparent;
+}
+
+.search-bar {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  width: 80%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+.loader {
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 20px 0;
 }
 
 .offers-grid {
@@ -91,7 +151,7 @@ h3 {
 }
 
 .offer {
-  background: white;
+  background: #f9f9f9;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -122,6 +182,7 @@ h3 {
   font-size: 1.5rem;
   margin-bottom: 10px;
   font-family: 'Baloo Bhaijaan 2', cursive;
+  color: #333;
 }
 
 .offer-details p {
@@ -133,7 +194,7 @@ h3 {
 
 .details-btn {
   padding: 10px 15px;
-  background-color: #026968;
+  background-color: #007bff;
   color: white;
   text-decoration: none;
   border-radius: 5px;
@@ -142,7 +203,7 @@ h3 {
 }
 
 .details-btn:hover {
-  background-color: #024949;
+  background-color: #0056b3;
 }
 
 .error-message {
@@ -150,5 +211,31 @@ h3 {
   text-align: center;
   margin-top: 20px;
 }
-</style>
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 10px 20px;
+  margin: 0 5px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+</style>

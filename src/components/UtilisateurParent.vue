@@ -12,6 +12,7 @@
          <button @click="toggleProfileMenu" class="icon-link profile-button"><i class="fas fa-user"></i></button>
          <div v-if="showProfileMenu" class="dropdown-menu">
            <router-link to="/userprofile">Profil</router-link>
+           <router-link to="/userchildren">Mes Enfant</router-link>
            <router-link to="/changepassword">Changer mot de passe</router-link>
            <router-link to="/parentrequests">Mes demande</router-link>
            <button @click="logout">Déconnexion</button>

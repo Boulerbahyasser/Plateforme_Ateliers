@@ -1,52 +1,98 @@
 <template>
   <div class="select-schedule-container">
     <h1>Sélectionnez deux horaires pour l'enfant: {{ childName }}</h1>
-    <div v-for="schedule in schedules" :key="schedule.id" class="schedule-card">
-      <label :for="`schedule-${schedule.id}`" class="schedule-label">
-        <input type="checkbox" :id="`schedule-${schedule.id}`" v-model="selectedSchedules" :value="schedule.id" />
-        <span class="schedule-time">{{ schedule.time }}</span>
-      </label>
+    <div v-if="loading">Chargement des horaires...</div>
+    <div v-else-if="error" class="error-message">Erreur lors de la récupération des horaires. Veuillez réessayer plus tard.</div>
+    <div v-else>
+      <div v-for="schedule in schedules" :key="schedule.id" class="schedule-card">
+        <label :for="`schedule-${schedule.id}`" class="schedule-label">
+          <input type="checkbox" :id="`schedule-${schedule.id}`" v-model="selectedSchedules" :value="schedule.id" />
+          <div class="schedule-details">
+            <span class="schedule-day">{{ schedule.jour }}</span>
+            <span class="schedule-time">{{ schedule.heure_debut }} - {{ schedule.heure_fin }}</span>
+            <div class="schedule-info">
+              <span><strong>Eff. Min:</strong> {{ schedule.eff_min }}</span>
+              <span><strong>Eff. Max:</strong> {{ schedule.eff_max }}</span>
+              <span><strong>Places Restantes:</strong> {{ schedule.nbr_place_restant }}</span>
+            </div>
+          </div>
+        </label>
+      </div>
     </div>
     <button @click="submitSchedules">Terminer</button>
   </div>
 </template>
-
 <script>
-
 import axios from "axios";
 
 export default {
   name: 'SelectSchedule',
   data() {
     return {
-      childName: this.$route.query.chilrendname || 'Enfant',
-      activityId :this.$route.query.activityid || 'activity',
-      schedules: [
-      ],
-      selectedSchedules: []
+      activityId: this.$route.query.activityId,
+      activityTitre: this.$router.query.activityTitre ,
+      offerId: this.$route.query.offerId,
+      offerTitre:this.$route.query.offerTitre ,
+      childName: this.$route.query.childName,
+      childId:this.$route.query.childId,
+      schedules: [],
+      selectedSchedules: [],
+      loading: true,
+      error: false
     };
   },
+  created() {
+    this.fetchSchedules();
+  },
   methods: {
-    submitSchedules() {
+    async fetchSchedules() {
+      alert(this.activityId) ;
+      alert(this.activityTitre) ;
+      alert(this.offerId) ;
+      alert(this.offerTitre) ;
+      try {
+        const response = await axios.get(`http://localhost:8000/api/show/offer/activity/horaires/${this.activityId}`);
+        this.schedules = response.data;
+        this.loading = false;
+      } catch (error) {
+        console.error('Erreur lors de la récupération des horaires:', error);
+        this.loading = false;
+        this.error = true;
+      }
+    },
+     submitSchedules() {
       if (this.selectedSchedules.length !== 2) {
         alert('Veuillez sélectionner exactement deux horaires.');
         return;
       }
-       try {
-        const response = axios.get(`http://localhost:8000/api/show/offer/activity/horaires/${this.activityId}`);
-        this.children = response.data;
-        this.loading = false;
-      } catch (error) {
-        console.error('Erreur lors de la récupération des enfants:', error);
-        this.loading = false;
-        this.error = true;
-      }
-      this.$router.push('/choosechildren');
+
+      const selectedActivity = {
+        offerId: this.offerId,
+        offerTitre: this.offerTitre,
+        activityId: this.activityId,
+        activityTitre: this.activityTitre,
+        childId: this.childId,
+        childName: this.childName,
+        schedule1: this.selectedSchedules[0],
+        schedule2: this.selectedSchedules[1]
+      };
+
+      // Stocker l'activité sélectionnée dans le localStorage
+      let activities = JSON.parse(localStorage.getItem('selectedActivities')) || [];
+      activities.push(selectedActivity);
+      localStorage.setItem('selectedActivities', JSON.stringify(activities));
+
+      console.log('Horaires sélectionnés:', this.selectedSchedules);
+      this.$router.push({ name: 'choosechildren', query: {
+        activityId: this.$route.query.activityId,
+        activityTitre: this.$router.query.activityTitre ,
+        offerId: this.$route.query.offerId,
+        offerTitre:this.$route.query.offerTitre ,
+      } });
     }
   }
 };
 </script>
-
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 
@@ -63,6 +109,7 @@ h1 {
   font-weight: bold;
   color: #0056b3;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .schedule-card {
@@ -75,6 +122,7 @@ h1 {
   margin-bottom: 20px;
   transition: transform 0.3s ease;
   align-items: center;
+  cursor: pointer;
 }
 
 .schedule-card:hover {
@@ -84,13 +132,32 @@ h1 {
 .schedule-label {
   width: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+}
+
+.schedule-details {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.schedule-day {
+  font-size: 1.2rem;
+  color: #007BFF;
+  margin-bottom: 10px;
 }
 
 .schedule-time {
-  font-weight: bold;
+  font-size: 1.1rem;
   color: #333;
+  margin-bottom: 10px;
+}
+
+.schedule-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  color: #555;
 }
 
 input[type="checkbox"] {
@@ -107,6 +174,7 @@ button {
   cursor: pointer;
   transition: background-color 0.3s;
   font-weight: 500;
+  margin-top: 20px;
 }
 
 button:hover {
@@ -116,5 +184,11 @@ button:hover {
 
 button:active {
   background-color: #012a56;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
 }
 </style>

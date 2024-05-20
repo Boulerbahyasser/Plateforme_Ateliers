@@ -4,17 +4,23 @@
     <div class="text-section">
       <h1>{{ currentOffer.titre }}</h1>
       <p>{{ currentOffer.description }}</p>
-      <router-link :to="{ name: 'offerdetails', params: { id: currentOffer.id }}" class="signup-btn">
+      <h3 class="remise">{{ currentOffer.remise }}% de remise</h3>
+      <router-link :to="{ name: 'offerdetails', params: { id: currentOffer.id }}" class="btn">
         Inscrivez-vous à l'offre
       </router-link>
     </div>
+    <div class="date-section">
+        <h3><strong>Date de début :</strong> {{ currentOffer.date_debut }}</h3>
+        <h3><strong>Date de fin :</strong> {{ currentOffer.date_fin }}</h3>
+      </div>
     <div class="image-section">
-      <img :src="currentOffer.imageUrl" alt="Offer Image" class="offer-image">
+      <img src="@/assets/child.png" alt="Offer Image" class="offer-image">
     </div>
     <button @click="nextOffer" class="nav-btn right-btn">➡️</button>
   </div>
   <div v-else class="loading-message">Chargement des offres...</div>
 </template>
+
 
 <script>
 import axios from 'axios';
@@ -36,7 +42,7 @@ export default {
   },
   methods: {
     fetchOffers() {
-      axios.get('http://localhost:8000/api/show/offers')
+      axios.get('http://localhost:8000/api/show/offers/top/')
         .then(response => {
           this.offers = response.data;
         })
@@ -60,45 +66,61 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(135deg, #081865 0%, #7c87bd 100%);
+  background: #ffffff;
   height: 40vh;
   padding: 20px;
   border-radius: 15px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
   position: relative;
+  margin-top: 20px;
 }
 
 .offer-container:hover {
-  transform: scale(1.05);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .text-section {
   flex: 1;
   max-width: 40%;
-  color: #eff1f3;
+  color: #333;
+  text-align: left;
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-bottom: 15px;
+  font-family: 'Baloo Bhaijaan 2', cursive;
 }
 
 p {
   font-size: 1.2rem;
   margin-bottom: 20px;
+  font-family: 'Baloo Bhaijaan 2', cursive;
+  color: #666;
 }
 
-.signup-btn {
+.remise {
+  font-size: 1.8rem;
+  color: #e74c3c;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.btn {
   padding: 12px 25px;
-  background-color: #efb902;
+  background-color: #007bff;
   border-radius: 10px;
   font-size: 1.1rem;
   font-weight: bold;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.3s;
 }
 
-.signup-btn:hover {
-  background-color: #cc9113;
+.btn:hover {
+  background-color: #0056b3;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
@@ -111,12 +133,13 @@ p {
 .offer-image {
   max-width: 100%;
   border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .nav-btn {
   border: none;
   background: transparent;
-  color: #fff;
+  color: #007bff;
   font-size: 1.5rem;
   cursor: pointer;
   padding: 10px;
@@ -133,7 +156,7 @@ p {
 }
 
 .nav-btn:hover {
-  color: #efb902;
+  color: #0056b3;
 }
 
 .loading-message {
@@ -141,9 +164,9 @@ p {
   font-size: 1.5rem;
   color: #333;
 }
+
+.date-section {
+  margin-right: 130px;
+  margin-top: 150px;
+}
 </style>
-
-
-
-
-

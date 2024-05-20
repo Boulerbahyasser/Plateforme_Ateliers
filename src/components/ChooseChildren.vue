@@ -1,13 +1,13 @@
 <template>
   <div class="choose-children-container">
-    <h1>Choisissez les enfants pour l'activité: {{ activityName }}</h1>
+    <h1>Choisissez les enfants pour l'activité: {{ activityTitre }}</h1>
     <div v-if="loading">Chargement des enfants...</div>
     <div v-else-if="error" class="error-message">Erreur lors de la récupération des enfants. Veuillez réessayer plus tard.</div>
     <div v-else>
-      <div v-for="child in children" :key="child.id" class="child-card" @click="selectChild()">
+      <div v-for="child in children" :key="child.id" class="child-card" @click="selectChild(child.id)">
         <label :for="`child-${child.id}`" class="child-label">
-          <span class="child-name">{{ child.name }}</span>
-          <span class="child-level">Niveau: {{ child.level }}</span>
+          <span class="child-name">{{ child.nom + ' ' + child.prenom }}</span>
+          <span class="child-level">Niveau: {{ child.niveau }}</span>
         </label>
       </div>
     </div>
@@ -22,8 +22,10 @@ export default {
   name: 'ChooseChildren',
   data() {
     return {
-      activityId: this.$route.query.activityId || 'Activiter',
-      activityName: this.$route.query.activityName || 'Activiter',
+      activityId: this.$route.query.activityId,
+      activityTitre: this.$route.query.activityTitre,
+      offerId: this.$route.query.offerId,
+      offerTitre: this.$route.query.offerTitre,
       children: [],
       loading: true,
       error: false
@@ -33,7 +35,11 @@ export default {
     this.fetchChildren();
   },
   methods: {
-    async fetchChildren() {
+    async fetchChildren()  {
+      alert(this.offerTitre) ;
+      alert(this.offerId) ;
+      alert(this.activityTitre) ;
+      alert(this.activityId) ;
       try {
         const response = await axios.get(`http://localhost:8000/api/parent/children`);
         this.children = response.data;
@@ -44,19 +50,27 @@ export default {
         this.error = true;
       }
     },
-    selectChild() {
-      this.$router.push({ path: '/selectschedule',  query: { activityid :this.activityId , chilrendname :this.children.name} });
+    selectChild(childId) {
+    this.$router.push({ path: '/selectschedule',
+      query: {
+        activityId:this.$route.query.activityId,
+        activityTitre: this.$route.query.activityTitre,
+        offerId:  this.$route.query.offerId,
+        offerTitre: this.$route.query.offerTitre,
+        childId: childId,
+        childName: this.children.nom
+    } });
     },
     submitChildren() {
       console.log('Enfants sélectionnés:', this.children);
-      this.$router.push(`/activitylist/${this.activityId}` );
+      this.$router.push(`/activitylist/${this.activityId}`);
     }
   }
 };
 </script>
 
+
 <style scoped>
-/* Votre CSS ici */
 .choose-children-container {
   display: flex;
   flex-direction: column;

@@ -3,24 +3,35 @@
   <div class="sign-up">
     <h1>Inscription</h1>
     <form @submit.prevent="submitForm">
+
       <div>
         <label for="name">Nom d'utilisateur</label>
         <input type="text" id="name" v-model="user.name" required>
       </div>
+
       <div>
         <label for="email">Email:</label>
         <input type="email" id="email" v-model="user.email"  @blur="validateEmail" required>
         <span v-if="emailError" class="error">{{ emailError }}</span>
       </div>
+
       <div>
         <label for="password">Mot de passe:</label>
         <input type="password" id="password" v-model="user.password" @blur="validatePassword" required>
         <span v-if="passwordError" class="error">{{ passwordError }}</span>
       </div>
+      <!-- <div>
+        <label for="password">confirm password :</label>
+        <input type="password" id="password" name="password_confirmation" @blur="validatePassword" required>
+        <span v-if="passwordError" class="error">{{ passwordError }}</span>
+      </div> -->
+
       <div>
         <button type="submit">S'inscrire</button>
       </div>
+
       <p class="already-registered">Déjà inscrit ? <router-link to="/signin">Connectez-vous</router-link></p>
+
     </form>
   </div>
 </template>
@@ -35,10 +46,12 @@ export default {
   data() {
     return {
       user: {
+
         name: '',
         email: '',
-        password: ''
+        password: '',
       },
+
       emailError: '',
       passwordError: ''
     };
@@ -65,15 +78,15 @@ export default {
       if (this.emailError || this.passwordError) {
         return;
       }
-      axios.post('http://localhost:3000/user', this.user)
+      axios.post('http://localhost:8000/api/auth/register-parent', this.user)
         .then(response => {
           alert('Inscription réussie!');
-          console.log(response.data);
+          // console.log(response.data);
           this.$router.push('/signin');
         })
         .catch(error => {
           console.error('Erreur lors de l\'inscription:', error);
-          alert('Une erreur est survenue lors de l\'inscription.');
+          alert(error.response.data.message);
         });
     }
   }

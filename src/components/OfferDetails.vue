@@ -3,7 +3,7 @@
   <div class="offer-details-container">
     <div class="offer-card" v-if="offer">
       <div class="offer-image">
-        <img :src="offer.imageUrl" alt="Offer Image">
+        <img src="@/assets/child.png" alt="Offer Image">
       </div>
       <div class="offer-info">
         <div class="text-content">
@@ -24,12 +24,10 @@
         </div>
       </div>
     </div>
-    <div v-else-if="loading">Chargement des détails de l'offre...</div>
+    <div v-else-if="loading" class="loading-message">Chargement des détails de l'offre...</div>
     <div v-else class="error-message">Erreur lors de la récupération des détails de l'offre. Veuillez réessayer plus tard.</div>
   </div>
 </template>
-
-
 <script>
 import axios from 'axios';
 import UtilisateurParent from "@/components/UtilisateurParent.vue";
@@ -50,9 +48,9 @@ export default {
   },
   methods: {
     async fetchOfferDetails() {
-      const offerId = this.$route.params.id; // Récupérer l'ID de l'offre depuis les paramètres de route
+      const offerid = this.$route.params.id; // Récupérer l'ID de l'offre depuis les paramètres de route
       try {
-        const response = await axios.get(`http://localhost:8000/api/show/offer/${offerId}`);
+        const response = await axios.get(`http://localhost:8000/api/show/offer/${offerid}`);
         this.offer = response.data;
         this.loading = false;
       } catch (error) {
@@ -62,13 +60,11 @@ export default {
       }
     },
     GoToActivities() {
-  this.$router.push({ name: 'activitylist', params: { offerId: this.offer.id } });
-}
-
+      this.$router.push({ name: 'activitylist', params: { offerId: this.offer.id } , query:{ offerTitre :this.offer.titre} });
+    }
   }
 };
 </script>
-
 <style scoped>
 .offer-details-container {
   display: flex;
@@ -86,14 +82,15 @@ h1 {
 }
 
 .offer-card {
-  width: 800px;
+  width: 1000px;
   display: flex;
   background: #fff;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  border-radius: 10px;
   overflow: hidden;
   transition: transform 0.3s ease;
   align-items: flex-start;
+  margin-bottom: 20px;
 }
 
 .offer-card:hover {
@@ -101,15 +98,17 @@ h1 {
 }
 
 .offer-image img {
-  width: 300px;
-  height: 428px;
-  object-fit: cover;
+  width: 100%;
+  height: 455px;
+  object-fit: cover ;
+
 }
 
 .offer-info {
   display: flex;
   flex-direction: column;
   padding: 20px;
+  width: 100%;
 }
 
 .text-content {
@@ -138,6 +137,7 @@ h1 {
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-bottom: 20px;
 }
 
 .remise-label {
@@ -148,9 +148,8 @@ h1 {
 
 .offer-price {
   font-size: 2rem;
-  color: #e8554e;
+  color: #e74c3c;
   font-weight: bold;
-  margin-top: 20px;
 }
 
 .no-remise {
@@ -180,17 +179,24 @@ button {
 
 button:hover {
   background-color: #0056b3;
-  box-shadow: 5px 5px 10px rgba(0,0,0,0.25);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 button:active {
   background-color: #012a56;
 }
 
+.loading-message {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #333;
+  margin-top: 20px;
+}
+
 .error-message {
   color: red;
   text-align: center;
+  font-size: 1.5rem;
   margin-top: 20px;
 }
 </style>
-

@@ -13,6 +13,7 @@
 
 <script>
 import NotificationItem from './NotificationItem.vue';
+import axios from 'axios';
 
 export default {
   components: {
@@ -20,39 +21,31 @@ export default {
   },
   data() {
     return {
-      historyNotifications: [] // Les données des notifications historiques seront chargées ici
+      historyNotifications: [], // Les données des notifications historiques seront chargées ici
+      loading: true,
+      error: false
     };
   },
   created() {
     this.loadHistoryNotifications();
   },
-
   methods: {
     async loadHistoryNotifications() {
-        try {
-          // Simulation de l'appel à l'API
-          // Vous pouvez remplacer cette partie par un appel réel à votre backend.
-          await new Promise(resolve => setTimeout(resolve, 1000)); // Simule un délai de chargement
-          this.historyNotifications = [
-            {id: 1, message: "Votre enfant a été inscrit à l'activité de robotique."},
-            {id: 2, message: "Paiement reçu pour le cours de programmation."},
-            {id: 4, message: "il y'a un nouveau offre qui peux etre interssante a vous"},
-            {id: 5, message: "votre enfant ahmed mohdi a été inscrit a l'activiter d'algo"},
-            {id: 6, message: "votre enfant ahmed aymen a été inscrit a l'activiter de C#"},
-            {id: 7, message: "votre enfant ahmed moadi a été inscrit a l'activiter de programmation"},
-            {id: 4, message: "il y'a un nouveau offre qui peux etre interssante a vous"}
-          ];
-        } catch (error) {
-          console.error("Failed to load notifications:", error);
-          // Gérer l'erreur de manière appropriée, peut-être avec une notification d'erreur utilisateur.
-        }
+      try {
+        const response = await axios.get('http://localhost:8000/api/notifications/history');
+        this.historyNotifications = response.data;
+        this.loading = false;
+      } catch (error) {
+        console.error("Failed to load notifications:", error);
+        this.loading = false;
+        this.error = true;
       }
+    }
   }
 }
 </script>
 
 <style scoped>
-
 .notifications-history-page {
   max-width: 600px;
   margin: 20px auto;
@@ -71,5 +64,4 @@ ul {
   list-style: none;
   padding: 0;
 }
-
 </style>

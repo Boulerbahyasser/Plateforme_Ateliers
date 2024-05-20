@@ -1,5 +1,5 @@
 <template>
-  <UtilisateurParent />
+<UtilisateurParent />
   <div class="offers-page">
     <FeaturedOffer />
     <OffersList />

@@ -1,8 +1,9 @@
+
+
 <template>
   <li class="notification-item">
     <p>{{ notification.message }}</p>
     <button @click="$emit('delete', notification.id)">Supprimer</button>
-
   </li>
 </template>
 
@@ -51,4 +52,3 @@ button:focus {
   box-shadow: 0 0 0 2px #fff, 0 0 0 4px #c53030;
 }
 </style>
-

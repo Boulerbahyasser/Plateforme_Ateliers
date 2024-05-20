@@ -5,11 +5,13 @@
     <form @submit.prevent="submitForm">
       <div>
         <label for="email">Email:</label>
-        <input type="email" id="email" v-model="user.email" required>
+        <input type="email" id="email" v-model="user.email" @blur="validateEmail" required>
+        <span v-if="emailError" class="error">{{ emailError }}</span>
       </div>
       <div>
         <label for="password">Mot de passe:</label>
-        <input type="password" id="password" v-model="user.password" required>
+        <input type="password" id="password" v-model="user.password" @blur="validatePassword" required>
+        <span v-if="passwordError" class="error">{{ passwordError }}</span>
       </div>
       <div>
         <button type="submit">Se connecter</button>
@@ -23,6 +25,20 @@
 
 <script>
 import NavBar from "@/components/NavBar.vue";
+import axios from "axios";
+axios.defaults.withCredentials = true;
+axios.defaults.withXSRFToken = true;
+
+async function getCSRFToken() {
+    try {
+        await axios.get('http://localhost:8000/sanctum/csrf-cookie');
+
+    } catch (error) {
+        console.error('Failed to fetch CSRF token:', error);
+    }
+}
+
+
 
 export default {
   name: 'SignIn',
@@ -34,15 +50,59 @@ export default {
       user: {
         email: '',
         password: ''
-      }
+      },
+      emailError: '',
+      passwordError: ''
     };
   },
   methods: {
+    validateEmail() {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!re.test(this.user.email)) {
+        this.emailError = 'Veuillez entrer un email valide';
+      } else {
+        this.emailError = '';
+      }
+    },
+    validatePassword() {
+      if (this.user.password.length < 8) {
+        this.passwordError = 'Le mot de passe doit contenir au moins 8 caractères';
+      } else {
+        this.passwordError = '';
+      }
+    },
     submitForm() {
-      this.$router.push('/offerspage');
+      this.validateEmail();
+      this.validatePassword();
+      if (this.emailError || this.passwordError) {
+        return;
+      }
+      getCSRFToken().then(()=>{
+
+
+          axios.post('http://localhost:8000/api/auth/login', this.user).then(response => {
+
+          const token = response.data.token;
+
+          document.cookie = 'auth_token=' + token + '; HttpOnly';// quand ajouter HttpOnly la token pas voir dans cookies
+          localStorage.setItem('auth-token',token);
+          axios.defaults.headers.common['Authorization'] = 'Bearer ${token}';
+          alert('Connexion réussie!');
+          this.$router.push('/offerspage');
+
+
+          })
+          .catch(error => {
+          console.error('Erreur de connexion:', error);
+          alert(error.response.data.message);
+          });
+
+
+      })
+
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -78,6 +138,7 @@ input[type="password"] {
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
 }
 
 input[type="text"]:focus,
@@ -121,5 +182,10 @@ button:active {
 
 .forgot-password a:hover {
   text-decoration: underline;
+}
+
+.error {
+  color: red;
+  font-size: 0.9em;
 }
 </style>

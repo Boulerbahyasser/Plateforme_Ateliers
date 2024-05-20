@@ -15,6 +15,7 @@
 
 <script>
 import NotificationItem from './NotificationItem.vue';
+import axios from 'axios';
 
 export default {
   components: {
@@ -22,35 +23,35 @@ export default {
   },
   data() {
     return {
-      notifications: [] // Les données des notifications seront chargées ici
+      notifications: [], // Les données des notifications seront chargées ici
+      loading: true,
+      error: false
     };
   },
   methods: {
-    deleteNotification(id) {
-      // Ici, ajouter la logique pour supprimer la notification
-      this.notifications = this.notifications.filter(n => n.id !== id);
+    async deleteNotification(id) {
+      try {
+        await axios.delete(`http://localhost:8000/api/notifications/${id}`);
+        this.notifications = this.notifications.filter(n => n.id !== id);
+      } catch (error) {
+        console.error("Failed to delete notification:", error);
+      }
     },
     viewHistory() {
       this.$router.push('/notificationhistory');
     },
-
-      async loadNotifications() {
-        try {
-          // Simulation de l'appel à l'API
-          // Vous pouvez remplacer cette partie par un appel réel à votre backend.
-          await new Promise(resolve => setTimeout(resolve, 1000)); // Simule un délai de chargement
-          this.notifications = [
-            {id: 1, message: "Votre enfant a été inscrit à l'activité de robotique."},
-            {id: 2, message: "Paiement reçu pour le cours de programmation."},
-            {id: 3, message: "votre enfant ahmed mohamadi a été inscrit a l'activiter de programmation"}
-          ];
-        } catch (error) {
-          console.error("Failed to load notifications:", error);
-          // Gérer l'erreur de manière appropriée, peut-être avec une notification d'erreur utilisateur.
-        }
+    async loadNotifications() {
+      try {
+        const response = await axios.get('http://localhost:8000/api/notifications');
+        this.notifications = response.data;
+        this.loading = false;
+      } catch (error) {
+        console.error("Failed to load notifications:", error);
+        this.loading = false;
+        this.error = true;
       }
+    }
   },
-
   created() {
     this.loadNotifications();
   }
@@ -81,10 +82,11 @@ button {
   background-color: #4A90E2;
   color: white;
   border: none;
-  padding: 8px 16px;
+  padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s;
+  margin-top: 20px;
 }
 
 button:hover {
