@@ -28,42 +28,42 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        Administrateur::factory()->count(5)->create();
+        Administrateur::factory()->count(2)->create();
 
-        Animateur::factory()->count(10)->create();
+        Animateur::factory()->count(4)->create();
 
-        Horaire::factory()->count(20)->create();
+        Horaire::factory()->count(8)->create();
 
-        Activite::factory()->count(15)->create();
+        Activite::factory()->count(5)->create();
 
-        Offre::factory()->count(10)->create();
+        Offre::factory()->count(4)->create();
 
-        Demande::factory()->count(8)->create();
+        Demande::factory()->count(2)->create();
 
-        Enfant::factory()->count(30)->create();
+        Enfant::factory()->count(10)->create();
 
-        Father::factory()->count(15)->create();
+        Father::factory()->count(8)->create();
 
-        User::factory()->count(50)->create();
+        //User::factory()->count(50)->create();
 
-        Notification::factory()->count(15)->create();
+        Notification::factory()->count(8)->create();
 
-        Facture::factory()->count(20)->create();
+        Facture::factory()->count(9)->create();
 
-        Pack::factory()->count(10)->create();
+        Pack::factory()->count(4)->create();
 
-        Devis::factory()->count(20)->create();
+        Devis::factory()->count(7)->create();
 
-        ActiviteOffre::factory()->count(15)->create();
+        ActiviteOffre::factory()->count(6)->create();
 
-        DemandeInscription::factory()->count(30)->create();
+        DemandeInscription::factory()->count(10)->create();
 
-        PlanningAnim::factory()->count(25)->create();
+        PlanningAnim::factory()->count(8)->create();
 
-        PlanningEnf::factory()->count(35)->create();
+        PlanningEnf::factory()->count(11)->create();
 
-        Hda::factory()->count(40)->create();
+        Hda::factory()->count(13)->create();
 
-        HdAnim::factory()->count(40)->create();
+        HdAnim::factory()->count(14)->create();
     }
 }

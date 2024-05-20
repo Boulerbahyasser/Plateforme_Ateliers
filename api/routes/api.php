@@ -46,8 +46,9 @@ Route::middleware(['auth:sanctum','RefreshToken'])->prefix('auth')->group(functi
     Route::get('my-profile', [LoginController::class,'AuthenticatedProflie'])
         ->name('Myprofile');
     Route::post('logout', [LogoutController::class,'logout'])->name('logout');
-
+    Route::get('/show/parent/enfant/',[showController::class,'showEnfantOfParent']);
 });
+
 
 //show
 Route::get('/show/offers/',[showController::class,'showOffers']);
@@ -65,7 +66,7 @@ Route::get('/show/offer/activities/more/{offer}',[showController::class, 'showAc
 Route::get('/show/offer/activities/all/{offer}',[showController::class,'showActivitiesInOfferAllInfos']);
 
 
-Route::get('/show/parent/enfant/',[showController::class,'showEnfantOfParent']);
+
 
 
 Route::get('/show/offer/activity/horaires/{activite_id}',[showController::class,'showHoraireInActivity']);
