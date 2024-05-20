@@ -11,14 +11,29 @@ class PDFController extends Controller
 {
     static public function generatePDF($demande_id,$date,$totale_ht,$totale_ttc){
         $dompdf = new Dompdf();
-        $html = '<h1>Demande ID:'.$demande_id.'</h1><br>
-                 <h1>Date:'.$date.'</h1><br>
-                 <h1>Total HT:'.$totale_ht.'</h1><br>
-                 <h1>Total TTC:'.$totale_ttc.'</h1>';
+
+// Ensure that demande_id, date, totale_ht, totale_ttc are correctly set
+        $html = '<h1>Demande ID: '.$demande_id.'</h1><br>
+         <h1>Date: '.$date.'</h1><br>
+         <h1>Total HT: '.$totale_ht.'</h1><br>
+         <h1>Total TTC: '.$totale_ttc.'</h1>';
+
+// Load HTML content
         $dompdf->loadHtml($html);
+
+// Render the HTML as PDF
+        $dompdf->render();
+
+// Output the generated PDF content
         $pdfContent = $dompdf->output();
+
+// Define file path
         $filePath = 'devis/' . $demande_id . '.pdf';
+
+// Store the PDF content to the specified file path
         Storage::put($filePath, $pdfContent);
+
+// Return the file path
         return $filePath;
     }
 }

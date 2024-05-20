@@ -14,12 +14,12 @@ class Pack extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['demande_id', 'nom', 'remise'];
+    protected $fillable = ['nom', 'remise'];
 
     /**
      * Get the demande that owns the pack.
      */
-    public function demande(): HasMany
+    public function demandes(): HasMany
     {
         return $this->hasMany(Demande::class);
     }

@@ -12,9 +12,10 @@ class DemandeFactory extends Factory
     public function definition(): array
     {
         return [
+            'pack_id' => \App\Models\Pack::factory(),
             'admin_id' => \App\Models\Administrateur::factory(),
             'date' => $this->faker->dateTime,
-            'statut' => $this->faker->randomElement(['brouillon','valide']),
+            'statut' => $this->faker->randomElement(['brouillon', 'valide']),
         ];
     }
 }

@@ -13,12 +13,8 @@ return new class extends Migration
     {
         Schema::create('packs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('demande_id');
             $table->string('nom');
             $table->decimal('remise', 10, 2);
-
-            // Clé étrangère vers la table 'demandes'
-            $table->foreign('demande_id')->references('id')->on('demandes')->onDelete('cascade');
 
             $table->timestamps();
         });

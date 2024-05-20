@@ -18,7 +18,7 @@ class AdminOffreController extends Controller
             'description' => 'required',
         ]);
         $user_id = auth()->id();
-        $admin = Administrateur::where('user_id',$user_id)->get();
+        $admin = Administrateur::where('user_id',$user_id)->first();
         $formFields['admin_id'] = $admin->id;
 
         if($request->has('remise')) $formFields['remise'] = $request->remise;

@@ -73,8 +73,8 @@ class ShowController extends Controller
 
     public function showHoraireInActivity($activite_id){
         $results = HDA::join('horaires', 'hdas.horaire_id', '=', 'horaires.id')
-            ->select('jour', 'heure_debut', 'heure_fin')
             ->where('activite_offre_id', $activite_id)
+            ->select('jour', 'heure_debut', 'heure_fin','nbr_place_restant','eff_max','eff_min')
             ->get();
         return response()->json($results,200);
     }
@@ -89,8 +89,8 @@ class ShowController extends Controller
     }
     public function showEnfantOfParent(){
         $user_id = auth()->id();
-        $parent = Father::where('user_id',$user_id)->get();
-        $enfants = Enfant::where('father_id',$parent->id)->get();
+        $parent = Father::where('user_id',$user_id)->first();
+        $enfants = Enfant::where('father_id',$parent->id)->first();
         return response()->json($enfants,200);
     }
 

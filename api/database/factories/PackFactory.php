@@ -12,7 +12,6 @@ class PackFactory extends Factory
     public function definition(): array
     {
         return [
-            'demande_id' => \App\Models\Demande::factory(),
             'nom' => $this->faker->word,
             'remise' => $this->faker->randomFloat(2, 0, 50),
         ];

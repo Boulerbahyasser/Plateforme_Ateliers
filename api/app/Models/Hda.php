@@ -21,7 +21,7 @@ class Hda extends Model
      *
      * @var array<string>
      */
-    protected $with = ['activiteOffre', 'horaire'];
+    // protected $with = ['activiteOffre', 'horaire'];
 
     /**
      * Get the activiteOffre that belongs to the Hda.

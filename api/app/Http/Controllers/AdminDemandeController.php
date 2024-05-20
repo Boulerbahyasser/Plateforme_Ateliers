@@ -7,6 +7,7 @@ use App\Models\Demande;
 use App\Models\DemandeInscription;
 use App\Models\Devis;
 use App\Models\Notification;
+use App\Models\Pack;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -45,8 +46,8 @@ class AdminDemandeController extends Controller{
         }
         $demande = Demande::find($demande_id);
         if($demande->pack_id) {
-            $pack = $demande->packs();
-            return response()->json($pack,200);
+            $pack = Pack::find($demande->pack_id);
+            //return response()->json($pack,200);
             $totale_ht = $totale_ht + ($totale_ht * ($pack->remise / 100));
         }
         $totale_ttc = $totale_ht + ($totale_ht*(11/100)); // (tva = 11%)
@@ -61,6 +62,7 @@ class AdminDemandeController extends Controller{
             'statut'=>'en cours',
             'etat'=>'non paye'
         ]);
-        NotificationController::notifyDevisCreated($demande_id,$devis);
+        //$devis = Devis::where('demande_id',$demande_id)->first();
+            NotificationController::notifyDevisCreated($demande_id,$devis);
     }
 }

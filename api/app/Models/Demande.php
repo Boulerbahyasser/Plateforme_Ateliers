@@ -17,7 +17,7 @@ class Demande extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['admin_id', 'date', 'statut'];
+    protected $fillable = ['pack_id','admin_id', 'date', 'statut'];
 
     /**
      * Get the admin that owns the demande.
@@ -30,7 +30,7 @@ class Demande extends Model
     /**
      * Get the packs for the demande.
      */
-    public function packs(): BelongsTo
+    public function pack(): BelongsTo
     {
         return $this->belongsTo(Pack::class);
     }

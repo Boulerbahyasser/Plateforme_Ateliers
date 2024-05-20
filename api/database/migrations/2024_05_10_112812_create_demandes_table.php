@@ -13,13 +13,16 @@ return new class extends Migration
     {
         Schema::create('demandes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('pack_id');
             $table->unsignedBigInteger('admin_id');
             $table->dateTime('date');
             $table->string('statut');
 
             // Clé étrangère vers la table 'administrateurs'
             $table->foreign('admin_id')->references('id')->on('administrateurs')->onDelete('cascade');
+            $table->foreign('pack_id')->references('id')->on('packs')->onDelete('cascade');
             $table->timestamps();
+
         });
     }
 
