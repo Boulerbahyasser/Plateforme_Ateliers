@@ -80,7 +80,7 @@ class RegistrationController extends Controller
             $registerdata = Arr::except($requestAnimateur->validated(), ['domaine']);// ici domaine just car jai l'heritage d'un trait ValidateTriat
             $registerdata['password'] = bcrypt($registerdata['password']);//hash + make signiture pour password
             $registerdata['email_verified_at'] = now();
-            $registerdata['role']='animateur';
+            $registerdata['role']='animator';
 
             $SuperAdmin=Auth::user();
             $newUserAnimateur = User::create($registerdata);// ajouter animateur dans tableux users

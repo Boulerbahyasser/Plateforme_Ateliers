@@ -11,6 +11,7 @@ use App\Models\Father;
 use App\Models\Hda;
 use App\Models\Offre;
 use App\Models\PlanningEnf;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -89,13 +90,11 @@ class ShowController extends Controller
         return response()->json($results,200);
     }
     public function showEnfantOfParent(){
-        $user_id = 35;
-        $parent = Father::where('user_id',$user_id)->first();
+        $user = auth()->user();
+        $parent = Father::where('user_id',$user->id)->first();
         $enfants = Enfant::where('father_id',$parent->id)->first();
         return response()->json([
             $enfants
-
-
         ],200);
     }
 

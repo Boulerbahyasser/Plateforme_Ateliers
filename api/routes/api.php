@@ -25,18 +25,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('auth/register-parent', [RegistrationController::class,'RegisterParent'])
+Route::post('register-parent', [RegistrationController::class,'RegisterParent'])
     ->name('Enregistrement');
-Route::get('auth/verify-email/{token}', [EmailVerificationController::class,'verifyemail'])
+Route::get('verify-email/{token}', [EmailVerificationController::class,'verifyemail'])
     ->name('verify');
 
 
-Route::post('auth/login', [LoginController::class,'login'])->name('login');
-Route::post('auth/forget-password', [ResetPasswordCntroller::class,'RessetPasswordEmail'])->name('forgetPassword');
-Route::post('auth/reset-password/{token}', [ResetPasswordCntroller::class,'ResetPassword'])->name('restpassword');
+Route::post('login', [LoginController::class,'login'])->name('login');
+Route::post('forget-password', [ResetPasswordCntroller::class,'RessetPasswordEmail'])->name('forgetPassword');
+Route::post('reset-password/{token}', [ResetPasswordCntroller::class,'ResetPassword'])->name('restpassword');
 
 // ici tous les choses isi l'authetification est nececiare
-Route::middleware(['auth:sanctum','RefreshToken'])->prefix('auth')->group(function (){
+Route::middleware(['auth:sanctum'])->group(function (){
     Route::post('register-admin', [RegistrationController::class,'RegisterAdmin'])
         ->name('AjouterAdmin')
         ->middleware('Check_Admin_User');// administarateur si ill va ajouter un sous admin
@@ -46,12 +46,13 @@ Route::middleware(['auth:sanctum','RefreshToken'])->prefix('auth')->group(functi
     Route::get('my-profile', [LoginController::class,'AuthenticatedProflie'])
         ->name('Myprofile');
     Route::post('logout', [LogoutController::class,'logout'])->name('logout');
+    Route::get('/show/offers/',[showController::class,'showOffers']);
     Route::get('/show/parent/enfant/',[showController::class,'showEnfantOfParent']);
+
 });
 
 
 //show
-Route::get('/show/offers/',[showController::class,'showOffers']);
 Route::get('/show/offers/top/',[showController::class,'showTopOffers']);
 Route::get('/show/offers/remaining/',[showController::class,'showRemainingOffers']);
 Route::get('/show/offer/{offre}',[showController::class,'showOffer']);
