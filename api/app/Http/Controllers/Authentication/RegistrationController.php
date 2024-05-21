@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Authentication;
 
 use App\Http\Controllers\Controller;
-use app\Http\Requests\RequestAnimateur;
-use app\Http\Requests\RequestUser;
+use App\Http\Requests\RequestAnimateur;
+use App\Http\Requests\RequestUser;
 use App\Mail\SendEmails;
 use App\Mail\SendMessage;
 use App\Models\Administrateur;
@@ -26,8 +26,8 @@ class RegistrationController extends Controller
             $registerdata = $requestUser->validated();
             $registerdata['password'] = bcrypt($registerdata['password']);
             $registerdata['remember_token'] = Str::random(40);
-            $registerdata['role']='parent';
 
+            $registerdata['role']='parent';
             $newUser = User::create($registerdata);
             Father::create(['user_id' => $newUser->id]);
             Mail::to($newUser->email)->send(new SendEmails($newUser));

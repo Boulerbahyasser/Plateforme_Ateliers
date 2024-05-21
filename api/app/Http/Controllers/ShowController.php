@@ -13,6 +13,7 @@ use App\Models\Notification;
 use App\Models\Offre;
 use App\Models\PlanningEnf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ShowController extends Controller
 {
@@ -89,10 +90,14 @@ class ShowController extends Controller
         return response()->json($results,200);
     }
     public function showEnfantOfParent(){
-        $user_id = auth()->id();
+        $user_id = 35;
         $parent = Father::where('user_id',$user_id)->first();
         $enfants = Enfant::where('father_id',$parent->id)->first();
-        return response()->json($enfants,200);
+        return response()->json([
+            $enfants
+
+
+        ],200);
     }
     public function showTopParentNotification(){
         $user_id = 136;
