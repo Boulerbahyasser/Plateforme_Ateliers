@@ -78,10 +78,10 @@ export default {
       if (this.emailError || this.passwordError) {
         return;
       }
-      axios.post('http://localhost:8000/api/auth/register-parent', this.user)
+      axios.post('http://localhost:8000/api/register-parent', this.user)
         .then(response => {
           alert('Inscription réussie!');
-          // console.log(response.data);
+          console.log(response.data);
           this.$router.push('/signin');
         })
         .catch(error => {

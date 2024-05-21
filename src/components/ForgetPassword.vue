@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     submitForm() {
-      axios.post('http://localhost:3000/forgot-password', { email: this.email })
+      axios.post('http://localhost:8000/api/forget-password', { email: this.email })
         .then(response => {
           alert('Un email de réinitialisation a été envoyé!');
           console.log(response.data);
@@ -39,7 +39,11 @@ export default {
         })
         .catch(error => {
           console.error('Erreur lors de la réinitialisation du mot de passe:', error);
-          alert('Une erreur est survenue lors de la réinitialisation du mot de passe.');
+          
+        // alert('Une erreur est survenue lors de la réinitialisation du mot de passe.');
+        console.log(error.response.data.message);
+
+        alert(error.response.data.message);
         });
     }
   }

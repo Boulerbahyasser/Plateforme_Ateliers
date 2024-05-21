@@ -1,47 +1,81 @@
 <template>
   <div class="change-password">
     <h2 class="form-header">Changer le Mot de Passe</h2>
-    <form @submit.prevent="changePassword">
-      <div class="form-group">
-        <label for="oldPassword" class="form-label"><i class="fas fa-lock"></i> Ancien Mot de Passe:</label>
-        <input type="password" id="oldPassword" v-model="passwords.oldPassword" class="form-input">
-      </div>
+    <form @submit.prevent="submitForm"> <!-- Appeler submitForm lors de la soumission -->
+
       <div class="form-group">
         <label for="newPassword" class="form-label"><i class="fas fa-lock-open"></i> Nouveau Mot de Passe:</label>
-        <input type="password" id="newPassword" v-model="passwords.newPassword" class="form-input">
+        <input type="password" id="newPassword" v-model="passwords.password" class="form-input">
       </div>
+
       <div class="form-group">
         <label for="confirmPassword" class="form-label"><i class="fas fa-lock"></i> Confirmer Nouveau Mot de Passe:</label>
-        <input type="password" id="confirmPassword" v-model="passwords.confirmPassword" class="form-input">
+        <input type="password" id="confirmPassword" v-model="passwords.password_confirmation" class="form-input">
       </div>
+
       <button type="submit" class="form-submit">Changer Mot de Passe</button>
     </form>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
       passwords: {
-        oldPassword: '',
-        newPassword: '',
-        confirmPassword: ''
-      }
+        password: '',
+        password_confirmation: ''
+      },
+      token: null, // Stocker le token ici
     };
   },
+  mounted() {
+    // Récupérer le token de l'URL
+    const url = window.location.href;
+    const token = url.substring(url.lastIndexOf('/') + 1);
+    this.token = token;
+  },
   methods: {
-    changePassword() {
-      if (this.passwords.newPassword !== this.passwords.confirmPassword) {
+    submitForm() {
+      // Appeler changePassword avec le token
+      this.changePassword(this.token);
+    },
+    changePassword(token) {
+      if (!token) {
+        alert("Token not found in URL.");
+        return;
+      }
+
+      if (this.passwords.password !== this.passwords.password_confirmation) {
         alert("Les mots de passe ne correspondent pas.");
         return;
       }
-      console.log("Mot de passe mis à jour", this.passwords);
-      // Ici, vous feriez un appel API pour changer le mot de passe
+
+      // Envoyer la requête POST avec le token et les nouveaux mots de passe
+      axios.post(`http://localhost:8000/api/reset-password/${token}`, this.passwords)
+        .then(response => {
+          alert(response.data.message);
+          this.$router.push('/login');
+        })
+        .catch(error => {
+          console.error('Erreur de Reset Password:', error);
+          alert(error.response.data.message);
+        });
     }
   }
 }
 </script>
+
+<style scoped>
+/* Vos styles ici */
+</style>
+
+<style scoped>
+/* Vos styles ici */
+</style>
+
 
 <style scoped>
 .change-password {

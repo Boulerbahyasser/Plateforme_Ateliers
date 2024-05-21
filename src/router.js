@@ -29,7 +29,7 @@ const router = createRouter({
     { path: '/signin', component: SignIn, name: "SignIn" },
     { path: '/signup', component: SignUp, name: "SignUp" },
     { path:'/forgetpassword' , component:ForgetPassword , name:"forgetpassword"},
-    { path:'/changepassword' , component:ChangePassword , name:"changepassword"},
+    { path:'/changepassword/:token' , component:ChangePassword , name:"changepassword"},
     { path: '/offerspage' , component:OffersPage , name:"OffersPage" },
     { path: '/offerdetails/:id' , component:OfferDetails , name:"offerdetails"},
     { path:'/activitylist/:offerId' , component:ActivityList , name:"activitylist"},

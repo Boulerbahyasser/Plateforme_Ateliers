@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '@/axios';
 
 export default {
   name: 'UserChildren',
@@ -40,7 +40,7 @@ export default {
     async fetchChildren() {
       try {
 
-        const response = await axios.get('http://localhost:8000/api/auth/show/parent/enfant/');
+        const response = await axios.get('http://localhost:8000/api/show/parent/enfant/');
         this.children = response.data;
         this.loading = false;
       } catch (error) {
