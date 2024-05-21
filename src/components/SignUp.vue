@@ -81,7 +81,7 @@ export default {
       axios.post('http://localhost:8000/api/auth/register-parent', this.user)
         .then(response => {
           alert('Inscription réussie!');
-          // console.log(response.data);
+          console.log(response.data);
           this.$router.push('/signin');
         })
         .catch(error => {

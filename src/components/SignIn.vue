@@ -39,7 +39,6 @@ async function getCSRFToken() {
 }
 
 
-
 export default {
   name: 'SignIn',
   components: {
