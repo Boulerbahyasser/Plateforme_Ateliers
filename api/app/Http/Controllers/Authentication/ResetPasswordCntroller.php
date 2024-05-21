@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Authentication;
-use \Illuminate\Validation\ValidationException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ResetPasswordUser;
 use App\Mail\SendResetPassword;
@@ -10,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class ResetPasswordCntroller extends Controller
 {

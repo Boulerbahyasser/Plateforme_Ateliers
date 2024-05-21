@@ -100,7 +100,7 @@ class ShowController extends Controller
         ],200);
     }
     public function showTopParentNotification(){
-        $user_id = 136;
+        $user_id = 35;
         $notifications = Notification::where('user_id', $user_id)
             ->orderBy('date', 'desc')
             ->limit(7)
@@ -111,5 +111,4 @@ class ShowController extends Controller
         $user_id = auth()->id();
         return response()->json(Notification::where('user_id',$user_id)->orderby('date')->skip(7)->latest()->get(),200);
     }
-
 }
