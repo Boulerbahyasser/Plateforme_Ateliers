@@ -51,7 +51,7 @@ class ShowController extends Controller
         return response()->json(Offre::orderBy('remise', 'desc')->limit(3)->get(),200);
     }
     public function showRemainingOffers(){
-        return response()->json(Offre::orderBy('remise', 'desc')->skip(3)->get(),200);
+        return response()->json(Offre::orderBy('remise', 'desc')->skip(3)->take(PHP_INT_MAX)->get(),200);
     }
     public function showActivitiesOfferInOffer(Offre $offer){
 
@@ -112,6 +112,7 @@ class ShowController extends Controller
         $notifications = Notification::where('user_id', $user_id)
             ->orderBy('date', 'desc')
             ->skip(7)
+            ->take(PHP_INT_MAX)
             ->get();
         return response()->json($notifications,200);
     }
