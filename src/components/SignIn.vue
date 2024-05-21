@@ -89,8 +89,6 @@ export default {
           axios.defaults.headers.common[`Authorization`] = `Bearer ${token}`;
           alert('Connexion réussie!');
           this.$router.push('/offerspage');
-
-
           })
           .catch(error => {
           console.error('Erreur de connexion:', error);
