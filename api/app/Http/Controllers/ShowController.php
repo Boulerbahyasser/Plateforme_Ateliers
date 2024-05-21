@@ -41,7 +41,7 @@ class ShowController extends Controller
                 ->where('admin_id', $admin->id)
                 ->where('statut','valide')
                 ->where('etat','en cours')
-                ->select('id', 'date')
+                ->select('demande.id', 'date')
                 ->get(),
             200
         );
