@@ -48,8 +48,11 @@ Route::middleware(['auth:sanctum'])->group(function (){
     Route::post('logout', [LogoutController::class,'logout'])->name('logout');
     Route::get('/show/offers/',[showController::class,'showOffers']);
     Route::get('/show/parent/enfant/',[showController::class,'showEnfantOfParent']);
-
+    Route::get('/show/notification/parent/top/',[ShowController::class,'showTopParentNotification']);
+    Route::get('/show/notification/parent/remaining/',[ShowController::class,'showRemainingParentNotification']);
+    Route::get('/show/demandes/',[showController::class,'showDemandes']);
 });
+
 
 
 //show
@@ -60,7 +63,6 @@ Route::get('/show/offer/{offre}',[showController::class,'showOffer']);
 
 Route::get('/show/activities/',[showController::class,'showActivities']);
 
-Route::get('/show/demandes/',[showController::class,'showDemandes']);
 
 Route::get('/show/offer/activities/{offer}',[showController::class, 'showActivitiesInOffer']);
 Route::get('/show/offer/activities/more/{offer}',[showController::class, 'showActivitiesOfferInOffer']);
@@ -75,8 +77,7 @@ Route::get('/show/offer/activity/horaires/{activite_id}',[showController::class,
 Route::get('/show/offer/activity/enfants/{activite_id}',[showController::class,'showEnfantInActivity']);
 
 //notifications
-Route::get('/show/notification/parent/top/',[ShowController::class,'showTopParentNotification']);
-Route::get('/show/notification/parent/remaining/',[ShowController::class,'showRemainingParentNotification']);
+
 
 //AdminActiviteeOffreController
 

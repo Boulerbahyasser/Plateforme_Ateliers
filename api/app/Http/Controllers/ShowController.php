@@ -91,15 +91,15 @@ class ShowController extends Controller
         return response()->json($results,200);
     }
     public function showEnfantOfParent(){
-        $user = auth()->user();
-        $parent = Father::where('user_id',$user->id)->first();
+        $user_id = auth()->id();
+        $parent = Father::where('user_id',$user_id)->first();
         $enfants = Enfant::where('father_id',$parent->id)->first();
         return response()->json([
             $enfants
         ],200);
     }
     public function showTopParentNotification(){
-        $user_id = 136;
+        $user_id = auth()->id();
         $notifications = Notification::where('user_id', $user_id)
             ->orderBy('date', 'desc')
             ->limit(7)

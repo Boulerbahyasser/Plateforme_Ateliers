@@ -30,7 +30,7 @@ class RegistrationController extends Controller
             $registerdata['role']='parent';
             $newUser = User::create($registerdata);
             Father::create(['user_id' => $newUser->id]);
-            Mail::to($newUser->email)->send(new SendEmails($newUser));
+           // Mail::to($newUser->email)->send(new SendEmails($newUser));
 
             return response()->json([
                 'status' => 200,
