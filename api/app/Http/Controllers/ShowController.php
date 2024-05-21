@@ -9,6 +9,7 @@ use App\Models\Demande;
 use App\Models\Enfant;
 use App\Models\Father;
 use App\Models\Hda;
+use App\Models\Notification;
 use App\Models\Offre;
 use App\Models\PlanningEnf;
 use App\Models\User;
@@ -96,6 +97,18 @@ class ShowController extends Controller
         return response()->json([
             $enfants
         ],200);
+    }
+    public function showTopParentNotification(){
+        $user_id = 136;
+        $notifications = Notification::where('user_id', $user_id)
+            ->orderBy('date', 'desc')
+            ->limit(7)
+            ->get();
+        return response()->json($notifications, 200);
+    }
+    public function showRemainingParentNotification(){
+        $user_id = auth()->id();
+        return response()->json(Notification::where('user_id',$user_id)->orderby('date')->skip(7)->latest()->get(),200);
     }
 
 }
