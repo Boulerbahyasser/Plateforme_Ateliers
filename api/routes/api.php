@@ -72,6 +72,9 @@ Route::get('/show/offer/activity/horaires/{activite_id}',[showController::class,
 
 Route::get('/show/offer/activity/enfants/{activite_id}',[showController::class,'showEnfantInActivity']);
 
+//notifications
+Route::get('/show/notification/parent/top/',[ShowController::class,'showTopParentNotification']);
+Route::get('/show/notification/parent/remaining/',[ShowController::class,'showRemainingParentNotification']);
 
 //AdminActiviteeOffreController
 
