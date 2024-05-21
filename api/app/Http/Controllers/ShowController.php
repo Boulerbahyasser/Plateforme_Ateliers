@@ -6,6 +6,7 @@ use App\Models\ActiviteOffre;
 use App\Models\Activite;
 use App\Models\Administrateur;
 use App\Models\Demande;
+use App\Models\DemandeInscription;
 use App\Models\Enfant;
 use App\Models\Father;
 use App\Models\Hda;
@@ -32,7 +33,7 @@ class ShowController extends Controller
         return response()->json($offre,200);
     }
 // 1/2 tested
-    public function showDemandes() {
+    public function showDemandesOfAdmin() {
         $user_id = auth()->id();
         $admin = Administrateur::where('user_id',$user_id)->get();
         return response()->json(
@@ -98,7 +99,7 @@ class ShowController extends Controller
             $enfants
         ],200);
     }
-    public function showTopParentNotification(){
+    public function showTopParentNotifications(){
         $user_id = auth()->id();
         $notifications = Notification::where('user_id', $user_id)
             ->orderBy('date', 'desc')
@@ -106,9 +107,51 @@ class ShowController extends Controller
             ->get();
         return response()->json($notifications, 200);
     }
-    public function showRemainingParentNotification(){
+    public function showRemainingParentNotifications(){
         $user_id = auth()->id();
-        return response()->json(Notification::where('user_id',$user_id)->orderby('date')->skip(7)->latest()->get(),200);
+        $notifications = Notification::where('user_id', $user_id)
+            ->orderBy('date', 'desc')
+            ->skip(7)
+            ->get();
+        return response()->json($notifications,200);
+    }
+    public function showDemandesOfParent(){
+        $user_id = auth()->id();
+        $parent = Father::where('user_id',$user_id)->first();
+        return response()->json(
+            Demande::join('demande_inscriptions','demande_inscriptions.demande_id', '=', 'demandes.id')
+                ->join('enfants','demande_inscriptions.enfant_id','enfants.id')
+                ->where('father_id',$parent->id)
+                ->where('statut','valide')
+                ->select('demandes.id', 'date')
+                ->get(),
+            200
+        );
+    }
+    public function showActivitiesInDemandeOfParent($demande_id){
+        $demandes = DemandeInscription::where('demande_id',$demande_id)
+            ->select('activite_offre_id')
+            ->get();
+        $i = 0;
+        foreach ($demandes as $demande){
+        $activities[$i++] = ActiviteOffre::join('activites','activites.id','activite_offres.activite_id')
+            ->select('activite_offres.id','titre','image_pub','description',
+                'lien_youtube','objectifs','domaine')
+            ->where('activite_offres.id', $demande->activite_offre_id)->first();
+        }
+        return response()->json($activities,200);
+    }
+    public function showEnfantInActivityInDemandeOfParent($demande_id,$activite_offre_id){
+        $demandes = DemandeInscription::where('demande_id',$demande_id)
+            ->where('activite_offre_id',$activite_offre_id)
+            ->select('enfant_id','etat')
+            ->get();
+        $i = 0;
+        foreach ($demandes as $demande){
+            $enfants[$i] = Enfant::find($demande->enfant_id);
+            $enfants[$i++]->etat = $demande->etat;
+        }
+        return response()->json($enfants,200);
     }
 
 }
