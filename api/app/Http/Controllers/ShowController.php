@@ -12,6 +12,7 @@ use App\Models\Hda;
 use App\Models\Notification;
 use App\Models\Offre;
 use App\Models\PlanningEnf;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -90,17 +91,15 @@ class ShowController extends Controller
         return response()->json($results,200);
     }
     public function showEnfantOfParent(){
-        $user_id = 35;
+        $user_id = auth()->id();
         $parent = Father::where('user_id',$user_id)->first();
         $enfants = Enfant::where('father_id',$parent->id)->first();
         return response()->json([
             $enfants
-
-
         ],200);
     }
     public function showTopParentNotification(){
-        $user_id = 35;
+        $user_id = auth()->id();
         $notifications = Notification::where('user_id', $user_id)
             ->orderBy('date', 'desc')
             ->limit(7)
@@ -111,4 +110,5 @@ class ShowController extends Controller
         $user_id = auth()->id();
         return response()->json(Notification::where('user_id',$user_id)->orderby('date')->skip(7)->latest()->get(),200);
     }
+
 }
