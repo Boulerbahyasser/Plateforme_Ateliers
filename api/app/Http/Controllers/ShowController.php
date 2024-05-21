@@ -35,7 +35,7 @@ class ShowController extends Controller
 // 1/2 tested
     public function showDemandesOfAdmin() {
         $user_id = auth()->id();
-        $admin = Administrateur::where('user_id',$user_id)->get();
+        $admin = Administrateur::where('user_id',$user_id)->first();
         return response()->json(
             Demande::join('demande_inscriptions','demande_inscriptions.demande_id', '=', 'demandes.id')
                 ->where('admin_id', $admin->id)
