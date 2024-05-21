@@ -3,6 +3,7 @@
 use App\Http\Controllers\FatherController;
 use App\Http\Controllers\EnfantController;
 use App\Http\Controllers\ParentDemandeController;
+use App\Http\Controllers\ParentFactureController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,11 +21,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::put('/parent/update',[FatherController::class, 'UpdateParent']);
+Route::put('/parent/update',[FatherController::class, 'UpdateFather']);
 Route::delete('/parent/delete',[FatherController::class, 'DestroyParent']);
-Route::post('/enfant/add/',[EnfantController::class, 'AddEnfant']);
-Route::put('/enfant/update/{id}',[EnfantController::class, 'UpdateEnfant']);
-Route::delete('/enfant/delete/{id}',[EnfantController::class, 'DestroyEnfant']);
+Route::post('/enfant/create/',[EnfantController::class, 'AddEnfant']);
+Route::post('/enfant/update/{id}',[EnfantController::class, 'UpdateEnfant']);
+Route::delete('/enfant/delete/{enfant}',[EnfantController::class, 'DestroyEnfant']);
+
+
 Route::get('/activiteoffre/{id}',[ParentDemandeController::class, 'ShowHorairetoEnfant']);
 Route::post('/demande',[ParentDemandeController::class,'StoreDemande']);
 Route::put('/devis/{id}',[ ParentDemandeController::class,'UpdateDevis']);
+Route::post('/facture',[ ParentFactureController::class,'createFacture']);
+

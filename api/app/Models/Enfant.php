@@ -8,12 +8,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Enfant extends Model
 {
-    use HasFactory;
-<<<<<<< HEAD
-    protected $fillable = ['nom','prenom','date_naissance','niveau','photo',];
 
 
-=======
+
+
     /**
      * The attributes that are mass assignable.
      *
@@ -28,5 +26,5 @@ class Enfant extends Model
     {
         return $this->belongsTo(Father::class);
     }
->>>>>>> develop
+
 }
