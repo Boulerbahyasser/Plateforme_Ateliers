@@ -10,6 +10,7 @@ use App\Models\DemandeInscription;
 use App\Models\Enfant;
 use App\Models\Father;
 use App\Models\Hda;
+use App\Models\Horaire;
 use App\Models\Notification;
 use App\Models\Offre;
 use App\Models\PlanningEnf;
@@ -156,5 +157,15 @@ class ShowController extends Controller
         }
         return response()->json($enfants,200);
     }
-
+    public function showPlaningEnfant($enfant_id){
+        $plannings = Horaire::join('planning_enfs','horaires.id','=','planning_enfs.horaire_id')
+            ->join('activites','activites.id','=','planning_enfs.activite_id')
+            ->join('planning_anims','planning_anims.activite_id','=','activites.id')
+            ->join('animateurs','animateurs.id','=','planning_anims.anim_id')
+            ->join('users','users.id','=','animateurs.user_id')
+            ->where('enfant_id',$enfant_id)
+            ->select('horaires.jour','horaires.heure_debut','horaires.heure_fin','activites.titre','users.name')
+            ->get();
+        return response()->json($plannings,200);
+    }
 }

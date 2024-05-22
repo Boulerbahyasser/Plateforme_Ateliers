@@ -10,6 +10,7 @@ use App\Http\Controllers\Authentication\LogoutController;
 use App\Http\Controllers\Authentication\RegistrationController;
 use App\Http\Controllers\Authentication\ResetPasswordCntroller;
 use App\Http\Controllers\ParentDemandeController;
+use App\Http\Controllers\ParentFactureController;
 use App\Http\Controllers\showController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -60,8 +61,9 @@ Route::middleware(['auth:sanctum'])->group(function (){
 
 });
 
+Route::get('/create/facture/',[ParentFactureController::class,'createFacture']);
 
-
+Route::get('/show/enfant/planning/{enfant_id}',[ShowController::class,'showPlaningEnfant']);
 //show
 Route::get('/show/offers/top/',[showController::class,'showTopOffers']);
 Route::get('/show/offers/remaining/',[showController::class,'showRemainingOffers']);
