@@ -4,11 +4,13 @@ use App\Http\Controllers\AdminActiviteeController;
 use App\Http\Controllers\AdminActiviteeOffreController;
 use App\Http\Controllers\AdminDemandeController;
 use App\Http\Controllers\AdminOffreController;
+use App\Http\Controllers\AdminParentController;
 use App\Http\Controllers\Authentication\EmailVerificationController;
 use App\Http\Controllers\Authentication\LoginController;
 use App\Http\Controllers\Authentication\LogoutController;
 use App\Http\Controllers\Authentication\RegistrationController;
 use App\Http\Controllers\Authentication\ResetPasswordCntroller;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ParentDemandeController;
 use App\Http\Controllers\ParentFactureController;
 use App\Http\Controllers\showController;
@@ -58,12 +60,16 @@ Route::middleware(['auth:sanctum'])->group(function (){
     Route::get('/show/parent/demande/activities/{demande_id}',[ShowController::class,'showActivitiesInDemandeOfParent']);
     Route::get('/show/parent/demande/activity/enfants/{demande_id}/{activite_offre_id}',[ShowController::class,'showEnfantInActivityInDemandeOfParent']);
 
+    Route::delete('/delete/notification/{notification}',[NotificationController::class,'deleteNotification']);
+    Route::delete('/delete/notification/all/',[NotificationController::class,'deleteAllUserNotification']);
+
+
+    Route::get('/create/facture/',[ParentFactureController::class,'createFacture']);
+
+    Route::get('/show/enfant/planning/{enfant_id}',[ShowController::class,'showPlaningEnfant']);
 
 });
 
-Route::get('/create/facture/',[ParentFactureController::class,'createFacture']);
-
-Route::get('/show/enfant/planning/{enfant_id}',[ShowController::class,'showPlaningEnfant']);
 //show
 Route::get('/show/offers/top/',[showController::class,'showTopOffers']);
 Route::get('/show/offers/remaining/',[showController::class,'showRemainingOffers']);
@@ -117,3 +123,7 @@ Route::put('/update/activity/{activity}',[AdminActiviteeController::class,'updat
 
 Route::delete('/delete/activity/{activity}',[AdminActiviteeController::class,'destroyActivity']);
 Route::post('/create/demande/',[ParentDemandeController::class,'storeDemande']);
+
+
+
+Route::delete('/delete/parent/by/admin/{parent}',[AdminParentController::class,'deleteParent']);

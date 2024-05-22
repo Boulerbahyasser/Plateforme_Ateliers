@@ -42,5 +42,15 @@ class NotificationController extends Controller
             'type'=>'traitement de demande'
         ]);
     }
+    public function deleteNotification(Notification $notification){
+        $notification->delete();
+        return response()->json(['message'=>'delete is successful'],200);
+    }
+    public function deleteAllUserNotification(){
+        $user_id = auth()->id();
+        $notifications = Notification::where('user_id',$user_id)->get();
+        foreach ($notifications as $notification) $notification->delete();
+        return response()->json(['message'=>'delete is successful'],200);
+    }
 
 }
