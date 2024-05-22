@@ -54,12 +54,12 @@ Route::middleware(['auth:sanctum'])->group(function (){
 
     // show demandes of parent
     Route::get('/show/demandes/parent/',[showController::class, 'showDemandesOfParent']);
-    Route::get('/show/parent/demande/activities/{demande_id}',[ShowController::class,'showActivitiesInDemandeOfParent']);
     Route::get('/show/parent/demande/activity/enfants/{demande_id}/{activite_offre_id}',[ShowController::class,'showEnfantInActivityInDemandeOfParent']);
 
 
 });
 
+Route::get('/show/parent/demande/activities/{demande_id}',[ShowController::class,'showActivitiesInDemandeOfParent']);
 
 
 //show

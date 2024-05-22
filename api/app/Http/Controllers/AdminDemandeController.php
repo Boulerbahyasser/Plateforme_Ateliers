@@ -24,7 +24,7 @@ class AdminDemandeController extends Controller{
         return response()->json(['message'=>$msg],200);
 
     }
-    public function isDemandeVerified($demande_id){
+    static public function isDemandeVerified($demande_id){
         $demandeInscriptions = DB::table('demande_inscriptions')
             ->where('demande_id', $demande_id)
             ->get();

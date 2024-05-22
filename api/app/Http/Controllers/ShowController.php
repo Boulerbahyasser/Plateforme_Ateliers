@@ -130,15 +130,17 @@ class ShowController extends Controller
         );
     }
     public function showActivitiesInDemandeOfParent($demande_id){
+        $etat = AdminDemandeController::isDemandeVerified($demande_id);
         $demandes = DemandeInscription::where('demande_id',$demande_id)
             ->select('activite_offre_id')
             ->get();
         $i = 0;
         foreach ($demandes as $demande){
-        $activities[$i++] = ActiviteOffre::join('activites','activites.id','activite_offres.activite_id')
+        $activities[$i] = ActiviteOffre::join('activites','activites.id','activite_offres.activite_id')
             ->select('activite_offres.id','titre','image_pub','description',
                 'lien_youtube','objectifs','domaine')
             ->where('activite_offres.id', $demande->activite_offre_id)->first();
+            $activities[$i++]->etat = $etat;
         }
         return response()->json($activities,200);
     }
