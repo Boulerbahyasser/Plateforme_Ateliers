@@ -13,10 +13,13 @@ class PDFController extends Controller
         $dompdf = new Dompdf();
 
 // Ensure that demande_id, date, totale_ht, totale_ttc are correctly set
-        $html = '<h1>Demande ID: '.$demande_id.'</h1><br>
-         <h1>Date: '.$date.'</h1><br>
-         <h1>Total HT: '.$totale_ht.'</h1><br>
-         <h1>Total TTC: '.$totale_ttc.'</h1>';
+        $html = '<br><br><br><br>
+                  <br><br><br><br>
+                  <br><br><br>
+                  <br><hr><br><div style="text-align: center"><h1>Demande ID: '.$demande_id.'</h1></div><br><br>
+         <div style="text-align: center"><h1>Date: '.$date.'</h1></div><br><br>
+         <div style="text-align: center"><h1>Total HT: '.$totale_ht.'</h1></div><br><br>
+         <div style="text-align: center"><h1>Total TTC: '.$totale_ttc.'</h1></div><br><hr>';
 
 // Load HTML content
         $dompdf->loadHtml($html);

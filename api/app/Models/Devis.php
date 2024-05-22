@@ -16,8 +16,8 @@ class Devis extends Model
      * @var array<int, string>
      */
     protected $fillable = ['demande_id', 'facture_id', 'date'
-                            , 'totale_ht', 'totale_ttc', 'statut','Pdf','Etat', 'motif'];
-    
+                            , 'totale_ht', 'totale_ttc', 'statut','pdf','etat', 'motif'];
+
     /**
      * Get the demande that owns the devis.
      */
