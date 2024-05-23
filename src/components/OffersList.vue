@@ -14,10 +14,8 @@
         <div class="offer" v-for="offer in filteredOffers" :key="offer.id">
           <img src="@/assets/child.png" alt="Offer Image" class="offer-image">
           <div class="offer-details">
-            <div>
-              <h4>{{ offer.titre }}</h4>
-              <p>{{ offer.description }}</p>
-            </div>
+            <h4>{{ offer.titre }}</h4>
+            <p>{{ offer.description.slice(0, 100) }}...</p>
             <router-link :to="{ name: 'offerdetails', params: { id: offer.id }}" class="details-btn">
               Voir Détails
             </router-link>
@@ -33,9 +31,8 @@
   </div>
 </template>
 
-
 <script>
-import axios from 'axios';
+import axios from '@/axios';
 
 export default {
   name: 'OffersList',
@@ -46,7 +43,7 @@ export default {
       error: null,
       searchQuery: '',
       currentPage: 1,
-      itemsPerPage: 6,
+      itemsPerPage: 8, // Changed to display 8 offers per page
     }
   },
   computed: {
@@ -102,7 +99,6 @@ export default {
 }
 </script>
 
-
 <style scoped>
 .offers-list {
   background: #ffffff;
@@ -146,13 +142,13 @@ h3 {
 
 .offers-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
 
 .offer {
   background: #f9f9f9;
-  padding: 20px;
+  padding: 15px;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -170,26 +166,31 @@ h3 {
   width: 100%;
   height: auto;
   border-radius: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   object-fit: cover;
 }
 
 .offer-details {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
 }
 
 .offer-details h4 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin-bottom: 10px;
   font-family: 'Baloo Bhaijaan 2', cursive;
   color: #333;
 }
 
 .offer-details p {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #666;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-family: 'Baloo Bhaijaan 2', cursive;
+  flex-grow: 1;
 }
 
 .details-btn {
@@ -200,6 +201,7 @@ h3 {
   border-radius: 5px;
   font-weight: bold;
   transition: background-color 0.3s;
+  margin-top: 10px;
 }
 
 .details-btn:hover {

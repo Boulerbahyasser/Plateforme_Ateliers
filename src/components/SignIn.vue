@@ -25,7 +25,7 @@
 
 <script>
 import NavBar from "@/components/NavBar.vue";
-import axios from "axios";
+import axios from "@/axios";
 axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true;
 
@@ -37,6 +37,7 @@ async function getCSRFToken() {
         console.error('Failed to fetch CSRF token:', error);
     }
 }
+
 
 
 export default {
@@ -79,17 +80,15 @@ export default {
       getCSRFToken().then(()=>{
 
 
-          axios.post('http://localhost:8000/api/auth/login', this.user).then(response => {
+          axios.post('http://localhost:8000/api/login', this.user).then(response => {
 
           const token = response.data.token;
 
-          document.cookie = 'auth_token=' + token + '; HttpOnly';// quand ajouter HttpOnly la token pas voir dans cookies
-          localStorage.setItem('auth-token',token);
-          axios.defaults.headers.common['Authorization'] = 'Bearer ${token}';
+          // document.cookie = 'auth_token=' + token + '; HttpOnly';// quand ajouter HttpOnly la token pas voir dans cookies
+          localStorage.setItem('auth_token', response.data.token);
+          axios.defaults.headers.common[`Authorization`] = `Bearer ${token}`;
           alert('Connexion réussie!');
           this.$router.push('/offerspage');
-
-
           })
           .catch(error => {
           console.error('Erreur de connexion:', error);

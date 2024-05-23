@@ -20,6 +20,9 @@ import DemandeActivity from "@/components/DemandeActivity.vue";
 import SubmitRequest from "@/components/SubmitRequest.vue";
 import UserChildren from "@/components/UserChildren.vue";
 import ChildPlanning from "@/components/ChildPlanning.vue";
+import ActivityChildren from "@/components/ActivityChildren.vue";
+// import AddChild from "@/components/AddChild.vue";
+import EditChild from "@/components/EditChild.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -29,12 +32,12 @@ const router = createRouter({
     { path: '/signin', component: SignIn, name: "SignIn" },
     { path: '/signup', component: SignUp, name: "SignUp" },
     { path:'/forgetpassword' , component:ForgetPassword , name:"forgetpassword"},
-    { path:'/changepassword' , component:ChangePassword , name:"changepassword"},
+    { path:'/changepassword/:token' , component:ChangePassword , name:"changepassword"},
     { path: '/offerspage' , component:OffersPage , name:"OffersPage" },
     { path: '/offerdetails/:id' , component:OfferDetails , name:"offerdetails"},
     { path:'/activitylist/:offerId' , component:ActivityList , name:"activitylist"},
     { path:'/choosechildren' , component:ChooseChildren , name:"choosechildren"},
-    { path:'/selectshedule' , component:SelectSchedule , name:"selectshedule"},
+    { path:'/selectshedule/:activityId' , component:SelectSchedule , name:"selectshedule"},
     { path: '/submitrequest' , component:SubmitRequest , name:"submitrequest"},
     { path:'/notificationpage' , component:NotificationsPage , name:"notificationpage"},
     { path:'/notificationhistory' , component:NotificationHistory , name:"notificationhistory"},
@@ -46,7 +49,9 @@ const router = createRouter({
     { path: '/about', component: AboutUs, name: "AboutUs" },
     { path: '/userchildren', component: UserChildren, name: "userchildren" },
     { path: '/childplanning/:id', component: ChildPlanning, name: "childplanning" },
-  ]
+    // { pat: '/addChild' , component:AddChild , name:"addChild"},
+    { path:'/editChild/:id' , component:EditChild , name:"editChild"},
+{ path: '/activitychildren/:requestId/activities/:activityId/children', component: ActivityChildren, name: "activityChildren" }  ]
 });
 
 export default router;

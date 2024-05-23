@@ -1,6 +1,6 @@
 <template>
   <div class="user-profile">
-    <h2 class="profile-header">Profil Utilisateur</h2>
+    <h1>Profil Utilisateur</h1>
     <form @submit.prevent="updateProfile" class="profile-form">
       <div class="form-group">
         <label for="email" class="form-label"><i class="fas fa-envelope"></i> Email:</label>
@@ -62,30 +62,31 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;700&display=swap');
-
 .user-profile {
   max-width: 600px;
   margin: 40px auto;
-  padding: 25px;
-  background: #ffffff; /* couleur de fond douce */
-  border: 2px solid #4A90E2; /* bordure bleue */
+  padding: 20px;
+  background: #f9f9f9;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  font-family: 'Baloo Bhaijaan 2', cursive; /* police conviviale */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
-.profile-header {
-  color: #4A90E2;
-  text-align: center;
+h1 {
+  font-family: 'Baloo Bhaijaan 2', cursive;
+  color: #34495e;
+  font-size: 2.5rem;
   margin-bottom: 20px;
-  font-size: 2rem;
-  font-weight: bold;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group {
   margin-bottom: 20px;
-  position: relative;
+  text-align: left;
 }
 
 .form-label {
@@ -97,43 +98,39 @@ export default {
 
 .form-input {
   width: 100%;
-  padding: 12px;
+  padding: 10px;
   border-radius: 5px;
-  border: 2px solid #4A90E2;
+  border: 2px solid #ddd;
   transition: border-color 0.3s;
-  font-family: 'Baloo Bhaijaan 2', cursive;
 }
 
 .form-input:focus {
-  border-color: #305e8c;
+  border-color: #3498db;
 }
 
 .profile-submit {
-  width: 100%;
-  padding: 12px;
-  background-color: #4A90E2;
-  color: white;
+  padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
-  font-family: 'Baloo Bhaijaan 2', cursive;
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: 1rem;
+  background-color: #3498db;
+  color: white;
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .profile-submit:hover {
-  background-color: #305e8c;
-  transform: scale(1.05);
+  background-color: #2980b9;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .profile-submit:active {
-  background-color: #203d5c;
+  background-color: #1e5d8b;
 }
 
 .fas {
   margin-right: 5px;
-  color: #4A90E2; /* Couleur des icônes pour correspondre à la bordure et au bouton */
+  color: #3498db; /* Couleur des icônes pour correspondre à la bordure et au bouton */
 }
 
 .loader, .error-message {

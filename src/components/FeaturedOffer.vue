@@ -2,17 +2,23 @@
   <div class="offer-container" v-if="offers.length">
     <button @click="prevOffer" class="nav-btn left-btn">⬅️</button>
     <div class="text-section">
-      <h1>{{ currentOffer.titre }}</h1>
-      <p>{{ currentOffer.description }}</p>
+      <h2>{{ currentOffer.titre }}</h2>
+      <p class="description">{{ currentOffer.description }}</p>
       <h3 class="remise">{{ currentOffer.remise }}% de remise</h3>
       <router-link :to="{ name: 'offerdetails', params: { id: currentOffer.id }}" class="btn">
         Inscrivez-vous à l'offre
       </router-link>
     </div>
     <div class="date-section">
-        <h3><strong>Date de début :</strong> {{ currentOffer.date_debut }}</h3>
-        <h3><strong>Date de fin :</strong> {{ currentOffer.date_fin }}</h3>
+      <div class="date">
+        <h3>Date de début :</h3>
+        <p>{{ currentOffer.date_debut }}</p>
       </div>
+      <div class="date">
+        <h3>Date de fin :</h3>
+        <p>{{ currentOffer.date_fin }}</p>
+      </div>
+    </div>
     <div class="image-section">
       <img src="@/assets/child.png" alt="Offer Image" class="offer-image">
     </div>
@@ -20,7 +26,6 @@
   </div>
   <div v-else class="loading-message">Chargement des offres...</div>
 </template>
-
 
 <script>
 import axios from 'axios';
@@ -59,15 +64,13 @@ export default {
   }
 }
 </script>
-
-
 <style scoped>
 .offer-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: #ffffff;
-  height: 40vh;
+  height: auto;
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
@@ -86,19 +89,24 @@ export default {
   max-width: 40%;
   color: #333;
   text-align: left;
+  overflow: hidden;
 }
 
-h1 {
-  font-size: 2rem;
+h2 {
+  font-size: 2.5rem;
   margin-bottom: 15px;
   font-family: 'Baloo Bhaijaan 2', cursive;
 }
 
-p {
+.description {
   font-size: 1.2rem;
   margin-bottom: 20px;
   font-family: 'Baloo Bhaijaan 2', cursive;
   color: #666;
+  max-height: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .remise {
@@ -117,6 +125,7 @@ p {
   color: white;
   text-decoration: none;
   transition: background-color 0.3s;
+  display: inline-block;
 }
 
 .btn:hover {
@@ -166,7 +175,24 @@ p {
 }
 
 .date-section {
-  margin-right: 130px;
-  margin-top: 150px;
+  flex: 1;
+  text-align: left;
+  margin-right: 30px;
+}
+
+.date {
+  margin-bottom: 10px;
+}
+
+.date h3 {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.date p {
+  font-size: 1.2rem;
+  color: #333;
+  margin: 0;
 }
 </style>

@@ -14,33 +14,33 @@
   </div>
 </template>
 
-<!--<script>-->
-<!--import axios from 'axios';-->
+<script>
+import axios from 'axios';
 
-<!--export default {-->
-<!--  name: 'SubmitRequest',-->
-<!--  data() {-->
-<!--    return {-->
-<!--      selectedActivities: JSON.parse(localStorage.getItem('selectedActivities')) || []-->
-<!--    };-->
-<!--  },-->
-<!--  methods: {-->
-<!--    async submitRequest() {-->
-<!--      try {-->
-<!--        const response = await axios.post('http://localhost:8000/api/create/demande/', {-->
-<!--          activities: this.selectedActivities-->
-<!--        });-->
-<!--        alert('Demande soumise avec succès!');-->
-<!--        localStorage.removeItem('selectedActivities'); // Nettoyer le localStorage après soumission-->
-<!--        this.$router.push('/offerspage');-->
-<!--      } catch (error) {-->
-<!--        console.error('Erreur lors de la soumission de la demande:', error);-->
-<!--        alert('Erreur lors de la soumission de la demande. Veuillez réessayer plus tard.');-->
-<!--      }-->
-<!--    }-->
-<!--  }-->
-<!--};-->
-<!--</script>-->
+export default {
+  name: 'SubmitRequest',
+  data() {
+    return {
+      selectedActivities: JSON.parse(localStorage.getItem('selectedActivities')) || []
+    };
+  },
+  methods: {
+    async submitRequest() {
+      try {
+        const response = await axios.post('http://localhost:8000/api/create/demande/', {
+          activities: this.selectedActivities
+        });
+        alert(response.data.name);
+        localStorage.removeItem('selectedActivities'); // Nettoyer le localStorage après soumission
+        this.$router.push('/offerspage');
+      } catch (error) {
+        console.error('Erreur lors de la soumission de la demande:', error);
+        alert('Erreur lors de la soumission de la demande. Veuillez réessayer plus tard.');
+      }
+    }
+  }
+};
+</script>
 
 <style scoped>
 .submit-request-container {

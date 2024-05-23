@@ -19,6 +19,7 @@
 import NavbarElement from "@/components/NavBar.vue";
 
 export default {
+  name:'WelcomePage' ,
   components: {
     NavbarElement
   },

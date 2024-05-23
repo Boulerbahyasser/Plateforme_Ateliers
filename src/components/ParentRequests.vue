@@ -7,8 +7,7 @@
       <div v-for="request in demande" :key="request.id" class="request-item">
         <div class="request-details">
           <h2>{{ request.offer_name }}</h2>
-          <p><strong>État :</strong> {{ request.etat }}</p>
-          <p><strong>Date de création :</strong> {{ new Date(request.created_at).toLocaleDateString() }}</p>
+          <p><strong>Date de création :</strong> {{ new Date(request.date).toLocaleDateString() }}</p>
         </div>
         <div class="action-buttons">
           <button @click="viewRequest(request.id)">Voir Détails</button>
@@ -19,7 +18,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '@/axios';
 
 export default {
   name: 'ParentRequests',
@@ -36,9 +35,10 @@ export default {
   methods: {
     async fetchRequests() {
       try {
-        const response = await axios.get('http://localhost:8000/api/show/demandes/');
+        const response = await axios.get('http://localhost:8000/api/show/demandes/parent/');
         this.demande = response.data;
         this.loading = false;
+
       } catch (error) {
         console.error('Erreur lors de la récupération des demandes:', error);
         this.loading = false;

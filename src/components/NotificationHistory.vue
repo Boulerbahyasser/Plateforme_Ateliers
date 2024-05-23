@@ -13,7 +13,7 @@
 
 <script>
 import NotificationItem from './NotificationItem.vue';
-import axios from 'axios';
+import axios from '@/axios';
 
 export default {
   components: {
@@ -32,11 +32,12 @@ export default {
   methods: {
     async loadHistoryNotifications() {
       try {
-        const response = await axios.get('http://localhost:8000/api/notifications/history');
+        const response = await axios.get('http://localhost:8000/api/show/notification/parent/remaining/');
         this.historyNotifications = response.data;
         this.loading = false;
       } catch (error) {
         console.error("Failed to load notifications:", error);
+        alert(error.response.data.message);
         this.loading = false;
         this.error = true;
       }

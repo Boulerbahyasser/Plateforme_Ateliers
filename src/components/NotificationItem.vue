@@ -2,7 +2,7 @@
 
 <template>
   <li class="notification-item">
-    <p>{{ notification.message }}</p>
+    <p>{{ notification.contenu }}</p>
     <button @click="$emit('delete', notification.id)">Supprimer</button>
   </li>
 </template>

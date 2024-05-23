@@ -11,12 +11,11 @@
         </label>
       </div>
     </div>
-    <button @click="submitChildren">Terminer</button>
+    <button @click="submitChildren" class="submit-btn">Terminer</button>
   </div>
 </template>
-
 <script>
-import axios from 'axios';
+import axios from '@/axios';
 
 export default {
   name: 'ChooseChildren',
@@ -35,13 +34,10 @@ export default {
     this.fetchChildren();
   },
   methods: {
-    async fetchChildren()  {
-      alert(this.offerTitre) ;
-      alert(this.offerId) ;
-      alert(this.activityTitre) ;
-      alert(this.activityId) ;
+    async fetchChildren() {
       try {
-        const response = await axios.get(`http://localhost:8000/api/parent/children`);
+        alert(this.activityId) ;
+        const response = await axios.get(`http://localhost:8000/api/show/parent/enfant/`);
         this.children = response.data;
         this.loading = false;
       } catch (error) {
@@ -51,25 +47,24 @@ export default {
       }
     },
     selectChild(childId) {
-    this.$router.push({ path: '/selectschedule',
-      query: {
-        activityId:this.$route.query.activityId,
-        activityTitre: this.$route.query.activityTitre,
-        offerId:  this.$route.query.offerId,
-        offerTitre: this.$route.query.offerTitre,
-        childId: childId,
-        childName: this.children.nom
-    } });
+      this.$router.push({
+        name: 'selectshedule',
+        params: { activityId: this.activityId },
+        query: {
+          activityTitre: this.activityTitre,
+          offerId: this.offerId,
+          offerTitre: this.offerTitre,
+          childId: childId,
+          childName: this.children.find(child => child.id === childId).nom + ' ' + this.children.find(child => child.id === childId).prenom
+        }
+      });
     },
     submitChildren() {
-      console.log('Enfants sélectionnés:', this.children);
       this.$router.push(`/activitylist/${this.activityId}`);
     }
   }
 };
 </script>
-
-
 <style scoped>
 .choose-children-container {
   display: flex;
@@ -84,6 +79,7 @@ h1 {
   font-weight: bold;
   color: #0056b3;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .child-card {
@@ -120,7 +116,7 @@ h1 {
   color: #666;
 }
 
-button {
+.submit-btn {
   padding: 10px 20px;
   border: none;
   background-color: #007BFF;
@@ -129,14 +125,15 @@ button {
   cursor: pointer;
   transition: background-color 0.3s;
   font-weight: 500;
+  margin-top: 20px;
 }
 
-button:hover {
+.submit-btn:hover {
   background-color: #0056b3;
   box-shadow: 5px 5px 10px rgba(0,0,0,0.25);
 }
 
-button:active {
+.submit-btn:active {
   background-color: #012a56;
 }
 

@@ -9,13 +9,15 @@
         @delete="deleteNotification"
       ></notification-item>
     </ul>
-    <button @click="viewHistory">Voir l'historique des notifications</button>
+    <div class="button-container">
+      <button @click="viewHistory">Voir l'historique des notifications</button>
+    </div>
   </div>
 </template>
 
 <script>
 import NotificationItem from './NotificationItem.vue';
-import axios from 'axios';
+import axios from '@/axios';
 
 export default {
   components: {
@@ -42,7 +44,7 @@ export default {
     },
     async loadNotifications() {
       try {
-        const response = await axios.get('http://localhost:8000/api/notifications');
+        const response = await axios.get('http://localhost:8000/api/show/notification/parent/top/');
         this.notifications = response.data;
         this.loading = false;
       } catch (error) {
@@ -78,6 +80,11 @@ ul {
   padding: 0;
 }
 
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
 button {
   background-color: #4A90E2;
   color: white;
@@ -98,4 +105,3 @@ button:focus {
   box-shadow: 0 0 0 2px #fff, 0 0 0 4px #3778c2;
 }
 </style>
-

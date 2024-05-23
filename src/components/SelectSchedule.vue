@@ -4,10 +4,10 @@
     <div v-if="loading">Chargement des horaires...</div>
     <div v-else-if="error" class="error-message">Erreur lors de la récupération des horaires. Veuillez réessayer plus tard.</div>
     <div v-else>
-      <div v-for="schedule in schedules" :key="schedule.id" class="schedule-card">
+      <div v-for="(schedule,index) in schedules" :key="schedule.id" class="schedule-card">
         <label :for="`schedule-${schedule.id}`" class="schedule-label">
-          <input type="checkbox" :id="`schedule-${schedule.id}`" v-model="selectedSchedules" :value="schedule.id" />
-          <div class="schedule-details">
+          <input type="checkbox" :id="`schedule-${schedule.id}`" v-model="selectedSchedules[index]" :value="schedule.id" />
+           <div class="schedule-details">
             <span class="schedule-day">{{ schedule.jour }}</span>
             <span class="schedule-time">{{ schedule.heure_debut }} - {{ schedule.heure_fin }}</span>
             <div class="schedule-info">
@@ -15,11 +15,11 @@
               <span><strong>Eff. Max:</strong> {{ schedule.eff_max }}</span>
               <span><strong>Places Restantes:</strong> {{ schedule.nbr_place_restant }}</span>
             </div>
-          </div>
+           </div>
         </label>
       </div>
     </div>
-    <button @click="submitSchedules">Terminer</button>
+    <button @click="submitSchedules" class="submit-btn">Terminer</button>
   </div>
 </template>
 <script>
@@ -29,12 +29,12 @@ export default {
   name: 'SelectSchedule',
   data() {
     return {
-      activityId: this.$route.query.activityId,
-      activityTitre: this.$router.query.activityTitre ,
+      activityId: this.$route.params.activityId,
+      activityTitre: this.$route.query.activityTitre,
       offerId: this.$route.query.offerId,
-      offerTitre:this.$route.query.offerTitre ,
+      offerTitre: this.$route.query.offerTitre,
       childName: this.$route.query.childName,
-      childId:this.$route.query.childId,
+      childId: this.$route.query.childId,
       schedules: [],
       selectedSchedules: [],
       loading: true,
@@ -46,10 +46,6 @@ export default {
   },
   methods: {
     async fetchSchedules() {
-      alert(this.activityId) ;
-      alert(this.activityTitre) ;
-      alert(this.offerId) ;
-      alert(this.offerTitre) ;
       try {
         const response = await axios.get(`http://localhost:8000/api/show/offer/activity/horaires/${this.activityId}`);
         this.schedules = response.data;
@@ -60,7 +56,7 @@ export default {
         this.error = true;
       }
     },
-     submitSchedules() {
+    submitSchedules() {
       if (this.selectedSchedules.length !== 2) {
         alert('Veuillez sélectionner exactement deux horaires.');
         return;
@@ -82,17 +78,20 @@ export default {
       activities.push(selectedActivity);
       localStorage.setItem('selectedActivities', JSON.stringify(activities));
 
-      console.log('Horaires sélectionnés:', this.selectedSchedules);
-      this.$router.push({ name: 'choosechildren', query: {
-        activityId: this.$route.query.activityId,
-        activityTitre: this.$router.query.activityTitre ,
-        offerId: this.$route.query.offerId,
-        offerTitre:this.$route.query.offerTitre ,
-      } });
+      this.$router.push({
+        name: 'choosechildren',
+        query: {
+          activityId: this.activityId,
+          activityTitre: this.activityTitre,
+          offerId: this.offerId,
+          offerTitre: this.offerTitre,
+        }
+      });
     }
   }
 };
 </script>
+
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 
@@ -165,7 +164,7 @@ input[type="checkbox"] {
   margin-right: 20px;
 }
 
-button {
+.submit-btn {
   padding: 10px 20px;
   border: none;
   background-color: #007BFF;
@@ -177,12 +176,12 @@ button {
   margin-top: 20px;
 }
 
-button:hover {
+.submit-btn:hover {
   background-color: #0056b3;
   box-shadow: 5px 5px 10px rgba(0,0,0,0.25);
 }
 
-button:active {
+.submit-btn:active {
   background-color: #012a56;
 }
 
@@ -192,3 +191,4 @@ button:active {
   margin-top: 20px;
 }
 </style>
+
