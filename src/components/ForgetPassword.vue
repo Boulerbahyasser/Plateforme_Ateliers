@@ -39,7 +39,11 @@ export default {
         })
         .catch(error => {
           console.error('Erreur lors de la réinitialisation du mot de passe:', error);
+<<<<<<< HEAD
 
+=======
+          
+>>>>>>> a30bb02d6e0c824ab638eca88b958bcc43bd59ea
         // alert('Une erreur est survenue lors de la réinitialisation du mot de passe.');
         console.log(error.response.data.message);
 
