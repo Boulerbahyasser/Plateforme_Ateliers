@@ -33,7 +33,7 @@ export default {
   methods: {
     async deleteNotification(id) {
       try {
-        await axios.delete(`http://localhost:8000/api/notifications/${id}`);
+        await axios.delete(`http://localhost:8000/api/delete/notification/${id}`);
         this.notifications = this.notifications.filter(n => n.id !== id);
       } catch (error) {
         console.error("Failed to delete notification:", error);
