@@ -97,7 +97,7 @@ class PDFController extends Controller
         $pdfContent = $dompdf->output();
 
 // Define file path
-        $filePath = 'devis/' . $demande_id . '.pdf';
+        $filePath = 'public/devis/' . $demande_id . '.pdf';
 
 // Store the PDF content to the specified file path
         Storage::put($filePath, $pdfContent);
