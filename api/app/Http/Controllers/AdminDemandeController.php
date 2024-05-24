@@ -8,6 +8,8 @@ use App\Models\DemandeInscription;
 use App\Models\Devis;
 use App\Models\Enfant;
 use App\Models\Father;
+use App\Models\Hda;
+use App\Models\Horaire;
 use App\Models\Notification;
 use App\Models\Pack;
 use App\Models\User;
@@ -16,9 +18,29 @@ use Illuminate\Support\Facades\DB;
 
 class AdminDemandeController extends Controller{
     public function gererDemande(Request $request,$demande_id,$activite_offre_id,$enfant_id){
-        DemandeInscription::sqlUpdate($request,$demande_id,$activite_offre_id,$enfant_id);
-        $msg = ($request->etat == 'accepte')?"the request is well accepted"
-            :"the request is well denied";
+        $demande = DemandeInscription::where('enfant_id', $enfant_id)
+            ->where('activite_offre_id', $activite_offre_id)
+            ->where('demande_id', $demande_id)
+            ->update([
+                'etat' => $request->etat,
+                'motif' => $request->motif,
+                'updated_at' => now()
+            ]);
+        if($request->etat == 'accepte')$msg = "the request is well accepted";
+        else {
+
+            $horaire1 = explode(',',$demande->horaire1);
+            $horaire2 = explode(',',$demande->horaire2);
+            $horaire1_id = Horaire::where('jour',$horaire1[0])->where('heure_debut',$horaire1[1])
+                ->where('horaires.heure_fin',$horaire1[1])->first()->id;
+            $horaire2_id = Horaire::where('jour',$horaire2[0])->where('heure_debut',$horaire2[1])
+                ->where('horaires.heure_fin',$horaire2[1])->first()->id;
+            $hda1 = Hda::find($horaire1_id);
+            $hda2 = Hda::find($horaire2_id);
+            $hda1->update(['nbr_place_restant'=>$hda1->nbr_place_restant+1]);
+            $hda2->update(['nbr_place_restant'=>$hda2->nbr_place_restant+1]);
+            $msg = "the request is well denied";
+        }
         $parent_id  = Enfant::find($enfant_id)->father_id;
         $parent= Father::find($parent_id);
         $user = User::find($parent->user_id);

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('enfant_id');
             $table->unsignedBigInteger('activite_offre_id');
             $table->unsignedBigInteger('demande_id');
-            $table->dateTime('horaire1');
-            $table->dateTime('horaire2');
+            $table->string('horaire1');
+            $table->string('horaire2');
             $table->string('etat');
             $table->text('motif');
 

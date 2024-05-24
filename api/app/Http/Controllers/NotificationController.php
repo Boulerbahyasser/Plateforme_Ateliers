@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\DB;
 class NotificationController extends Controller
 {
     static public function notifyDevisCreated($demande_id,Devis $devis){
+        $totale_ttc = $devis->totale_ttc;
+        $totale_ttc = number_format($totale_ttc, 2, ',', ' ');
         $enfant_id =(DB::table('demande_inscriptions')
             ->where('demande_id', $demande_id)
             ->first(['enfant_id']))->enfant_id;
@@ -23,7 +25,7 @@ class NotificationController extends Controller
         Notification::create([
             'user_id'=>  $user_id,
             'date' =>now(),
-            'contenu' => 'Vous avez une nouvelle devis :'.$devis->id,
+            'contenu' => 'Vous avez une nouvelle devis :'.$totale_ttc .' DH',
             'type'=>'nouveau devis'
         ]);
     }

@@ -61,14 +61,14 @@ Route::middleware(['auth:sanctum'])->group(function (){
     Route::get('/show/parent/demande/activity/enfants/{demande_id}/{activite_offre_id}',[ShowController::class,'showEnfantInActivityInDemandeOfParent']);
 
     Route::delete('/delete/notification/{notification}',[NotificationController::class,'deleteNotification']);
-    Route::delete('/delete/notification/all/',[NotificationController::class,'deleteAllUserNotification']);
 
 
-    Route::get('/create/facture/',[ParentFactureController::class,'createFacture']);
 
     Route::get('/show/enfant/planning/{enfant_id}',[ShowController::class,'showPlaningEnfant']);
+    Route::get('/delete/notification/all/',[NotificationController::class,'deleteAllUserNotification']);
 
 });
+Route::get('/create/facture/',[ParentFactureController::class,'createFacture']);
 
 //show
 Route::get('/show/offers/top/',[showController::class,'showTopOffers']);
