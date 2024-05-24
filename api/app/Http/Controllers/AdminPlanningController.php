@@ -23,11 +23,11 @@ class AdminPlanningController extends Controller
                 $horaire_id1 = Horaire::where('jour',$horaire1[0])
                     ->where('heure_debut',$horaire1[1])
                     ->where('heure_fin',$horaire1[2])
-                    ->first();
+                    ->first()->id;
                 $horaire_id2 = Horaire::where('jour',$horaire2[0])
                     ->where('heure_debut',$horaire2[1])
                     ->where('heure_fin',$horaire2[2])
-                    ->first();
+                    ->first()->id;
                 $activite_id =ActiviteOffre::find($demande->activite_offre_id)->activite_id;
                 PlanningEnf::create([
                         'enfant_id' => $demande->enfant_id,
