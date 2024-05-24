@@ -6,11 +6,11 @@
         v-for="notification in historyNotifications"
         :key="notification.id"
         :notification="notification"
+        @delete="deleteNotification"
       ></notification-item>
     </ul>
   </div>
 </template>
-
 <script>
 import NotificationItem from './NotificationItem.vue';
 import axios from '@/axios';
@@ -30,6 +30,15 @@ export default {
     this.loadHistoryNotifications();
   },
   methods: {
+    async deleteNotification(id) {
+      try {
+        await axios.delete(`http://localhost:8000/api/delete/notification/${id}`);
+        this.historyNotifications = this.historyNotifications.filter(n => n.id !== id);
+      } catch (error) {
+        console.error("Failed to delete notification:", error);
+      }
+    },
+
     async loadHistoryNotifications() {
       try {
         const response = await axios.get('http://localhost:8000/api/show/notification/parent/remaining/');
@@ -45,7 +54,6 @@ export default {
   }
 }
 </script>
-
 <style scoped>
 .notifications-history-page {
   max-width: 600px;

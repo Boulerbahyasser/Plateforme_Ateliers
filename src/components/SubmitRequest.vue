@@ -6,8 +6,8 @@
       <p>Activité: {{ activity.activityTitre }}</p>
       <p>Enfant: {{ activity.childName }}</p>
       <p>Les Horaires:
-        <span>Horaire 1: {{ activity.schedule1.jour }} {{ activity.schedule1.heure_debut }} - {{ activity.schedule1.heure_fin }}</span> et
-        <span>Horaire 2: {{ activity.schedule2.jour }} {{ activity.schedule2.heure_debut }} - {{ activity.schedule2.heure_fin }}</span>
+        <span>Horaire 1: {{ activity.schedule1 }} </span> et
+        <span>Horaire 2: {{ activity.schedule2 }}</span>
       </p>
     </div>
     <button @click="submitRequest">Soumettre la Demande</button>

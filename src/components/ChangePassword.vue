@@ -19,11 +19,7 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 import axios from '@/axios';
-=======
-import axios from 'axios';
->>>>>>> a30bb02d6e0c824ab638eca88b958bcc43bd59ea
 
 export default {
   data() {

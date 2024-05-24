@@ -10,11 +10,13 @@
       ></notification-item>
     </ul>
     <div class="button-container">
-      <button @click="viewHistory">Voir l'historique des notifications</button>
+      <button @click="deleteAllNotifications">Supprimer toutes les notifications</button>
+    </div>
+    <div class="button-container">
+          <button @click="viewHistory">Voir l'historique des notifications</button>
     </div>
   </div>
 </template>
-
 <script>
 import NotificationItem from './NotificationItem.vue';
 import axios from '@/axios';
@@ -37,6 +39,14 @@ export default {
         this.notifications = this.notifications.filter(n => n.id !== id);
       } catch (error) {
         console.error("Failed to delete notification:", error);
+      }
+    },
+    async deleteAllNotifications() {
+      try {
+        await axios.get('http://localhost:8000/api/delete/notification/all/');
+        this.notifications = [];
+      } catch (error) {
+        console.error("Failed to delete all notifications:", error);
       }
     },
     viewHistory() {

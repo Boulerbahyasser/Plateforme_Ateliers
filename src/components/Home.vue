@@ -1,194 +1,103 @@
 <template>
-  <div class="select-schedule-container">
-    <h1>Sélectionnez deux horaires pour l'enfant: {{ childName }}</h1>
-    <div v-if="loading">Chargement des horaires...</div>
-    <div v-else-if="error" class="error-message">Erreur lors de la récupération des horaires. Veuillez réessayer plus tard.</div>
-    <div v-else>
-      <div v-for="schedule in schedules" :key="schedule.id" class="schedule-card">
-        <label :for="`schedule-${schedule.id}`" class="schedule-label">
-          <input type="checkbox" :id="`schedule-${schedule.id}`" v-model="selectedSchedules" :value="schedule.id" />
-          <div class="schedule-details">
-            <span class="schedule-day">{{ schedule.jour }}</span>
-            <span class="schedule-time">{{ schedule.heure_debut }} - {{ schedule.heure_fin }}</span>
-            <div class="schedule-info">
-              <span><strong>Eff. Min:</strong> {{ schedule.eff_min }}</span>
-              <span><strong>Eff. Max:</strong> {{ schedule.eff_max }}</span>
-              <span><strong>Places Restantes:</strong> {{ schedule.nbr_place_restant }}</span>
-            </div>
-          </div>
-        </label>
-      </div>
+  <div class="submit-request-container">
+    <h1>Récapitulatif de la Demande</h1>
+    <div v-for="(activity, index) in selectedActivities" :key="index" class="activity-summary">
+      <h2>Offre: {{ activity.offerTitre }}</h2>
+      <p>Activité: {{ activity.activityTitre }}</p>
+      <p>Enfant: {{ activity.childName }}</p>
+      <p>Les Horaires:
+        <span>Horaire 1: {{ activity.schedule1.jour }} {{ activity.schedule1.heure_debut }} - {{ activity.schedule1.heure_fin }}</span> et
+        <span>Horaire 2: {{ activity.schedule2.jour }} {{ activity.schedule2.heure_debut }} - {{ activity.schedule2.heure_fin }}</span>
+      </p>
     </div>
-    <button @click="submitSchedules" class="submit-btn">Terminer</button>
+    <button @click="submitRequest">Soumettre la Demande</button>
   </div>
 </template>
+
 <script>
-import axios from "axios";
+import axios from 'axios';
 
 export default {
-  name: 'SelectSchedule',
+  name: 'SubmitRequest',
   data() {
     return {
-      activityId: this.$route.params.activityId,
-      activityTitre: this.$route.query.activityTitre,
-      offerId: this.$route.query.offerId,
-      offerTitre: this.$route.query.offerTitre,
-      childName: this.$route.query.childName,
-      childId: this.$route.query.childId,
-      schedules: [],
-      selectedSchedules: [],
-      loading: true,
-      error: false
+      selectedActivities: JSON.parse(localStorage.getItem('selectedActivities')) || []
     };
   },
-  created() {
-    this.fetchSchedules();
-  },
   methods: {
-    async fetchSchedules() {
+    async submitRequest() {
       try {
-        const response = await axios.get(`http://localhost:8000/api/show/offer/activity/horaires/${this.activityId}`);
-        this.schedules = response.data;
-        this.loading = false;
+        const response = await axios.post('http://localhost:8000/api/create/demande/', {
+          activities: this.selectedActivities
+        });
+        alert(response.data.name);
+        localStorage.removeItem('selectedActivities'); // Nettoyer le localStorage après soumission
+        this.$router.push('/offerspage');
       } catch (error) {
-        console.error('Erreur lors de la récupération des horaires:', error);
-        this.loading = false;
-        this.error = true;
+        console.error('Erreur lors de la soumission de la demande:', error);
+        alert('Erreur lors de la soumission de la demande. Veuillez réessayer plus tard.');
       }
-    },
-    submitSchedules() {
-      if (this.selectedSchedules.length !== 2) {
-        alert('Veuillez sélectionner exactement deux horaires.');
-        return;
-      }
-
-      const selectedActivity = {
-        offerId: this.offerId,
-        offerTitre: this.offerTitre,
-        activityId: this.activityId,
-        activityTitre: this.activityTitre,
-        childId: this.childId,
-        childName: this.childName,
-        schedule1: this.selectedSchedules[0],
-        schedule2: this.selectedSchedules[1]
-      };
-
-      // Stocker l'activité sélectionnée dans le localStorage
-      let activities = JSON.parse(localStorage.getItem('selectedActivities')) || [];
-      activities.push(selectedActivity);
-      localStorage.setItem('selectedActivities', JSON.stringify(activities));
-
-      this.$router.push({
-        name: 'choosechildren',
-        query: {
-          activityId: this.activityId,
-          activityTitre: this.activityTitre,
-          offerId: this.offerId,
-          offerTitre: this.offerTitre,
-        }
-      });
     }
   }
 };
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
-
-.select-schedule-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.submit-request-container {
   padding: 40px;
-  background-color: #f0f0f0;
+  text-align: center;
+  background: #f5f7fa;
+  color: #333;
 }
 
 h1 {
+  font-family: 'Baloo Bhaijaan 2', cursive;
+  color: #34495e;
   font-size: 2.5rem;
-  font-weight: bold;
-  color: #0056b3;
   margin-bottom: 20px;
-  text-align: center;
 }
 
-.schedule-card {
-  width: 800px;
-  display: flex;
+.activity-summary {
   background: #fff;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  border-radius: 8px;
+  margin: 20px auto;
   padding: 20px;
-  margin-bottom: 20px;
-  transition: transform 0.3s ease;
-  align-items: center;
-  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  text-align: left;
 }
 
-.schedule-card:hover {
-  transform: translateY(-5px);
+.activity-summary h2 {
+  font-family: 'Baloo Bhaijaan 2', cursive;
+  color: #2c3e50;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
 }
 
-.schedule-label {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.schedule-details {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.schedule-day {
+.activity-summary p {
   font-size: 1.2rem;
-  color: #007BFF;
-  margin-bottom: 10px;
+  color: #7f8c8d;
+  margin: 5px 0;
 }
 
-.schedule-time {
-  font-size: 1.1rem;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.schedule-info {
-  display: flex;
-  justify-content: space-between;
-  font-size: 1rem;
-  color: #555;
-}
-
-input[type="checkbox"] {
-  transform: scale(1.5);
-  margin-right: 20px;
-}
-
-.submit-btn {
+button {
   padding: 10px 20px;
   border: none;
-  background-color: #007BFF;
-  color: white;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
-  font-weight: 500;
-  margin-top: 20px;
+  margin: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  background-color: #2ecc71;
+  color: white;
 }
 
-.submit-btn:hover {
-  background-color: #0056b3;
-  box-shadow: 5px 5px 10px rgba(0,0,0,0.25);
+button:hover {
+  background-color: #27ae60;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.submit-btn:active {
-  background-color: #012a56;
-}
-
-.error-message {
-  color: red;
-  text-align: center;
-  margin-top: 20px;
+button:active {
+  background-color: #1e8449;
 }
 </style>
-

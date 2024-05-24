@@ -15,7 +15,6 @@
               <span><strong>Eff. Max:</strong> {{ schedule.eff_max }}</span>
               <span><strong>Places Restantes:</strong> {{ schedule.nbr_place_restant }}</span>
             </div>
-             div
            </div>
         </label>
       </div>
